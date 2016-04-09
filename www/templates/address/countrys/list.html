@@ -1,0 +1,11 @@
+<ion-view view-title="Paises Registrados">
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="country in countrys">
+                <h2>{{country.pais}}</h2>
+                <p><i class="icon ion-android-call"></i>{{country.codigo_telefonico}}</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <button class="button button-fab button-fab-bottom-right button-assertive icon ion-loop "></button>
+</ion-view>

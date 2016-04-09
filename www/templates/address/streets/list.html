@@ -1,0 +1,15 @@
+<ion-view view-title="Calles Registradas">
+    <ion-content>
+        <ion-list>
+        <label for="">Buscar:<input type="text" ng-model="searchtxt"></label>
+            <ion-item class="item-remove-animate item-icon-right" type="item-text-wrap" ng-repeat="street in streets | filter:searchtxt">
+                <h2>{{street.calle}}</h2>
+                <p>{{street.pais_id}} - {{street.provincia_id}} - {{street.ciudad_id}} - {{street.barrio_id}}</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+                <ion-option-button class="button-energized" ng-click="update(street)">Editar</ion-option-button>
+                <ion-option-button class="button-possitive" ng-click="delete(street)">Eliminar</ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <button class="button button-fab button-fab-bottom-right button-assertive-900 icon ion-plus pane" ng-click="openModal(1)"></button>
+</ion-view>

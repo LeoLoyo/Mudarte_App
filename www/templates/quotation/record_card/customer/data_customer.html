@@ -1,0 +1,199 @@
+<!-- <div class="col col-80 col-offset-10" style="z-index:20;"> -->
+<div class="col col-80 col-offset-10">
+<!-- <div class="col" style="z-index:20;"> -->
+   <!--  <div class="card">
+        <div class="row no-padding">
+            <picture class="image-card" widht="100%" height="100%">
+              <img
+                src="images/person.png"
+                alt="a person">
+            </picture>
+            <span ng-model="customer.nombre"></span>
+        </div>
+        <ion-list>
+            <div class="item">
+                <h2 class="">Datos Biograficos</h2>
+            </div>
+            <div class="item row no-padding">
+                <div class="col padding text-center">
+                    <i class=" item-icon button-clear icon ion-android-person"></i>
+                </div>
+
+                <div class="col col-80">
+                    <label for="" class=" item item-input item-floating-label"><span class="  input-label">DNI</span><input type="text" placeholder="DNI" ng-model="customer.dni"></label>
+                </div>
+                <div class="col text-center">
+                    <i class="gray icon ion-edit"></i>
+                </div>
+            </div>
+            <div class="item row no-padding">
+                <div class="col text-center">
+                    <i class=" item-icon button-clear icon ion-android-person"></i>
+                </div>
+                <div class="col col-80">
+                    <label for="" class=" item item-input item-floating-label"><span class="  input-label">Nombre</span><input type="text" placeholder="Nombre" ng-model="customer.nombre"></label>
+                </div>
+                <div class="col text-center">
+                    <i class=" item-icon button-clear icon ion-edit"></i>
+                </div>
+            </div>
+            <div class="item row padding">
+                <div class="col text-center">
+                    <i class=" item-icon button-clear icon ion-android-person"></i>
+                </div>
+                <div class="col col-80">
+                    <ion-toggle ng-model="customer.sexo" toggle-class="toggle-balanced">Sexo</ion-toggle>
+                </div>
+                <div class="col text-center">
+                    <i class=" item-icon button-clear icon ion-edit"></i>
+                </div>
+            </div>
+            <div class="item row no-padding">
+                <div class="col col-10 text-center">
+                    <i class=" item-icon button-clear icon ion-android-person"></i>
+                </div>
+                <div class="col col-80 ">
+                    <div class="row no-padding">
+                        <div class=".col col-50">
+                            <span class="input-label">Sexo</span>
+                        </div>
+                        <div class="col">
+                            <ion-radio ng-model="customer.sexo" ng-value="'1'">Hombre</ion-radio>
+                        </div>
+                        <div class="col">
+                            <ion-radio ng-model="customer.sexo" ng-value="'2'">Mujer</ion-radio>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+    </div> -->
+
+    <div class="demo-card-wide mdl-card mdl-shadow--3dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Leonardo Loyo</h2>
+        </div>
+        <div class="mdl-button__supporting-text">
+            <ul class="mdl-list padding-left padding-right">
+                <li class="mdl-list__item mdl-list__item--two-line">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="ion-android-call mdl-list__item-icon "></i>
+                        <span>Movil</span>
+                        <span class="mdl-list__item-sub-title" ng-bind="customer.movil"></span>
+
+                    </span>
+                    <span class="mdl-list__item-secondary-content">
+                    <!-- <span class="col" style="text-align: right;"> -->
+                        <a class="mdl-list__item-secondary-action " ng-click="showPopup('movil','Movil')"><i class="icon ion-edit"></i></a>
+                    </span>
+                </li>
+                <li class="mdl-list__item mdl-list__item--two-line">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="ion-email mdl-list__item-icon "></i>
+                        <span>Email</span>
+                        <span class="mdl-list__item-sub-title" ng-bind="customer.email"></span>
+                    </span>
+                    <span class="mdl-list__item-secondary-content">
+                        <a class="mdl-list__item-secondary-action " ng-click="showPopup('email','Email')"><i class="icon ion-edit"></i></a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="mdl-card__menu">
+            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect ">
+            <i class="material-icons">share</i>
+            </button>
+        </div>
+    </div>
+    <div class="demo-card-wide mdl-card mdl-shadow--3dp">
+        <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            Datos Biograficos
+            </a>
+        </div>
+        <div class="mdl button__supporting-text">
+            <ul class="mdl-list padding-left padding-right">
+                <li class="mdl-list__item mdl-list__item--two-line">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="icon ion-person mdl-list__item-icon "></i>
+                        <span>DNI</span>
+                        <span class="mdl-list__item-sub-title" ng-bind="customer.dni"></span>
+                    </span>
+                    <span class="mdl-list__item-secondary-content">
+                        <a class="mdl-list__item-secondary-action " ng-click="showPopup('dni','DNI')"><i class="icon ion-edit"></i></a>
+                    </span>
+                </li>
+                <li class="mdl-list__item mdl-list__item--two-line">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="icon ion-person mdl-list__item-icon"></i>
+                        <span>Nombre</span>
+                        <span class="mdl-list__item-sub-title" ng-bind="customer.nombre"></span>
+                    </span>
+                    <span class="mdl-list__item-secondary-content">
+                        <a class="mdl-list__item-secondary-action " ng-click="showPopup('nombre','Nombre')"><i class="icon ion-edit"></i></a>
+                    </span>
+                </li>
+                <li class="mdl-list__item mdl-list__item--two-line">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="icon ion-person mdl-list__item-icon"></i>
+                        <span>Sexo</span>
+                        <span class="mdl-list__item-sub-title" ng-bind="customer.sexo"></span>
+                    </span>
+                    <span class="mdl-list__item-secondary-content">
+                        <a class="mdl-list__item-secondary-action " ng-click="showPopup('sexo','Sexo')"><i class="icon ion-edit"></i></a>
+                    </span>
+                </li>
+                <li class="mdl-list__item mdl-list__item--two-line">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="icon ion-person mdl-list__item-icon"></i>
+                        <span>Fecha de Nacimiento</span>
+                        <span class="mdl-list__item-sub-title" ng-bind="customer.fecha_de_nacimiento"></span>
+                    </span>
+                    <span class="mdl-list__item-secondary-content">
+                        <a class="mdl-list__item-secondary-action " ng-click="showPopup('fecha_de_nacimiento','Fecha de Nacimiento')"><i class="icon ion-edit"></i></a>
+                    </span>
+                </li>
+                <li class="mdl-list__item mdl-list__item--two-line">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="icon ion-person mdl-list__item-icon"></i>
+                        <span>Estado Civil</span>
+                        <span class="mdl-list__item-sub-title" ng-bind="customer.estado_civil"></span>
+                    </span>
+                    <span class="mdl-list__item-secondary-content">
+                        <a class="mdl-list__item-secondary-action " ng-click="showPopup('estado_civil','Estado Civil')"><i class="icon ion-edit"></i></a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="demo-card-wide mdl-card mdl-shadow--3dp">
+        <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            Datos de Contacto
+            </a>
+        </div>
+        <div class="mdl button__supporting-text">
+            <ul class="mdl-list padding-left padding-right">
+                <li class="mdl-list__item mdl-list__item--two-line" style="font-size:1.2em">
+     <!--                <span class="mdl-list__item-primary-content">
+                        <i class="icon ion-person mdl-list__item-icon"></i>
+                        <span>Nombre</span>
+                        <span class="mdl-list__item-sub-title">Antonio Loyo</span>
+                    </span>-->
+                <a class="item item-icon-left item-icon-right" href="#">
+                    <i class="icon ion-chatbubble-working"></i>
+                    <span>Nombre</span>
+                    <span ng-bind="customer.nombre"></span>
+                    <i class="icon ion-ios-telephone-outline" ng-click="showPopup('Estado Civil')"></i>
+                </a>
+
+                 </li>
+
+
+            </ul>
+        </div>
+    </div>
+
+
+</div>
+<!-- <button class="button button-fab button-fab-bottom-right button-assertive-900 icon ion-plus pane" ng-click=""></button> -->
