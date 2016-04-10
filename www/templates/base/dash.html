@@ -1,0 +1,28 @@
+<ion-side-menus enable-menu-with-back-views="true">
+
+	<!-- Container Main -->
+
+	<ion-side-menu-content edge-drag-threshold="true" drag-content="true">
+		<ion-header-bar class="bar-positive">
+
+			<button class="button button-clear icon ion-navicon" menu-toggle="left"></button>
+			<h1 class="title">{{mytitle}}</h1>
+			<button class="button icon button-clear ion-android-search"></button>
+		</ion-header-bar>
+		<!-- View Of The Container Main -->
+		<ion-nav-view name="maincontent"></ion-nav-view>
+
+	</ion-side-menu-content>
+
+	<!-- Container Left SideBar -->
+
+	<ion-side-menu  side="left">
+	<div class="bar bar-header bar-positive expanded">
+		<img src="http://www.mudarte.com.ar/imagenes/logo.png" alt="">
+	</div>
+		<ion-content scroll="false" class="has-header-expanded">
+			<div ng-include src="'templates/opciones/index.html'"></div>
+		</ion-content>
+	</ion-side-menu>
+
+</ion-side-menus>

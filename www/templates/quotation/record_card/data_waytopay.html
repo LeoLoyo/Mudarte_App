@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="bar-card">
+        <h4 class="title-center">Forma De Pago</h4>
+    </div>
+    <div class="row without-padding">
+
+        <div class="col">
+            <label for="" class="item item-input item-floating-label"><span class="input-label">Numero de Tarjeta de Credito</span><input type="text" placeholder="Numero de Tarjeta de Credito" ng-model="ntdc"></label>
+        </div>
+
+
+
+        <div class="col">
+            <ion-toggle ng-model="airplaneMode" toggle-class="toggle-balanced">Estado Civil</ion-toggle>
+        </div>
+    </div>
+    <div class="row without-padding">
+        <div class="col"><div class="list">
+
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Sexo
+            </div>
+            <select>
+              <option>Hombre</option>
+              <option selected>Mujer</option>
+              <option>Otros</option>
+            </select>
+          </label>
+
+        </div></div>
+        <div class="col">
+            <ion-radio ng-model="choice" ng-value="'A'">Choose A</ion-radio>
+            <ion-radio ng-model="choice" ng-value="'B'">Choose B</ion-radio>
+            <ion-radio ng-model="choice" ng-value="'C'">Choose C</ion-radio>
+        </div>
+    </div>
+</div>
+

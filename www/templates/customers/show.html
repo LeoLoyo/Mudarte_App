@@ -1,0 +1,29 @@
+<ion-view title="Perfil De Cliente {{customer.nombre}}">
+    <ion-content>
+      <div class="demo-card-wide">
+
+        <div ripple class="mdl-card__title">
+           <h2 class="mdl-card__title-text">
+            <span ng-bind="customer.nombre"></span>
+          </h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+           <md-radio-group ng-model="customer.tipocliente" layout="row">
+            <md-radio-button flex value="1">Particular</md-radio-button>
+            <md-radio-button flex value="2">Empresa</md-radio-button>
+            <md-radio-button flex value="3">Gobierno</md-radio-button>
+            <md-radio-button flex value="4">Otros</md-radio-button>
+          </md-radio-group>
+
+          <!-- Include partial -->
+          <div ng-include src="'templates/customers/partial/partial_new_customer.html'"></div>
+          <!-- End Include -->
+        <div class="mdl-card__menu">
+          <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect ">
+            <i class="icon ion-edit"></i>
+          </button>
+        </div>
+      </div>
+  </ion-content>
+  <button ripple ng-click="CustomerPopup(customer)" class="button button-fab button-fab-bottom-right button-positive icon ion-android-done"></button>
+</ion-view>
