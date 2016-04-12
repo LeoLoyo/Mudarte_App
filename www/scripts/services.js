@@ -49,10 +49,12 @@
                   });
             },create:function(query,params){
                    $cordovaSQLite.execute(db,query,params).then(function(result){
-                      return result;
+                      // return result;
+                      return true;
                     },function(error){
                       alert('hubo un error cre '+ error.menssages)
-                        return error.menssages;
+                        return false;
+                        // return error.menssages;
                     });
             },update:function(query, data, id){
                     var sql = query + id;

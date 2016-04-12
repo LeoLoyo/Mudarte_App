@@ -2,7 +2,7 @@
   'use strict';
     var app = angular.module('services.customers',[]);
 
-    app.factory('Service_Customers',function($cordovaSQLite,collectiondb){
+    app.factory('Service_Customers',function($cordovaSQLite,collectiondb,$ionicLoading){
      'use strict';
      var customer = {};
      var customers = [];
@@ -25,17 +25,32 @@
     }
      return {
               load:function(data){
-                if(!db){
-                  customers = [];
-                   for(var i = 0; i<data.length; i++){
+                var result = false;
+                    $ionicLoading.show({
+                                        animation: 'fade-in',
+                                        showBackdrop: true,
+                                      });
+                  if(db!=null){
+                    var params = [];
+                    var i = 0;
+                    for(i; i<data.length; i++)
+                    {
+                      params = [data[i]['nombre'],data[i]['observaciones'],data[i]['cuit'],data[i]['tipo_de_cliente_id']];
+                      collectiondb.create('INSERT INTO cliente_cliente (nombre,observaciones,cuit,tipo_de_cliente_id) VALUES(?,?,?,?)',params);
+                    }//for
+                    // $ionicLoading.hide();
+                    result = true;
+                  }else{
+                    customers = [];
+                    for(var i = 0; i<data.length; i++)
+                    {
                       var obj = data[i];
                       customers.push(obj);
-
-                   }
-                 }else{
-                 }
-
-                return customers;
+                    }
+                    result = true;
+                  }
+                  $ionicLoading.hide();
+                 return result;
               },new:function(data){
                 if(!db){
                   console.log(data);
@@ -46,7 +61,7 @@
                   customers.push(customer);
                   customer = {};
                 }else{
-                 params = [data.nombre,data.cuit,data.observaciones,data.tipo_de_cliente_id];
+                  params = [data.nombre,data.cuit,data.observaciones,data.tipo_de_cliente_id];
                   return collectiondb.create('INSERT INTO cliente_cliente (nombre,cuit,observaciones,tipo_de_cliente_id) VALUES(?,?,?,?)',params);
                 }
 
@@ -54,9 +69,10 @@
               },get:function(){
                 if(db != null){
                   var query = 'SELECT observaciones, nombre, cuit, tipo_de_cliente_id FROM cliente_cliente'
-                   customers = collectiondb.all(query);
-                   return customers;
+                  customers = [];
+                  customers = collectiondb.all(query);
                  }
+                 return customers;
               },findOne: function(Id){
                 for (var i = 0; i < customers.length; i++) {
                     if (customers[i].id === parseInt(Id)) {

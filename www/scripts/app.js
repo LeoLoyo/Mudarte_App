@@ -25,7 +25,7 @@
       }
       function opensuccess(){
         $ionicLoading.hide();
-        // alert('DB Working...')
+        alert('DB Working...')
       }
       function openerror(){
         alert('!!!Error DB  not Working!!!')

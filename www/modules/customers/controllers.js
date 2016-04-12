@@ -2,35 +2,19 @@
  var app = angular.module('CustomersCtrl',[]);
   app.controller('CustomersCtrl',function($scope,$http , $state, $ionicPopup, $timeout, collectiondb, Service_sexo, Service_Customers, Service_typeofrelationship){
     'use strict';
+
     $scope.customers = Service_Customers.get();
 
-
-      if(Service_Customers.load_db()){
-        $scope.customers = Service_Customers.get();
-      }
-
-
-
-   // $scope.update = function(){
-
-   //  $http.get('modules/customers/clientes.json').then(function success(data){
-   //      $scope.customers = Service_Customers.load(data.data);
-   //      // $scope.customers = collectiondb.load();
-   //    }, function erros(e){
-   //      console.log('no hubo conexion'+ e);
-   //    });
-   //  }
-   //  if(Service_Customers.count()<=0){
-   //    $scope.update();
-   //    console.log('guarde del json');
-   //  }else{
-   //    $scope.customers = Service_Customers.get();
-   //    console.log('ya hay guardados');
-   //  }
-
-
-
-
+    $scope.sync = function(){
+    $http.get('modules/customers/clientes.json').then(function success(data){
+      if(Service_Customers.load(data.data)){
+          $scope.customers = [];
+          $scope.customers = Service_Customers.get();
+        }
+      }, function erros(e){
+        console.log('no hubo conexion'+ e);
+      });
+    }
 
     // $scope.mytitle = $state.current.data.title;
 

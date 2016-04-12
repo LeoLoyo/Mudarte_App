@@ -1,7 +1,7 @@
 <ion-view title="Listado De Clientes">
 <ion-content>
-<ion-refresher pulling-text="Pull to refresh...">
-  </ion-refresher>
+<!-- <ion-refresher pulling-text="Pull To Refresh" on-refresh="sync()" refreshing-text="Fetching ..." refreshing-icon="ion-loading-b">
+  </ion-refresher> -->
     <ion-list>
         <ion-item class="item item-thumbnail-left" ng-repeat="customer in customers" href="#/dash/customers/show/{{customer.id}}">
             <img ng-src="images/person.png" alt="">
@@ -10,7 +10,9 @@
         </ion-item>
     </ion-list>
 </ion-content>
-<button ripple ng-click="new()" class="button button-fab button-fab-bottom-right button-positive icon ion-android-person-add"></button>
+<!-- <button ripple ng-click="new()" class="button button-fab button-fab-bottom-right button-positive icon ion-android-person-add"></button> -->
+<!-- button for sync -->
+<button ripple ng-click="sync()" class="button button-fab button-fab-bottom-right button-assertive icon ion-android-sync"></button>
 </ion-view>
 
 
