@@ -1,0 +1,22 @@
+[{
+    "id":1,
+    "provincia":"Buenos Aires",
+    "pais":
+        {
+            "id":1,
+            "pais":"afghanistan (AF)",
+            "codigo_telefonico":""
+        },
+    "codigo_telefonico":""
+},
+{
+    "id":2,
+    "provincia":"Buenos Aires-GBA",
+    "pais":
+        {
+            "id":10,
+            "pais":"Argentina (AR)",
+            "codigo_telefonico":"+54"
+        },
+    "codigo_telefonico":""
+}]
