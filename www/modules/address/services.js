@@ -259,13 +259,12 @@
 
                 }else{
                     for(var j = 0; j<data.length; j++){
-                        if(collectiondb.searchweb(address,data[j].id)==undefined){
+                        if(collectiondb.findOne(address,data[j].id)==undefined){
                         address.push(data[j]);
                         }else{
                           address[collectiondb.searchid(address,data[j].id)]=data[j];
                         }
                       }
-
                 }
                 return true;}
       }

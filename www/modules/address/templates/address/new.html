@@ -1,0 +1,63 @@
+<ion-view>
+    <ion-pane>
+        <ion-content>
+            <div class="padding">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Calle</label>
+                    <input value="Texto" ng-model='address.street'>
+                </md-input-container>
+                <div class="row">
+                    <md-input-container class='col'>
+                        <label>Altura</label>
+                        <input value="Texto" ng-model='address.height'>
+                    </md-input-container>
+                    <md-input-container class='col'>
+                        <label>Zip</label>
+                    <input value="Texto" ng-model='address.zip'>
+                    </md-input-container>
+                </div>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Punto de Referencia</label>
+                    <input value="Texto" ng-model='address.point_of_reference'>
+                </md-input-container>
+                <div class="row">
+                    <md-input-container class="col">
+                        <label>Pais</label>
+                        <md-select ng-model="address.cuntry">
+                          <md-option ng-value="item" ng-repeat="item in items">Item {{item}}</md-option>
+                          <md-option ng-value="10" selected>Argentina</md-option>
+                          <md-option ng-value="1">Afganistan</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="col">
+                        <label>Provincia</label>
+                        <md-select ng-model="address.cuntry">
+                          <md-option ng-value="item" ng-repeat="item in items">Item {{item}}</md-option>
+                          <md-option ng-value="10" selected>Buenos Aires</md-option>
+                          <md-option ng-value="1">Afganistan</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div class="row">
+                    <md-input-container class="col">
+                        <label>Ciudad</label>
+                        <md-select ng-model="address.cuntry">
+                          <md-option ng-value="item" ng-repeat="item in items">Item {{item}}</md-option>
+                          <md-option ng-value="10" selected>Cordova</md-option>
+                          <md-option ng-value="1">Afganistan</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="col">
+                        <label>Barrio</label>
+                        <md-select ng-model="address.cuntry">
+                          <md-option ng-value="item" ng-repeat="item in items">Item {{item}}</md-option>
+                          <md-option ng-value="10" selected>Prueba Barrio</md-option>
+                          <md-option ng-value="1">Afganistan</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+        </ion-content>
+
+    </ion-pane>
+    <button class="button button-fab button-fab-bottom-right button-balanced icon ion-android-done" ng-click=""></button>
+</ion-view>

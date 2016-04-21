@@ -52,15 +52,37 @@ angular.module('AddressRouter',[])
         }
       }
     })
+
     .state('dash.address',{
-      url:'/address',
+        url:'/address',
+        views:{
+          'maincontent':{
+            template:'<ion-view><ion-nav-view name="address"></ion-nav-view></ion-view>',
+            controller:'AddressCtrl'
+          }
+        }
+      })
+
+    .state('dash.address.list',{
+      cache:false,
+      url:'/list',
       views:{
-        'maincontent':{
+        "address":{
           templateUrl:'modules/address/templates/address/list.html',
           controller:'AddressCtrl'
         }
       }
     })
+
+    .state('dash.address.new',{
+      url:'/new',
+      views:{
+        'address':{
+          templateUrl:'modules/address/templates/address/new.html',
+          controller:'AddressCtrl'
+        }
+      }
+    })
     ;
-      $urlRouterProvider.when('/countrys/','/countrys');
+      // $urlRouterProvider.when('/countrys/','/countrys');
 })
