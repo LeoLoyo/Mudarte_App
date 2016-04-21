@@ -1,22 +1,34 @@
 (function(){
  var app = angular.module('CustomersCtrl',[]);
-  app.controller('CustomersCtrl',function($scope,$http , $state, $ionicPopup, $timeout, collectiondb, Service_sexo, Service_Customers, Service_typeofrelationship){
+  app.controller('CustomersCtrl',function($scope,$http , $state,$ionicLoading, $ionicPopup,$cordovaToast, $timeout, collectiondb, Service_sexo, Service_Customers, Service_typeofrelationship,Services_messanges){
     'use strict';
-
+    $scope.mytitle = $state.current.data.title;
     $scope.customers = Service_Customers.get();
 
     $scope.sync = function(){
-    $http.get('modules/customers/clientes.json').then(function success(data){
-      if(Service_Customers.load(data.data)){
+
+      $ionicLoading.show({template: '<p>Loading...</p><ion-spinner icon="spiral"></ion-spinner>'});
+      // if(db==null){
+      //   var url='modules/customers/clientes.json';
+      // }else{
+        var url='http://192.168.0.114:8000/api/v1/cliente/?format=json';
+      // }
+        $http.get(url).then(function success(data){
+          // console.log(data.data);
+          (Service_Customers.load(data.data))?Services_messanges.message('Sincronizacion Satisfactoria'):Services_messanges.message('Error al Sincronizar');
+          // Service_Customers.load(data.data);
           $scope.customers = [];
           $scope.customers = Service_Customers.get();
-        }
-      }, function erros(e){
-        console.log('no hubo conexion'+ e);
-      });
+          $ionicLoading.hide();
+
+        }, function error(e){
+          $ionicLoading.hide();
+          Services_messanges.message('No hubo respuesta del servidor');
+        });
     }
 
-    // $scope.mytitle = $state.current.data.title;
+
+
 
 
     // $scope.customers = Service_Customers.get();

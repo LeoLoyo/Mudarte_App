@@ -1,0 +1,12 @@
+<ion-view view-title="Barrios Registrados">
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="neighborhood in neighborhoods">
+                {{neighborhood.barrio}}
+                <p>Provincia:{{neighborhood.provincia}}</p>
+                <p>Ciudad:{{neighborhood.ciudad}}</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <button class="button button-fab button-fab-bottom-right button-assertive icon ion-loop" ng-click="sync()"></button>
+</ion-view>

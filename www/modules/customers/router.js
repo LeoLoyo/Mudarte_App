@@ -34,7 +34,6 @@ angular.module('CustomersRouter',[])
     url:'/new',
     views:{
       'customers':{
-          // templateUrl:'templates/customers/new.html',
           templateUrl:'modules/customers/templates/new.html',
           controller:'CustomersCtrl'
         }
@@ -48,7 +47,6 @@ angular.module('CustomersRouter',[])
     url:'/show/:id',
     views:{
       'customers':{
-          // templateUrl:'templates/customers/show.html',
           templateUrl:'modules/customers/templates/show.html',
           controller:'CustomersDetailCtrl'
         }
@@ -61,7 +59,6 @@ angular.module('CustomersRouter',[])
       url:'/contact',
       views:{
         "customers":{
-          // templateUrl:'templates/customers/contacts/new.html',
           templateUrl:'modules/customers/contacts/new.html',
           controller:'CustomersCtrl'
         }

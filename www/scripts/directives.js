@@ -1,13 +1,13 @@
 angular.module('app.directives',[])
-    .directive('myTitle', function(){
+    .directive('myTitle', function($state){
         return {
             restrict: 'E',
             scope:{
                 title:'='
             },
-            template:"{{title}}",
+            template:"{{$state.current.datatitle}}",
             controller: function($scope){
-                console.log('funcioanndo');
+                return "title";
             }
         };
     })
