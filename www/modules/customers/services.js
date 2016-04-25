@@ -19,7 +19,7 @@
                      },{
                       "id":300,
                       "nombre":"ALeonardo Loyo",
-                      "id_web":300,
+                      "id_web":3,
                       "cuit":"v-321295782",
                       "tipo_de_cliente_id":1
                      }];
@@ -61,9 +61,9 @@
                           collectiondb.update('UPDATE cliente_cliente set nombre=?, observaciones=?, cuit=?, tipo_de_cliente_id=? where id_web =',params,object['id']);
                         }//else
                       });
-                     }else{
+                   }else{
                       for(var j = 0; j<data.length; j++){
-                        if(collectiondb.search(customers,data[j].id)==undefined){
+                        if(collectiondb.findOne(customers,data[j].id)==undefined){
                         customers.push(data[j]);
                         }else{
                           customers[collectiondb.searchid(customers,data[j].id)]=data[j];
@@ -135,4 +135,3 @@
              }
      });
 })()
-

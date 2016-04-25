@@ -6,10 +6,64 @@
 
       //variables
 
-      var countrys = [];
-      var provinces = [];
-      var cities = [];
-      var neighborhoods = [];
+      var countrys = [{
+              "id_web":1,
+              "pais":"Afghanistan (AF)",
+              "codigo_telefonico":""
+          },
+          {
+              "id_web":10,
+              "pais":"Argentina (AR)",
+              "codigo_telefonico":"+54"
+          }
+      ];
+      var provinces = [{
+          "id_web":1,
+          "provincia":"Buenos Aires",
+          "pais_id":10,
+          "codigo_telefonico":"+54",
+          "pais":"Agentina"
+      },
+      {
+          "id_web":2,
+          "provincia":"Cordova",
+          "pais_id":10,
+          "codigo_telefonico":"+54",
+          "pais":"Agentina"
+      }];
+      var cities = [
+          {
+              "id_web":1,
+              "ciudad":"Azul",
+              "provincia_id":2,
+              "pais_id":10,
+              "pais":"Agentina",
+              "provincia":"Buenos Aires"
+          },{
+              "id_web":2,
+              "ciudad":"Bahi­a Blanca",
+              "provincia_id":1,
+              "pais_id":10,
+              "pais":"Agentina",
+              "provincia":"Cordova"
+            }
+      ];
+      var neighborhoods = [
+          {
+              "id_web":1,
+              "barrio":"Agronomia",
+              "ciudad_id":1,
+              "provincia_id":10,
+              "pais_id":10,
+          },
+          {
+              "id_web":2,
+              "barrio":"Almagro",
+              "ciudad_id":2,
+              "provincia_id":10,
+              "pais_id":10,
+            }
+      ];
       var streets = [];
       var address = [];
 
@@ -56,7 +110,7 @@
                           return false;
                         });//foreach db
                       });
-
+                  countrys=[];
                   }else{
 
                       angular.forEach(data, function(object, key){
@@ -100,13 +154,14 @@
                       });
 
                   }else{
-                    for(var j = 0; j<data.length; j++){
-                      if(collectiondb.searchweb(provinces,data[j].id)==undefined){
-                      provinces.push(data[j]);
-                      }else{
-                        provinces[collectiondb.searchid(provinces,data[j].id)]=data[j];
-                      }
-                    }
+
+                      angular.forEach(data, function(object, key){
+                        if(collectiondb.findOne(get(provinces,'vprovincia'),object.id,"id")==undefined){
+                          provinces.push(object);
+                        }else{
+                          provinces[collectiondb.findOne(provinces,object.id,"id")]=object;
+                        }
+                      });//foreach web
 
                   }
                   return true;},
@@ -140,15 +195,16 @@
                       });
 
                 }else{
-                    for(var j = 0; j<data.length; j++){
-                      if(collectiondb.searchweb(cities,data[j].id)==undefined){
-                      cities.push(data[j]);
-                      }else{
-                        cities[collectiondb.searchid(cities,data[j].id)]=data[j];
-                      }
-                    }
 
-                }
+                      angular.forEach(data, function(object, key){
+                        if(collectiondb.findOne(get(cities,'vciudad'),object.id,"id")==undefined){
+                          cities.push(object);
+                        }else{
+                          cities[collectiondb.findOne(cities,object.id,"id")]=object;
+                        }
+                      });//foreach web
+
+                  }
                 return true;},
               Neighborhoods_sync:function(data){
 
@@ -182,15 +238,17 @@
                       });
 
                 }else{
-                    for(var j = 0; j<data.length; j++){
-                      if(collectiondb.searchweb(neighborhoods,data[j].id)==undefined){
-                      neighborhoods.push(data[j]);
-                      }else{
-                        neighborhoods[collectiondb.searchid(neighborhoods,data[j].id)]=data[j];
-                      }
-                    }
 
-                }
+                      angular.forEach(data, function(object, key){
+                        if(collectiondb.findOne(get(neighborhoods,'vbarrio'),object.id,"id")==undefined){
+                          neighborhoods.push(object);
+                        }else{
+                          neighborhoods[collectiondb.findOne(neighborhoods,object.id,"id")]=object;
+                        }
+                      });//foreach web
+
+                  }
+
                 return true;},
               streets_sync:function(data){
                 if(db!=null){
@@ -220,15 +278,16 @@
                       });
 
                 }else{
-                    for(var j = 0; j<data.length; j++){
-                      if(collectiondb.searchweb(streets,data[j].id)==undefined){
-                      streets.push(data[j]);
-                      }else{
-                        streets[collectiondb.searchid(streets,data[j].id)]=data[j];
-                      }
-                    }
 
-                }
+                      angular.forEach(data, function(object, key){
+                        if(collectiondb.findOne(get(streets,'vcalle'),object.id,"id")==undefined){
+                          streets.push(object);
+                        }else{
+                          streets[collectiondb.findOne(streets,object.id,"id")]=object;
+                        }
+                      });//foreach web
+
+                  }
                 return true;},
               address_sync:function(data){
                 if(db!=null){
@@ -258,15 +317,37 @@
                       });
 
                 }else{
-                    for(var j = 0; j<data.length; j++){
-                        if(collectiondb.findOne(address,data[j].id)==undefined){
-                        address.push(data[j]);
+
+                      angular.forEach(data, function(object, key){
+                        if(collectiondb.findOne(get(address,'vdireccion'),object.id,"id")==undefined){
+                          address.push(object);
                         }else{
-                          address[collectiondb.searchid(address,data[j].id)]=data[j];
+                          address[collectiondb.findOne(address,object.id,"id")]=object;
                         }
-                      }
+                      });//foreach web
+                  }
+                return true;},
+                address_add:function(data){
+                  alert(data);
+                  if(db!=null){
+                    params = [
+                              data.pais_id,
+                              data.provincia_id,
+                              data.ciudad_id,
+                              data.barrio_id,
+                              data.calle,
+                              data.zip,
+                              data.altura,
+                              data.punto_de_referencia,
+                              ];
+                              alert(params);
+                    collectiondb.create('INSERT INTO direccion_direccion (pais_id, provincia_id, ciudad_id, barrio_id, calle, zip, altura, punto_de_referencia) VALUES(?,?,?,?,?,?,?,?)',params);
+                  }else{
+                    // console.log(data);
+                    address.push(data);
+                  }
+
                 }
-                return true;}
       }
     });
 })()

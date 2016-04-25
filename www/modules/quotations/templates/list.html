@@ -1,0 +1,21 @@
+<ion-view title="Cotizaciones">
+  <ion-content scroll="false">
+    <ion-list>
+      <!-- <ion-item ng-repeat = "quotation in quotations "class="md-card" nav-direction="forward"  href="#/dash/quotation/client"> -->
+      <ion-item ng-repeat = "quotation in quotations" class="primary" nav-direction="forward"  href="#/dash/quotation/client">
+          <!-- <div class="row whithout-shadow"> -->
+          <div class="row">
+              <div class="col col-20 "><h1 class="title">{{quotation.codigo}}</h1></div>
+              <!-- <div class="col col-20 "><h1>dasdas</h1></div> -->
+              <div class="col">
+                  <h2>{{quotation.cliente}}</h2>
+                  <!-- <h2>asdasd</h2> -->
+                  <p>{{quotation.direccion}}</p>
+                  <!-- <p>adasdsa</p> -->
+              </div>
+          </div>
+          <ion-option-button class="button-assertive">Aplazar</ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

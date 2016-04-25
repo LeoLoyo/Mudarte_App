@@ -1,0 +1,49 @@
+<div class="card">
+    <div class="bar-card">
+        <div class="row no-padding">
+            <div class="col col-90">Horario Disponible De La Edificacion</div>
+            <a class="button-icon"><i class="icon ion-android-done"></i></a>
+        </div>
+    </div>
+    <form action="save(shedule_avalible)">
+        <div class="row no-padding">
+            <div class="col">
+                <ion-radio ng-model="shedule_avalible.day" ng-value="'1'">Lunes</ion-radio>
+                <ion-radio ng-model="shedule_avalible.day" ng-value="'2'">Martes</ion-radio>
+                <ion-radio ng-model="shedule_avalible.day" ng-value="'3'">Miercoles</ion-radio>
+                <ion-radio ng-model="shedule_avalible.day" ng-value="'4'">Jueves</ion-radio>
+                <ion-radio ng-model="shedule_avalible.day" ng-value="'5'">Viernes</ion-radio>
+                <ion-radio ng-model="shedule_avalible.day" ng-value="'6'">Sabado</ion-radio>
+                <ion-radio ng-model="shedule_avalible.day" ng-value="'7'">Domingo</ion-radio>
+            </div>
+            <div class="col">
+                <ion-list>
+                    <ion-item>
+                    <!-- Start Time -->
+                        <label for="">Disponible Desde </label>
+                        <input type="time" ng-model="shedule_avalible.hora_desde" value="11:45:00" max="22:30:00" min="10:00:00" step="1">
+                    </ion-item>
+                    <ion-item>
+                    <!-- End Time -->
+                    <label for="">Hasta <input type="time" ng-model="shedule_avalible.hora_hasta" value="08:00:00" max="23:59:59" min="00:00:01" step="1"> </label>
+                    </ion-item>
+                    <ion-item>
+                        <!-- Edifice -->
+                        <ion-toggle ng-model="shedule_avalible.edificio" toggle-class="toggle-balanced">Edificio</ion-toggle>
+                    </ion-item>
+                    <ion-item>
+                        <!-- Elevator -->
+                        <ion-toggle ng-model="shedule_avalible.ascensor" toggle-class="toggle-balanced">Ascensor</ion-toggle>
+                    </ion-item>
+                    <ion-item>
+                    <!-- Observation -->
+                        <label for="" class="item item-input item-floating-label">
+                            <span class="input-label">Obervacion</span>
+                            <textarea placeholder="Observacion" ng-model="shedule_avalible.observacion"rows="1" maxlength="80"></textarea>
+                        </label>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+    </form>
+</div>

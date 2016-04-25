@@ -9,10 +9,10 @@
 
       $ionicLoading.show({template: '<p>Loading...</p><ion-spinner icon="spiral"></ion-spinner>'});
       // if(db==null){
-      //   var url='modules/customers/clientes.json';
-      // }else{
-        var url='http://192.168.0.114:8000/api/v1/cliente/?format=json';
-      // }
+        var url='modules/customers/clientes.json';
+      // // }else{
+      //   var url='http://192.168.0.114:8000/api/v1/cliente/?format=json';
+      // // }
         $http.get(url).then(function success(data){
           // console.log(data.data);
           (Service_Customers.load(data.data))?Services_messanges.message('Sincronizacion Satisfactoria'):Services_messanges.message('Error al Sincronizar');

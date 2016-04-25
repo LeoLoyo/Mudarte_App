@@ -12,7 +12,7 @@
         // }
         // $ionicLoading.show({template:"Loading..."});
       if(db==null){
-        copydb();
+        // copydb ();
       }
       function copydb(){
         window.plugins.sqlDB.copy("mudartedb.sqlite", 0, copysuccess,copyerror);
@@ -34,5 +34,3 @@
     });//platform ready
 });//run
 // })()
-
-

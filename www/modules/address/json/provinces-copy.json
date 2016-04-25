@@ -1,0 +1,12 @@
+[{
+    "id":1,
+    "provincia":"Buenos Aires",
+    "pais_id":10,
+    "codigo_telefonico":"+54"
+},
+{
+    "id":2,
+    "provincia":"Cordova",
+    "pais_id":10,
+    "codigo_telefonico":"+54"
+}]

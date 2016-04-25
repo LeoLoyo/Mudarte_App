@@ -1,63 +1,71 @@
 <ion-view>
     <ion-pane>
         <ion-content>
+        <form validate class="css-form">
             <div class="padding">
+                <!--Street-->
                 <md-input-container class="md-block" flex-gt-sm>
                     <label>Calle</label>
-                    <input value="Texto" ng-model='address.street'>
+                    <input value="Texto" ng-model='address.street' required>
                 </md-input-container>
+                <!--Height and Zip-->
                 <div class="row">
                     <md-input-container class='col'>
                         <label>Altura</label>
-                        <input value="Texto" ng-model='address.height'>
+                        <input value="Texto" ng-model='address.height' required>
                     </md-input-container>
                     <md-input-container class='col'>
                         <label>Zip</label>
                     <input value="Texto" ng-model='address.zip'>
                     </md-input-container>
                 </div>
+                <!--Reference of Point-->
                 <md-input-container class="md-block" flex-gt-sm>
                     <label>Punto de Referencia</label>
-                    <input value="Texto" ng-model='address.point_of_reference'>
+                    <input value="Texto" ng-model='address.reference_of_type'>
                 </md-input-container>
+                <!--Country and Province-->
                 <div class="row">
                     <md-input-container class="col">
                         <label>Pais</label>
-                        <md-select ng-model="address.cuntry">
-                          <md-option ng-value="item" ng-repeat="item in items">Item {{item}}</md-option>
-                          <md-option ng-value="10" selected>Argentina</md-option>
-                          <md-option ng-value="1">Afganistan</md-option>
+                        <md-select ng-model="address.country" required>
+                          <md-option ng-value="country.id_web" ng-repeat="country in countrys">{{country.pais}}</md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container class="col">
                         <label>Provincia</label>
-                        <md-select ng-model="address.cuntry">
-                          <md-option ng-value="item" ng-repeat="item in items">Item {{item}}</md-option>
-                          <md-option ng-value="10" selected>Buenos Aires</md-option>
-                          <md-option ng-value="1">Afganistan</md-option>
+                        <md-select ng-model="address.province" required>
+                          <md-option
+                          ng-value="province.id_web"
+                          ng-repeat="province in provinces | filter : {pais_id:address.country}:true">{{province.provincia}}</md-option>
                         </md-select>
                     </md-input-container>
                 </div>
+                <!--City and Neigborhoods-->
                 <div class="row">
                     <md-input-container class="col">
                         <label>Ciudad</label>
-                        <md-select ng-model="address.cuntry">
-                          <md-option ng-value="item" ng-repeat="item in items">Item {{item}}</md-option>
-                          <md-option ng-value="10" selected>Cordova</md-option>
-                          <md-option ng-value="1">Afganistan</md-option>
+                        <md-select ng-model="address.city" required>
+                        <md-option
+                        ng-value="city.id_web"
+                        ng-repeat="city in cities | filter : {provincia_id:address.province}:true">{{city.ciudad}}</md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container class="col">
                         <label>Barrio</label>
-                        <md-select ng-model="address.cuntry">
-                          <md-option ng-value="item" ng-repeat="item in items">Item {{item}}</md-option>
-                          <md-option ng-value="10" selected>Prueba Barrio</md-option>
-                          <md-option ng-value="1">Afganistan</md-option>
+                        <md-select ng-model="address.neighborhood" required>
+                          <md-option
+                          ng-value="neighborhood.id_web"
+                          ng-repeat="neighborhood in neighborhoods | filter : {ciudad_id:address.city}:true">{{neighborhood.barrio}}</md-option>
                         </md-select>
                     </md-input-container>
                 </div>
+            </div>
+            <button class="button button-fab button-fab-bottom-right button-balanced icon ion-android-done" ng-click="save(address)"></button>
+        </form>
+
         </ion-content>
 
     </ion-pane>
-    <button class="button button-fab button-fab-bottom-right button-balanced icon ion-android-done" ng-click=""></button>
+
 </ion-view>

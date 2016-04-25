@@ -1,0 +1,107 @@
+<div class="card">
+    <div class="bar-card">
+        <h4 class="title-center">Datos Basicos de Direccion</h4>
+    </div>
+    <form action="save(address)" novalidate>
+        <div class="row no-padding">
+            <div class="col">
+            <!-- Country -->
+                <label class="item item-input item-select">
+                    <span class="input-label">1.-Pais</span>
+                    <select required autofocus ng-model="address.pais">
+                        <optgroup label="Seleccione un Pais">
+                        <option>Argentina</option>
+                        <option>Venezuela</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="col">
+            <!-- Provincie -->
+                <label class="item item-input item-select">
+                    <span class="input-label">2.-Provincia</span>
+                    <select required ng-model="address.provincia">
+                        <optgroup label="Seleccione una Provincia">
+                        <option>Buenos Aires</option>
+                        <option>Carmelo</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+
+        <div class="row no-padding">
+
+            <div class="col">
+            <!-- City -->
+                <label class="item item-input item-select">
+                    <span class="input-label">3.-Ciudad</span>
+                    <select required  ng-model="address.ciudad">
+                        <optgroup label="Seleccione una Ciudad">
+                        <option>Buenos Aires</option>
+                        <option>Merlo</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="col">
+            <!-- Neighborhood -->
+                <label class="item item-input item-select">
+                    <span class="input-label">4.-Barrio</span>
+                    <select required ng-model="address.barrio">
+                        <optgroup label="Seleccione un Barrio">
+                        <option>Prueba Barrio 1</option>
+                        <option>Prueba Barrio 2</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+
+        <div class="row no-padding">
+            <div class="col">
+            <!-- Street -->
+                <label for="" class="item item-input item-floating-label">
+                    <span class="input-label">Calle</span>
+                    <input type="text" placeholder="5.-Seleccione La Calle" ng-model="address.calle">
+                </label>
+            </div>
+            <div class="col">
+            <!-- Height -->
+                <label for="" class="item item-input item-floating-label">
+                    <span class="input-label">Altura</span>
+                    <input type="number" min="1"placeholder="6.-Indique La Altura" ng-model="address.altura">
+                </label>
+            </div>
+        </div>
+
+        <div class="row no-padding">
+            <div class="col">
+            <!-- Zip -->
+                <label for="" class="item item-input item-floating-label">
+                    <span class="input-label">Zip</span>
+                    <input type="text" placeholder="7.-Indique El Codigo Zip" ng-model="address.zip">
+                </label>
+            </div>
+            <div class="col">
+            <!-- Reference Point -->
+                <label for="" class="item item-input item-floating-label">
+                    <span class="input-label">Punto De Referencia</span>
+                    <input type="text" placeholder="8.-Indique Un Punto De Referencia" ng-model="address.punto_de_referencia">
+                </label>
+            </div>
+        </div>
+
+        <div class="row no-padding">
+            <div class="col col-75">
+            <!-- Observation -->
+                <label for="" class="item item-input item-floating-label">
+                    <span class="input-label">Obervacion</span>
+                    <textarea placeholder="9.-Observacion" rows="1" maxlength="80"></textarea>
+                </label>
+            </div>
+            <div class="col">
+                <button class="button button-dark" type="submit">Guardar</button>
+            </div>
+        </div>
+    </form>
+
+</div>
