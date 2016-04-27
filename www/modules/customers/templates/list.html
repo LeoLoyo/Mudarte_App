@@ -1,10 +1,16 @@
-<ion-view view-title="{{mytitle}}">
-<ion-content>
+<ion-view>
+  <ion-nav-title>
+    <h2 class="title">Lista de Clientes</h2>
+  </ion-nav-title>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear icon ion-android-sync" ng-click="sync()"></button>
+  </ion-nav-buttons>
+<ion-content scroll="false">
 <!--
 <ion-refresher pulling-text="Pull To Refresh" on-refresh="post()" refreshing-text="Fetching ..." refreshing-icon="ion-loading-b">
   </ion-refresher> -->
-    <ion-list>
-        <ion-item class="item item-thumbnail-left" ng-repeat="customer in customers" href="#/dash/customers/show/{{customer.id}}">
+    <ion-list >
+        <ion-item class="item item-thumbnail-left" ng-repeat="customer in customers" href="#/customers/show/{{customer.id_web}}">
             <img ng-src="images/person.png" alt="">
             <h2>{{customer.nombre}}</h2>
             <p>{{customer.cuit}} - {{customer.observaciones}}</p>
@@ -13,7 +19,5 @@
 </ion-content>
 <!-- <button ripple ng-click="new()" class="button button-fab button-fab-bottom-right button-positive icon ion-android-person-add"></button> -->
 <!-- button for sync -->
-<button ripple ng-click="sync()" class="button button-fab button-fab-bottom-right button-assertive icon ion-android-sync"></button>
+<button ripple ng-click="new()" class="button button-fab button-fab-bottom-right button-positive icon ion-android-person-add"></button>
 </ion-view>
-
-

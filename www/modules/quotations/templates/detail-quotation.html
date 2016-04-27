@@ -1,0 +1,28 @@
+<ion-view title="Cotizacion # 0001">
+  <ion-side-menus>
+    <!-- Center content -->
+    <ion-side-menu-content>
+    <ion-view>
+          <ion-content>
+            <!-- <div class="card sb-horizontal">
+              <ul>
+                <li ng-repeat="group in groups" ng-click="toggleGroup(group)"><a href="">{{group.title}}</a>
+                </li>
+              </ul>
+            </div> -->
+            <div ui-view name="data"></div>
+          </ion-content>
+    </ion-view>
+    </ion-side-menu-content>
+
+    <!-- Left menu -->
+    <!-- <ion-side-menu expose-aside-when="large"  side="right" id="menu_quotation" name="menu_quotation">
+    <ion-content>
+      <div ng-include src="'templates/quotation/tools/panel-quotation.html'"></div>
+    </ion-content>
+
+
+    </ion-side-menu> -->
+
+  </ion-side-menus>
+</ion-view>

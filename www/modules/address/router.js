@@ -3,8 +3,8 @@ angular.module('AddressRouter',[])
 
   $stateProvider
 
-.state('dash.countrys',{
-      url:'/countrys',
+.state('app.countrys',{
+      url:'countrys',
       views:{
         'maincontent':{
           templateUrl:'modules/address/templates/countrys/list.html',
@@ -13,8 +13,8 @@ angular.module('AddressRouter',[])
       }
     })
 
-    .state('dash.provinces',{
-      url:'/provinces',
+    .state('app.provinces',{
+      url:'provinces',
       views:{
         'maincontent':{
           templateUrl:'modules/address/templates/provinces/list.html',
@@ -23,8 +23,8 @@ angular.module('AddressRouter',[])
       }
     })
 
-    .state('dash.cities',{
-      url:'/cities',
+    .state('app.cities',{
+      url:'cities',
       views:{
         'maincontent':{
           templateUrl:'modules/address/templates/cities/list.html',
@@ -33,8 +33,8 @@ angular.module('AddressRouter',[])
       }
     })
 
-    .state('dash.neighborhoods',{
-      url:'/neighborhoods',
+    .state('app.neighborhoods',{
+      url:'neighborhoods',
       views:{
         'maincontent':{
           templateUrl:'modules/address/templates/neighborhoods/list.html',
@@ -43,8 +43,8 @@ angular.module('AddressRouter',[])
       }
     })
 
-    .state('dash.streets',{
-      url:'/streets',
+    .state('app.streets',{
+      url:'streets',
       views:{
         'maincontent':{
           templateUrl:'modules/address/templates/streets/list.html',
@@ -52,15 +52,36 @@ angular.module('AddressRouter',[])
         }
       }
     })
-    .state('dash.address',{
-      url:'/address',
+
+    // .state('app.address',{
+    //     url:'address',
+    //     views:{
+    //       'maincontent':{
+    //         template:'<ion-view><ion-nav-view name="address"></ion-nav-view></ion-view>',
+    //         controller:'AddressCtrl'
+    //       }
+    //     }
+    //   })
+
+    .state('app.address-list',{
+      url:'address',
       views:{
-        'maincontent':{
+        "maincontent":{
           templateUrl:'modules/address/templates/address/list.html',
           controller:'AddressCtrl'
         }
       }
     })
+
+    .state('app.address-new',{
+      url:'address/new',
+      views:{
+        'maincontent':{
+          templateUrl:'modules/address/templates/address/new.html',
+          controller:'AddressCtrl'
+        }
+      }
+    })
     ;
-      $urlRouterProvider.when('/countrys/','/countrys');
+      // $urlRouterProvider.when('/countrys/','/countrys');
 })

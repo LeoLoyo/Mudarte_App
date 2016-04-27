@@ -1,0 +1,26 @@
+<ion-view>
+  <ion-nav-title>
+    <h2 class="title">Dashboard</h2>
+  </ion-nav-title>
+  <ion-nav-buttons side="right"><button class="button button-icon button-clear ion-android-sync"></button></ion-nav-buttons>
+    <ion-content>
+          <div class="list condensed-space no-padding done done done done">
+              <div class="card">
+                  <!-- <a nav-direction="forward"  href="#/quotations/list"  class="item clear-bg item-bg-image waves-effect waves-button waves-light has-mask-reverse"> -->
+                  <a nav-direction="forward"  href="#/quotations"  class="item item-bg-image waves-effect waves-button waves-light has-mask-reverse">
+                      <h2>Cotizaciones</h2>
+                      <p>Tienes  {{quotations.count}}  Cotizacion Pendiente Por Atender</p>
+                      <img ng-src="images/toronto.jpg" alt="" style="transition-delay: 0.02s;">
+                  </a>
+              </div>
+              <!-- <div class="card">
+                  <a nav-direction="forward"  href="#/customers"  class="item clear-bg item-bg-image waves-effect waves-button waves-light has-mask-reverse">
+                      <h2>Cotizaciones</h2>
+                      <p>Tienes {{quotations.count}}  Cotizacion Pendiente Por Atender</p>
+                      <img ng-src="images/toronto.jpg" alt="" style="transition-delay: 0.02s;">
+                  </a>
+              </div> -->
+          </div>
+    </ion-content>
+</ion-view>
+<!-- ui-sref=".quotations" nav-transition="android"-->

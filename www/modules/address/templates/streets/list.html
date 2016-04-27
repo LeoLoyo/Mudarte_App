@@ -1,9 +1,9 @@
 <ion-view view-title="Calles Registradas">
-    <ion-content>
+    <ion-content scroll="false">
         <ion-list>
         <label for="">Buscar:<input type="text" ng-model="searchtxt"></label>
             <ion-item class="item-remove-animate item-icon-right" type="item-text-wrap" ng-repeat="street in streets | filter:searchtxt">
-                <h2>{{street.calle}}</h2>
+                <h2>{{street.calle}} - ID:{{street.id_web}}</h2>
                 <p>{{street.pais}} - {{street.provincia}} - {{street.ciudad}} - {{street.barrio}}</p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
                 <ion-option-button class="button-energized" ng-click="update(street)">Editar</ion-option-button>

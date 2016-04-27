@@ -126,7 +126,7 @@
       }
     });
 //controllers address
-    app.controller('AddressCtrl',function($scope, $http, $state, $ionicLoading, $cordovaToast, $timeout, collectiondb, Services_Address, Services_messanges){
+    app.controller('AddressCtrl',function($mdDialog,$scope, $http, $state, $ionicLoading, $cordovaToast, $timeout, collectiondb, Services_Address, Services_messanges){
      'use strict';
       $ionicLoading.show({template: '<p>Loading...</p><ion-spinner icon="android" class="spinner-balanced"></ion-spinner>'});
       $scope.address = Services_Address.address_get();
@@ -146,5 +146,42 @@
             Services_messanges.message('No hubo respuesta del servidor');
           });
       }
+
+      $scope.countrys = Services_Address.country_get();
+      $scope.provinces = Services_Address.province_get();
+      $scope.cities = Services_Address.cities_get();
+      $scope.neighborhoods = Services_Address.neighborhoods_get();
+
+      $scope.save = function(data){
+
+        var a ={};
+        a.calle = data.street;
+        a.altura = data.height;
+        a.zip = data.zip;
+        a.punto_de_referencia = data.reference_of_type;
+        a.pais_id = data.country;
+        a.provincia_id = data.province;
+        a.ciudad_id = data.city;
+        a.barrio_id = data.neighborhood;
+        a.id_web = 0;
+
+        // if(a.calle != undefined && a.altura != undefined && a.pais_id != undefined && a.ciudad_id !=undefined && a.provincia_id != undefined && a.barrio_id != undefined){
+          var confirm = $mdDialog.confirm()
+            .title('Mudarte')
+            .textContent('¿Desea Registrar La Dirección Actual?')
+            .ok('Aceptar')
+            .cancel('Cancelar');
+          $mdDialog.show(confirm).then(function() {
+            (Services_Address.address_add(a))?Services_messanges.message('Registro Almacenado Exitosamente!!!'):Services_messanges.message('Imposible Registrar!!!');
+            $state.go('app.dashboard');
+          });
+
+        // }
+
+      }
+
+      // $scope.provinces = Services_Address.province_get();
+      // $scope.countrys = Services_Address.country_get();
+      // $scope.countrys = Services_Address.country_get();
     });
 })()

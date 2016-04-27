@@ -1,0 +1,31 @@
+<ion-view>
+  <ion-nav-title>
+    <h2 class="title">Lista Cotizaciones</h2>
+  </ion-nav-title>
+  <ion-nav-buttons side="right">
+          <button class="button button-clear button-icon ion-android-sync" ng-click="sync()"></button>
+  </ion-nav-buttons>
+  <!-- <button class="button button-fab button-fab-top-right button-assertive icon ion-android-add waves-effect waves-button waves-light"></button> -->
+  <ion-content scroll="false">
+    <ion-list>
+      <ion-item ng-repeat = "quotation in quotations" class="item  item-icon-right" nav-direction="forward"  href="#/quotations/show/{{quotation.id_web}}">
+          <div class="row">
+              <div class="col col-20 ">
+                <h1 class="title">{{quotation.numero_de_contrato}}</h1>
+              </div>
+              <div class="col">
+                  <h2>{{quotation.nombre_cliente}}</h2>
+                  <p>{{quotation.direccion}}</p>
+              </div>
+              <div class="col">
+                <i class="icon ion-android-more-vertical muted"></i>
+              </div>
+          </div>
+          <ion-option-button class="button-assertive">Aplazar</ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
+
+
+<!-- item item-avatar item-icon-right waves-effect waves-button waves-dark in done -->

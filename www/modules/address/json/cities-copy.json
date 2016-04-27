@@ -1,0 +1,13 @@
+[
+    {
+        "id":1,
+        "ciudad":"Azul",
+        "provincia_id":10,
+        "pais_id":10,
+    },{
+        "id":1,
+        "ciudad":"Bahi­a Blanca",
+        "provincia_id":10,
+        "pais_id":10,
+      }
+]

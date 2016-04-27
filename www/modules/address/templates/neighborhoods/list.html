@@ -1,8 +1,8 @@
 <ion-view view-title="Barrios Registrados">
-    <ion-content>
+    <ion-content scroll="false">
         <ion-list>
             <ion-item ng-repeat="neighborhood in neighborhoods">
-                {{neighborhood.barrio}}
+                <h2>{{neighborhood.barrio}} - ID:{{neighborhood.id_web}}</h2>
                 <p>Provincia:{{neighborhood.provincia}}</p>
                 <p>Ciudad:{{neighborhood.ciudad}}</p>
             </ion-item>
