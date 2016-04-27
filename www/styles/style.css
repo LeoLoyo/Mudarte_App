@@ -215,15 +215,15 @@ text-align:right;
 
 
 
-label.item.item-input.item-floating-label {
+/*label.item.item-input.item-floating-label {
     border: none;
     border-bottom: 1px solid gray;
     margin-left: 20px;
     border-bottom-color: blue;
-}
-label.item.item-input.item-floating-label:focus {
+}*/
+/*label.item.item-input.item-floating-label:focus {
     border-bottom-color: red;
-}
+}*/
 
 
 

@@ -328,8 +328,9 @@
                   }
                 return true;},
                 address_add:function(data){
-                  alert(data);
+                  var result = false;
                   if(db!=null){
+                    var params = [];
                     params = [
                               data.pais_id,
                               data.provincia_id,
@@ -340,13 +341,13 @@
                               data.altura,
                               data.punto_de_referencia,
                               ];
-                              alert(params);
                     collectiondb.create('INSERT INTO direccion_direccion (pais_id, provincia_id, ciudad_id, barrio_id, calle, zip, altura, punto_de_referencia) VALUES(?,?,?,?,?,?,?,?)',params);
+                    result = true;
                   }else{
-                    // console.log(data);
                     address.push(data);
+                    result = true;
                   }
-
+                  return result;
                 }
       }
     });

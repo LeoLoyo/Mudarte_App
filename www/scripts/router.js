@@ -5,20 +5,18 @@
     //var generic_state = {url:'/quotations', views:{'maincontent':{templateUrl:'templates/quotation/list.html',}}};
     var login = {url: '/login', templateUrl:'templates/user/login.html', controller: 'UserCtrl', cahe:false};
 
-    var dash =  {url: '/dash',abstract: true,templateUrl: 'templates/base/dash.html'};
 
-    var dashboard = {url:'/dashboard',views:{'maincontent':{templateUrl:'templates/user/dashboard.html'}}};
-
-    // var quotations = {url:'/quotations', views:{'maincontent':{templateUrl:'templates/quotation/list.html'}}};
-
-    // var detail_quotation = {url:'/quotation',views:{'maincontent':{templateUrl:'templates/quotation/detail-quotation.html',controller:'PanelQuotationCtrl'}}};
     $stateProvider
 
       .state('login', login)
 
-      .state('dash', dash)
+      .state('app', {
+        url: '/',
+        abstract: true,
+        templateUrl: 'templates/base/dash.html'
+      })
 
-      .state('dash.dashboard', dashboard)
+      // .state('app.dashboard', dashboard)
 
       // .state('dash.quotations', quotations)
       //
@@ -115,6 +113,7 @@
 
 
 
-    $urlRouterProvider.otherwise('/dash/dashboard');
+    $urlRouterProvider.otherwise('/quotations/show/1');
+    // $urlRouterProvider.otherwise('/quotations');
   });
 })()

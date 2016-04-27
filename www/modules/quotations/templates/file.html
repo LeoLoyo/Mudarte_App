@@ -1,0 +1,94 @@
+<ion-view>
+<ion-nav-title>
+  <h2 class="title">Ficha De Cotizacion</h2>
+</ion-nav-title>
+<ion-nav-buttons side="right">
+        <button class="button button-clear button-icon ion-android-sync" ng-click="sync()"></button>
+</ion-nav-buttons>
+    <ion-tabs class="tabs-striped tabs-icon-bottom tabs-top tabs-background-positive tabs-color-light">
+      <ion-tab title="Cotizacion" icon-on="ion-android-list" icon-off="ion-android-list">
+        <ion-pane>
+          <ion-content  class="has-header">
+            <!-- Include partial -->
+            <div ng-include src="'modules/quotations/templates/partial/partial_quotation.html'"></div>
+            <!-- End Include -->
+          </ion-content>
+        </ion-pane>
+      </ion-tab>
+
+      <ion-tab title="Cliente" icon-on="ion-android-happy" icon-off="ion-android-happy">
+        <ion-pane>
+          <ion-content class="has-header">
+            <ion-list class="card">
+              <ion-item class="item-avatar item-icon-right">
+                <img ng-src="" alt="">
+                <h2>Nombre: {{customer.nombre}}</h2>
+                <p ng-if="customer.cuit"><strong>DNI: </strong> {{customer.cuit}}</p>
+                <p ng-if="contact.dni" ><strong>Cuit: </strong>{{contact.dni}}</p>
+                <p ng-if="contact.telefono"><strong>Telefono: </strong>{{contact.telefono}}</p>
+                <i class="icon ion-android-more-vertical muted"></i>
+              </ion-item>
+              <ion-item clas="item-body">
+                <h2 class="title">Contactos</h2>
+              </ion-item>
+              <ion-item>Fuente De Promocion</ion-item>
+
+            </ion-list>
+          </ion-content>
+        </ion-pane>
+      </ion-tab>
+
+
+      <ion-tab title="Direccion" icon-on="ion-android-map" icon-off="ion-android-map">
+        <ion-pane>
+          <ion-content class="has-header">
+            <ion-list class="card">
+              <ion-item class=" item-icon-right">
+                <img ng-src="" alt="">
+                <h2>{{address.calle}}</h2>
+                <p>{{address.barrio}}</p>
+                <i class="icon ion-android-more-vertical muted"></i>
+              </ion-item>
+              <ion-item clas="item-body">
+                <h2 class="title">Contactos</h2>
+              </ion-item>
+              <ion-item>Fuente De Promocion</ion-item>
+
+            </ion-list>
+          </ion-content>
+        </ion-pane>
+      </ion-tab>
+
+      <ion-tab title="Mudanza" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+
+      </ion-tab>
+      <ion-tab title="Resumen" icon-on="ion-android-clipboard" icon-off="ion-android-clipboard">
+
+      </ion-tab>
+
+    </ion-tabs>
+</ion-view>
+<!-- <ion-view>
+<ion-nav-title>
+  <h2 class="title">Ficha De Cotizacion</h2>
+</ion-nav-title>
+<ion-nav-buttons side="right">
+        <button class="button button-clear button-icon ion-android-sync" ng-click="sync()"></button>
+</ion-nav-buttons>
+<div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
+  <div class="tabs">
+    <a class="tab-item " href="#">
+      <i class="icon ion-home"></i>
+      Test
+    </a>
+    <a class="tab-item" href="#">
+      <i class="icon ion-star"></i>
+      Favorites
+    </a>
+    <a class="tab-item" href="#">
+      <i class="icon ion-gear-a"></i>
+      Settings
+    </a>
+  </div>
+</div>
+</ion-view> -->

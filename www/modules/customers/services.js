@@ -7,22 +7,29 @@
       var customers = [{
                       "id":1,
                       "nombre":"Leonardo Loyo",
-                      "id_web":1,
+                      "id_web":100,
                       "cuit":"v-21295782",
                       "tipo_de_cliente_id":1
                      },{
                       "id":2,
                       "nombre":"BLeonardo Loyo",
-                      "id_web":2,
+                      "id_web":200,
                       "cuit":"v-121295782",
-                      "tipo_de_cliente_id":1
+                      "tipo_de_cliente_id":2
                      },{
                       "id":300,
                       "nombre":"ALeonardo Loyo",
-                      "id_web":3,
-                      "cuit":"v-321295782",
+                      "id_web":300,
+                      "cuit":"v-1212957282",
                       "tipo_de_cliente_id":1
-                     }];
+                     },{
+                      "id":4,
+                      "nombre":"aBLeonardo Loyo",
+                      "id_web":400,
+                      "cuit":"v-11121295782",
+                      "tipo_de_cliente_id":2
+                     }
+                   ];
 
       function buscar(Id){
       for (var i = 0; i < customers.length; i++) {
@@ -38,41 +45,59 @@
                 }
           }
         return null;}
+        var get = function(array,table){
+          if(db != null){
+            var query = "SELECT * FROM " + table;
+            array = [];
+            array = collectiondb.all(query);
+          }
+          return array;}
+
        return {
-                load:function(data){
-                    if(db!=null){
-                      var params = [];
-                      angular.forEach(data, function(object, key){
-                        if(collectiondb.search(customers,object.id)==undefined){
-                          params = [
-                                    object.id,
-                                    object.nombre,
-                                    object.observaciones,
-                                    object.cuit,
-                                    object.tipo_de_cliente.id
-                                    ];
-                          collectiondb.create('INSERT INTO cliente_cliente (id_web,nombre,observaciones,cuit,tipo_de_cliente_id) VALUES(?,?,?,?,?)',params);
-                        }else{
-                          params = [object.nombre,
-                                    object.observaciones,
-                                    object.cuit,
-                                    object.tipo_de_cliente.id
-                                    ];
-                          collectiondb.update('UPDATE cliente_cliente set nombre=?, observaciones=?, cuit=?, tipo_de_cliente_id=? where id_web =',params,object['id']);
-                        }//else
-                      });
+         customer_sync:function(data){
+
+             if(db!=null){
+
+                 var params = [];
+                 angular.forEach(data, function(object, key){
+                   var query = "SELECT * FROM cliente_cliente WHERE id_web = ?";
+                   $cordovaSQLite.execute(db,query,[object.id]).then(function(result){
+                   if(result.rows.length <= 0){
+                     params = [
+                               object.id,
+                               object.nombre,
+                               object.observaciones,
+                               object.cuit,
+                               object.tipo_de_cliente.id
+                               ];
+                     collectiondb.create('INSERT INTO cliente_cliente (id_web,nombre,observaciones,cuit,tipo_de_cliente_id) VALUES(?,?,?,?,?)',params);
                    }else{
-                      for(var j = 0; j<data.length; j++){
-                        if(collectiondb.findOne(customers,data[j].id)==undefined){
-                        customers.push(data[j]);
-                        }else{
-                          customers[collectiondb.searchid(customers,data[j].id)]=data[j];
-                          customers[collectiondb.searchid(customers,data[j].id)]=data[j].id;
-                        }
-                      }
-                    }
-                    return true;
-                },new:function(data){
+                     params = [object.nombre,
+                               object.observaciones,
+                               object.cuit,
+                               object.tipo_de_cliente.id
+                               ];
+                     collectiondb.update('UPDATE cliente_cliente set nombre=?, observaciones=?, cuit=?, tipo_de_cliente_id=? where id_web =',params,object['id']);
+                   }//else
+                   },function(error){
+                     alert('hubo un error find '+ error.menssages)
+                     return false;
+                   });//foreach db
+                 });
+             customers=[];
+             }else{
+
+                 angular.forEach(data, function(object, key){
+                   if(collectiondb.findOne(get(customers,'cliente_cliente'),object.id,"id_web")==undefined){
+                     customers.push(object);
+                   }else{
+                     customers[collectiondb.findOne(customers,object.id,"id_web")]=object;
+                   }
+                 });//foreach web
+
+             }
+             return true;},
+                new:function(data){
                   if(!db){
                     console.log(data);
                     customer.nombre = data.nombre;
@@ -94,14 +119,16 @@
                     customers = collectiondb.all(query);
                    }
                    return customers;
-                },findOne: function(Id){
-                  for (var i = 0; i < customers.length; i++) {
-                      if (customers[i].id === parseInt(Id)) {
-                       return customers[i];
-                      }
-                  }
-                  return null;
-                },update:function(model){
+                }
+                ,findOne: function(Id){
+                  // for (var i = 0; i < customers.length; i++) {
+                      // if (customers[i].id === parseInt(Id)) {
+                       return customers[collectiondb.findOne(customers,Id,"id_web")];
+                      // }
+                  // }
+                  // return null;
+                }
+                ,update:function(model){
                   // if(!db){
                     console.log('grabare');
                     customers[buscarindex(model.id)] = model;

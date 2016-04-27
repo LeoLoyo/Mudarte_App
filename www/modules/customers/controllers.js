@@ -2,7 +2,7 @@
  var app = angular.module('CustomersCtrl',[]);
   app.controller('CustomersCtrl',function($scope,$http , $state,$ionicLoading, $ionicPopup,$cordovaToast, $timeout, collectiondb, Service_sexo, Service_Customers, Service_typeofrelationship,Services_messanges){
     'use strict';
-    $scope.mytitle = $state.current.data.title;
+    // $scope.mytitle = $state.current.data.title;
     $scope.customers = Service_Customers.get();
 
     $scope.sync = function(){
@@ -15,7 +15,7 @@
       // // }
         $http.get(url).then(function success(data){
           // console.log(data.data);
-          (Service_Customers.load(data.data))?Services_messanges.message('Sincronizacion Satisfactoria'):Services_messanges.message('Error al Sincronizar');
+          (Service_Customers.customer_sync(data.data))?Services_messanges.message('Sincronizacion Satisfactoria'):Services_messanges.message('Error al Sincronizar');
           // Service_Customers.load(data.data);
           $scope.customers = [];
           $scope.customers = Service_Customers.get();
@@ -42,12 +42,13 @@
     // Methods
     $scope.new = function(){
       // collectiondb.insertm();
-      $state.go('dash.customers.new');
+      $state.go('app.customers-new');
     }
 
     $scope.CustomerPopup = function(model){
-      if(model.id == undefined){
-        console.log(model.id);
+      console.log(model);
+      if(model.id_web == undefined){
+        console.log(model.tipo_de_cliente_id);
         if(model.nombre != undefined && model.tipo_de_cliente_id != undefined ){
           var myPopup = $ionicPopup.show({
           title: 'Desea Continuar con el cliente?',
@@ -60,16 +61,16 @@
                      text: 'Guardar',
                      type: 'button-positive',
                      onTap:function(){
-                      if(model.tipocliente == 1){
+                      if(model.tipo_de_cliente_id == 1){
                         $scope.customer = Service_Customers.new(model);
                         $scope.customers = Service_Customers.get();
-                        $state.go('dash.customers.contact');
+                        $state.go('app.contacts');
                         console.log('aqui');
                       }else{
                         console.log('o aqui');
                         $scope.customer = Service_Customers.new(model);
                         $scope.customers = Service_Customers.get();
-                        $state.go('dash.customers.list');
+                        $state.go('app.customers');
                       }
                      }
                     }]
@@ -108,10 +109,51 @@
 
     }
   });
-  app.controller('CustomersDetailCtrl',function($scope, $stateParams, Service_Customers){
+  app.controller('CustomersDetailCtrl',function($scope,$state, $stateParams,$ionicPopup, Service_Customers){
     'use strict';
     var customers = Service_Customers.findOne($stateParams.id);
-    alert(customers.tipo_de_cliente_id);
+    // console.log(customers.tipo_de_cliente_id);
     $scope.customer = customers;
+    $scope.CustomerPopup = function(model){
+      console.log(model);
+      if(model.id_web == undefined){
+        console.log(model.tipo_de_cliente_id);
+        if(model.nombre != undefined && model.tipo_de_cliente_id != undefined ){
+          var myPopup = $ionicPopup.show({
+          title: 'Desea Continuar con el cliente?',
+          subTitle: "<p>"+model.nombre+"</p>",
+          scope: $scope,
+          buttons: [{
+                     text: 'Cancelar'
+                    },
+                    {
+                     text: 'Guardar',
+                     type: 'button-positive',
+                     onTap:function(){
+                      if(model.tipo_de_cliente_id == 1){
+                        $scope.customer = Service_Customers.new(model);
+                        $scope.customers = Service_Customers.get();
+                        $state.go('app.contacts');
+                        console.log('aqui');
+                      }else{
+                        console.log('o aqui');
+                        $scope.customer = Service_Customers.new(model);
+                        $scope.customers = Service_Customers.get();
+                        $state.go('app.customers');
+                      }
+                     }
+                    }]
+            });
+        }else{
+          alert('Faltan Campos');
+        }
+      }else{
+        console.log('actualizare al cliente '+ model.nombre);
+        Service_Customers.update(model);
+        $state.go('app.customers');
+      }
+
+
+    }
    });
 })()

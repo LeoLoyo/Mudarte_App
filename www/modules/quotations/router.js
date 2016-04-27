@@ -2,27 +2,35 @@
   var app = angular.module('QuotationsRouter', []);
   app.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
-    .state('dash.quotations', {
-      url:'/quotations',
+    .state('app.dashboard', {
+      cache:false,
+      url:'dashboard',
       views:{
         'maincontent':{
-          template:'<ion-view><div ui-view name="quotations"></div></ion-view>',
+          templateUrl:'modules/quotations/templates/dashboard.html',
+          controller:'DashboardCtrl'
         }
-      }
-     })
-
-    .state('dash.quotations.list', {
-      url:'/list',
-      views:{
-        'quotations':{
-             templateUrl:'modules/quotations/templates/list.html',
-             controller:'QuotationCtrl'
-          }
       }
     })
 
-
-
+    .state('app.quotations', {
+      url:'quotations',
+      views:{
+        'maincontent':{
+          templateUrl:'modules/quotations/templates/list.html',
+          controller:'QuotationCtrl'
+        }
+      }
+    })
+    .state('app.quotations-show',{
+       url:'quotations/show/:id',
+       views:{
+          'maincontent':{
+            templateUrl:'modules/quotations/templates/file.html',
+            controller:'Quotation-DetailsCtrl'
+            }
+       }
+     })
     // .state('dash.quotations.detail-quotation', {
     //   url:'/details',
     //   views:{

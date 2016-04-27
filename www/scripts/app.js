@@ -33,4 +33,8 @@
       }
     });//platform ready
 });//run
+app.constant("cotizador", {
+        "id": 1,
+        "nombre":"Leonardo Antonio Loyo"
+    });
 // })()

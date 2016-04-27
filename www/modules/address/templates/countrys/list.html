@@ -1,5 +1,5 @@
 <ion-view view-title="Paises Registrados">
-    <ion-content>
+    <ion-content scroll="false">
         <ion-list>
             <ion-item ng-repeat="country in countrys">
                 <h2>{{country.pais}} - ID:{{pais.id_web}}</h2>
@@ -7,5 +7,5 @@
             </ion-item>
         </ion-list>
     </ion-content>
-    <button class="button button-fab button-fab-bottom-right button-assertive icon ion-loop " ng-click="sync()"></button>
+    <button class="button button-fab button-fab-bottom-right button-assertive icon ion-loop" ng-click="sync()"></button>
 </ion-view>

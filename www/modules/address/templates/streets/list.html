@@ -1,5 +1,5 @@
 <ion-view view-title="Calles Registradas">
-    <ion-content>
+    <ion-content scroll="false">
         <ion-list>
         <label for="">Buscar:<input type="text" ng-model="searchtxt"></label>
             <ion-item class="item-remove-animate item-icon-right" type="item-text-wrap" ng-repeat="street in streets | filter:searchtxt">

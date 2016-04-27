@@ -172,11 +172,8 @@
             .ok('Aceptar')
             .cancel('Cancelar');
           $mdDialog.show(confirm).then(function() {
-            // console.log(data);
-            alert('1- ' + a);
-            Services_Address.address_add(a);
-            Services_messanges.message('Registro Almacenado Exitosamente!!!');
-            $state.go('dash.dashboard');
+            (Services_Address.address_add(a))?Services_messanges.message('Registro Almacenado Exitosamente!!!'):Services_messanges.message('Imposible Registrar!!!');
+            $state.go('app.dashboard');
           });
 
         // }

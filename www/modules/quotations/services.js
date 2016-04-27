@@ -1,23 +1,26 @@
 (function() {
   var app = angular.module('services.quotations',[]);
-  app.factory('quotations', function() {
-    var quotations = [{
-      "cliente" : 'Leonardo Antonio Loyo ',
-      "direccion" : 'Cabudare Tarabana',
-      "codigo" : 1,
-      "cotizador":2
-    },{
-      "cliente" : 'Pedro Loyo ',
-      "direccion" : 'Cabudare Tarabana',
-      "codigo" : 2,
-      "cotizador":1
-    },{
-      "cliente" : 'Anais Loyo ',
-      "direccion" : 'Cabudare Tarabana 2',
-      "codigo" : 3,
-      "cotizador":1
-    }];
+  app.factory('Services_quotations', function($http, Services_messanges) {
+    var quotations=[];
+
     return {
+      quotations_sync:function() {
+        var url='modules/quotations/json/cotizacion.json';
+        $http.get(url).then(function success(data){
+          // console.log(data.data);
+          // quotations =[];
+            angular.forEach(data.data, function(value, key) {
+              // console.log(value);
+              quotations.push(value);
+            });
+            // return quotations;
+
+          }, function error(e){
+            Services_messanges.message('No hubo respuesta del servidor');
+          });
+
+      }
+      ,
       all:function() {
         return quotations;
       },
@@ -32,7 +35,7 @@
       },
       findOne:function(id,cotizador) {
         for (var i = 0; i < quotations.length; i++) {
-          if(quotations[i].codigo == id && quotations[i].cotizador == cotizador) return quotations[i];
+          if(quotations[i].id_web == id && quotations[i].cotizador_id == cotizador) return quotations[i];
         }
         return false;
       }
