@@ -1,0 +1,35 @@
+<ion-list>
+  <div class="card">
+    <ion-item class="item item-royal item-icon-right">
+      <strong>Datos Del Cliente</strong>
+      <i class="icon ion-android-create" ng-click="edit_customer(customer.id_web)"></i>
+    </ion-item>
+    <ion-item class="item item-icon-right">
+      <h2 class="title">Responsable : {{customer.nombre}}</h2>
+      <p ng-if="customer.cuit">Cuit: {{customer.cuit}}</p>
+      <p ng-if="customer.dni">DNI: {{customer.dni}}</p>
+      <p ng-if="customer.tipo_cliente">Tipo De  Cliente: {{customer.tipo_cliente}}</p>
+      <p ng-if="customer.telefono">Telefono: {{customer.telefono}}</p>
+
+    </ion-item>
+  </div>
+  <div class="card">
+    <ion-item class="item item-royal item-icon-right">
+      <strong>Contactos Asociados </strong>
+      <span class="badge badge-stable"><strong>{{contacts.length}}</strong></span>
+    </ion-item>
+    <ion-item ng-repeat="contact in contacts">
+      <h2><p>Nombre</p>{{contact.nombre}}</h2>
+      <p>Dni: {{contact.dni}} Telefono: {{contact.telefono}} Tipo de Relacion: {{contact.tipo_de_relacion}}</p>
+    </ion-item>
+    <button class="button button-fab button-fab-bottom-right button-assertive icon ion-plus" ng-click="add_contact(customer.id_web)"></button>
+
+  </div>
+  <div class="card">
+    <ion-item class="item item-royal item-icon-right">
+      <strong>Fuente De Promocion</strong>
+      <i class="icon ion-android-create" ng-click="edit_customer(customer.id_web)"></i>
+    </ion-item>
+  </div>
+
+</ion-list>

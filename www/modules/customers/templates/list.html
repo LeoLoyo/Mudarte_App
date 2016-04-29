@@ -10,7 +10,7 @@
 <ion-refresher pulling-text="Pull To Refresh" on-refresh="post()" refreshing-text="Fetching ..." refreshing-icon="ion-loading-b">
   </ion-refresher> -->
     <ion-list >
-        <ion-item class="item item-thumbnail-left" ng-repeat="customer in customers" href="#/customers/show/{{customer.id_web}}">
+        <ion-item class="item item-avatar-left" ng-repeat="customer in customers" href="#/customers/show/{{customer.id_web}}">
             <img ng-src="images/person.png" alt="">
             <h2>{{customer.nombre}}</h2>
             <p>{{customer.cuit}} - {{customer.observaciones}}</p>

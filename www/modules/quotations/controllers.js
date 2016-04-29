@@ -8,53 +8,64 @@
   app.controller('QuotationCtrl',['$scope', 'Services_quotations','cotizador',function($scope, Services_quotations,cotizador){
     'use strict';
     $scope.quotations = Services_quotations.all();
-    // console.log(cotizador);
-      // $scope.quotations = Services_quotations.findArray(1);
-    // var quotation = quotations.findOne(3,1);
 
     $scope.sync = function(){
-      Services_quotations.quotations_sync();
+      Services_quotations.quotations_sync(cotizador);
       $scope.quotations = Services_quotations.all();
     }
 
   }]);
-  app.controller('Quotation-DetailsCtrl',['$scope', 'Services_quotations', '$state', '$stateParams', 'cotizador', function($scope, Services_quotations, $state, $stateParams, cotizador) {
-    // var quotations = [{
-    //   id_web:1,
-    //   numero_de_contrato:10,
-    //   numero_de_cotizacion:'A511',
-    //   fecha_de_cotizacion:"01/01/2016",
-    //   hora_de_cotizacion:"08:00 AM",
-    //   tiempo_carga: null,
-    //   total_recorrido: null,
-    //   total_recorrido_km: null,
-    //   nivel_complejidad_riesgo: null,
-    //   porcentaje_complejidad_riesgo: null,
-    //   como_abona: "Efectivo"
-    // },
-    // {
-    //   id_web:2,
-    //   numero_de_contrato:11,
-    //   numero_de_cotizacion:'A512',
-    //   fecha_de_cotizacion:"02/01/2016",
-    //   hora_de_cotizacion:"09:00 AM",
-    //   tiempo_carga: null,
-    //   total_recorrido: null,
-    //   total_recorrido_km: null,
-    //   nivel_complejidad_riesgo: null,
-    //   porcentaje_complejidad_riesgo: null,
-    //   como_abona: "TDC"
-    // }];
+  app.controller('Quotation-DetailsCtrl',['$scope', 'Services_quotations', '$state', '$stateParams','Service_Customers', function($scope, Services_quotations, $state, $stateParams, Service_Customers) {
+    // Load data from the quotation
+    var quotation = Services_quotations.findOne($stateParams.id);
+    var customer = Service_Customers.findOne(quotation.cliente_id);
+    var contacts = Service_Customers.contacts_get(customer.id_web);
+    var address = Services_quotations.quotation_address_get($stateParams.id);
+    var environments = Services_quotations.quotation_environments_get($stateParams.id);
 
-    $scope.quotation = Services_quotations.findOne($stateParams.id,cotizador.id);
-    $scope.customer = {nombre:"Leonardo Loyo", cuit:"V-21295782-4"};
-    $scope.contact = {nombre:"Leonardo Loyo", dni:null, telefono:"0424-5177331"};
-    $scope.address = {calle:"Carrera 19 con calle 24 y 25", barrio:"La Pe;a"};
-
-
-
-
-
+    $scope.address = address;
+    $scope.environments = environments;
+    $scope.quotation = quotation;
+    $scope.customer = customer;
+    $scope.contacts = contacts
+    // var address  = [{id:10,direccion:"Carrera 19 con calle 24 y 25", barrio:"La Pe;a",ambientes:[]},{id:2,direccion:"Carrera 18 con calle 24 y 25", barrio:"La Pe;a",ambientes:[]}];
+    // var environments = [{id:10, ambiente:"Cocina"},{id:20, ambiente:"Lobby"},{id:30,ambiente:"Cuarto Estudio"},{id:40,ambiente:"Cuarto Principal"}];
+    // for (var i = 0; i < address.length; i++) {
+    //   for (var j = 0; j < environments.length; j++) {
+    //       address[i].ambientes.push(environments[j]);
+    //   }
+    // }
+    // $scope.address = address;
+    // delete an environment
+    // $scope.delete_env = function(a,e) {
+    //   console.log("el id de cotizacion: "+ a +"el id de ambiente: " + e );
+    //   for (var i = 0; i < address.length; i++) {
+    //     if(address[i].id==a){
+    //       for (var j = 0; j < address[i].ambientes.length; j++) {
+    //         if(address[i].ambientes[j].id==e){
+    //           console.log(address[i].ambientes.splice(j,1));
+    //         }
+    //       }
+    //     }
+    //   }
+    //   $scope.address = address;
+    // };
+    // add address
+    $scope.new_address = function(num){
+      (num==0)?console.log('es una nueva direccion de origen'):console.log('es una nueva direccion de destino');
+      $state.go('app.address-new');
+    };
+    //toggle
+    $scope.toggleGroup = function(address) {
+      if ($scope.isGroupShown(address)) {
+        $scope.shownGroup = null;
+      } else {
+        $scope.shownGroup = address;
+      }
+    };
+    $scope.isGroupShown = function(address) {
+      return $scope.shownGroup === address;
+    };
   }]);
   app.controller('PanelQuotationCtrl',['$scope', function($scope){
       'use strict';

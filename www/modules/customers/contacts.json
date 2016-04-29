@@ -1,0 +1,27 @@
+[{
+    "id":1,
+    "id_web":1,
+    "nombre":"Aleida Loyo ",
+    "dni":"V-7374835",
+    "cliente":{
+
+      "id":1,
+      "nombre":"Leonardo Loyo",
+      "id_web":100,
+      "cuit":"v-21295782",
+      "tipo_de_cliente_id":1
+    },
+    "tipo_de_relacion":{"id":1,"tipo_de_relacion":"Madre"}
+},{
+   "id":2,
+   "id_web":2,
+   "nombre":"Hercilia Rodriguez",
+   "dni":"V-1777114",
+   "tipo_de_relacion":{"id":2,"tipo_de_relacion":"Esposa"},
+   "cliente":{
+     "id":2,
+    "nombre":"Desiderio Loyo",
+    "id_web":200,
+    "cuit":"V-01772713",
+    "tipo_de_cliente_id":1
+  }}]
