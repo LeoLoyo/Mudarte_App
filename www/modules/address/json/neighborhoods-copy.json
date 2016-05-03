@@ -1,6 +1,7 @@
 [
     {
         "id":1,
+        "id_web":1,
         "barrio":"Agronomia",
         "ciudad_id":1,
         "provincia_id":10,
@@ -8,6 +9,7 @@
     },
     {
         "id":2,
+        "id_web":2,
         "barrio":"Almagro",
         "ciudad_id":2,
         "provincia_id":10,

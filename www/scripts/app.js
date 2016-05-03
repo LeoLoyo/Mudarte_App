@@ -37,4 +37,7 @@ app.constant("cotizador", {
         "id": 1,
         "nombre":"Leonardo Antonio Loyo"
     });
+app.constant('host', {
+  "url":"modules"
+});
 // })()

@@ -1,6 +1,7 @@
 [
     {
         "id":1,
+        "id_web":1,
         "ciudad":"Azul",
         "provincia":
                     {
@@ -19,7 +20,8 @@
             "codigo_telefonico":"+54"
             }
     },{
-        "id":1,
+        "id":2,
+        "id_web":2,
         "ciudad":"BahÃ­a Blanca",
         "provincia":
                     {

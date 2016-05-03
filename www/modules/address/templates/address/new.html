@@ -1,10 +1,20 @@
 <ion-view>
-    <ion-pane>
+  <ion-nav-title>
+    <h2 class="title">Registro De Direccion</h2>
+  </ion-nav-title>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear icon ion-android-sync" ng-click="sync()"></button>
+  </ion-nav-buttons>
+    <!-- <ion-pane> -->
         <ion-content>
         <form validate class="css-form">
             <div class="padding">
                 <!--Street-->
-                <ion-list scroll="false">
+                <div class="list">
+                  <!-- <label class="item item-input item-floating-label">
+                  <span class="input-label">First Name</span>
+                  <input type="text" placeholder="First Name">
+                </label> -->
                   <div class="row padding">
                     <label class="item item-input item-floating-label">
                       <span class="input-label"><b>Calle</b></span>
@@ -44,7 +54,7 @@
                       <div class="input-label">
                         Provincia{{address.province}}
                       </div>
-                      
+
                       <select  ng-model="address.provice">
                         <!-- <option ng-value="province.id_web" ng-repeat="province in provinces | filter : {pais_id:address.country}:true">{{province.pais_id}}</option> -->
                         <option ng-repeat="province in provinces track by province.id_web" value="{{province.id_web}}">{{province.provincia}}</option>
@@ -137,6 +147,6 @@
 
         </ion-content>
 
-    </ion-pane>
+    <!-- </ion-pane> -->
 
 </ion-view>

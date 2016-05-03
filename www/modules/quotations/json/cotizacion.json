@@ -1,7 +1,24 @@
-[{
+[
+  {
   "id":"1",
   "id_web":"1",
+  "cliente_id":"200",
+  "cliente":{
+    "id":2,
+    "nombre":"Desiderio Loyo",
+    "id_web":200,
+    "cuit":"V-01772713",
+    "tipo_de_cliente_id":1
+  },
+  "cuit":"V-01772713-5",
+  "dni":"V-1772713",
+  "tipo_cliente":"Particular",
+  "telefono":"04264-2617027",
   "cotizador_id":"1",
+  "cotizador":{
+    "id":"1",
+    "nombre":"Cotizador 1"
+  },
   "nombre_cliente": "Desiderio Loyo Lopez",
   "numero_de_contrato":"10",
   "numero_de_cotizacion":"A511",
@@ -13,10 +30,27 @@
   "nivel_complejidad_riesgo": null,
   "porcentaje_complejidad_riesgo": null,
   "como_abona": "Efectivo"
-},
-  {"id":"2",
+},{
+  "id":"2",
   "id_web":"2",
+  "cliente_id":"100",
+  "cliente":{
+
+    "id":1,
+    "nombre":"Leonardo Loyo",
+    "id_web":100,
+    "cuit":"v-21295782",
+    "tipo_de_cliente_id":1
+  },
+  "cuit":"V-21295782-4",
+  "dni":"V-21295782",
+  "tipo_cliente":"Particular",
+  "telefono":"0424-5177331",
   "cotizador_id":"1",
+  "cotizador":{
+    "id":"1",
+    "nombre":"Cotizador 1"
+  },
   "nombre_cliente": "Leonardo Antonio Loyo",
   "numero_de_contrato":"11",
   "numero_de_cotizacion":"A512",

@@ -1,7 +1,7 @@
 (function(){
     'use strict';
     var app = angular.module('services.address', []);
-    app.factory('Services_Address', function($cordovaSQLite, collectiondb,$ionicLoading){
+    app.factory('Services_Address', function($cordovaSQLite, collectiondb,$ionicLoading, $http){
       'use strict';
 
       //variables
@@ -13,7 +13,7 @@
           },
           {
               "id_web":10,
-              "pais":"Argentina (AR)",
+              "pais":"Argentina (Ar)",
               "codigo_telefonico":"+54"
           }
       ];
@@ -23,8 +23,8 @@
           "pais_id":10,
           "codigo_telefonico":"+54",
           "pais":"Agentina"
-      },
-      {
+        },
+        {
           "id_web":2,
           "provincia":"Cordova",
           "pais_id":10,
@@ -114,10 +114,10 @@
                   }else{
 
                       angular.forEach(data, function(object, key){
-                        if(collectiondb.findOne(get(countrys,'direccion_pais'),object.id,"id")==undefined){
+                        if(collectiondb.findOne(get(countrys,'direccion_pais'),object.id,"id_web")==undefined){
                           countrys.push(object);
                         }else{
-                          countrys[collectiondb.findOne(countrys,object.id,"id")]=object;
+                          countrys[collectiondb.findOne(countrys,object.id,"id_web")]=object;
                         }
                       });//foreach web
 
@@ -156,10 +156,10 @@
                   }else{
 
                       angular.forEach(data, function(object, key){
-                        if(collectiondb.findOne(get(provinces,'vprovincia'),object.id,"id")==undefined){
+                        if(collectiondb.findOne(get(provinces,'vprovincia'),object.id,"id_web")==undefined){
                           provinces.push(object);
                         }else{
-                          provinces[collectiondb.findOne(provinces,object.id,"id")]=object;
+                          provinces[collectiondb.findOne(provinces,object.id,"id_web")]=object;
                         }
                       });//foreach web
 
@@ -197,10 +197,10 @@
                 }else{
 
                       angular.forEach(data, function(object, key){
-                        if(collectiondb.findOne(get(cities,'vciudad'),object.id,"id")==undefined){
+                        if(collectiondb.findOne(get(cities,'vciudad'),object.id,"id_web")==undefined){
                           cities.push(object);
                         }else{
-                          cities[collectiondb.findOne(cities,object.id,"id")]=object;
+                          cities[collectiondb.findOne(cities,object.id,"id_web")]=object;
                         }
                       });//foreach web
 
@@ -240,10 +240,10 @@
                 }else{
 
                       angular.forEach(data, function(object, key){
-                        if(collectiondb.findOne(get(neighborhoods,'vbarrio'),object.id,"id")==undefined){
+                        if(collectiondb.findOne(get(neighborhoods,'vbarrio'),object.id,"id_web")==undefined){
                           neighborhoods.push(object);
                         }else{
-                          neighborhoods[collectiondb.findOne(neighborhoods,object.id,"id")]=object;
+                          neighborhoods[collectiondb.findOne(neighborhoods,object.id,"id_web")]=object;
                         }
                       });//foreach web
 
@@ -280,10 +280,10 @@
                 }else{
 
                       angular.forEach(data, function(object, key){
-                        if(collectiondb.findOne(get(streets,'vcalle'),object.id,"id")==undefined){
+                        if(collectiondb.findOne(get(streets,'vcalle'),object.id,"id_web")==undefined){
                           streets.push(object);
                         }else{
-                          streets[collectiondb.findOne(streets,object.id,"id")]=object;
+                          streets[collectiondb.findOne(streets,object.id,"id_web")]=object;
                         }
                       });//foreach web
 
@@ -319,10 +319,10 @@
                 }else{
 
                       angular.forEach(data, function(object, key){
-                        if(collectiondb.findOne(get(address,'vdireccion'),object.id,"id")==undefined){
+                        if(collectiondb.findOne(get(address,'vdireccion'),object.id,"id_web")==undefined){
                           address.push(object);
                         }else{
-                          address[collectiondb.findOne(address,object.id,"id")]=object;
+                          address[collectiondb.findOne(address,object.id,"id_web")]=object;
                         }
                       });//foreach web
                   }
@@ -348,7 +348,14 @@
                     result = true;
                   }
                   return result;
-                }
+                },
+              address_findArray:function(cotizacion_id,customer_id) {
+                var co = cotizacion_id; //cotizacion_id
+                var cu = customer_id; //customer_id
+                var a = []; //address
+                return a;
+              }
+
       }
     });
 })()

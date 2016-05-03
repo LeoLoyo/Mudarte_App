@@ -1,0 +1,15 @@
+<ion-list>
+  <div ng-repeat="a in address" class="card">
+    <input type="text" class="hide" ng-model="a.direccion">
+    <ion-item class="item-royal item-icon-right" ng-click="toggleGroup(a)" ng-class="{active: isGroupShown(a)}">
+      <i class="icon" ng-class="isGroupShown(a) ? 'ion-android-arrow-dropup' : 'ion-android-arrow-dropdown'"></i>
+      &nbsp;<strong>Ambientes De La Direccion : </strong>{{a.direccion}}
+    </ion-item>
+    <ion-item class="item-accordion item-stable" ng-repeat=" e in environments" ng-if="e.direccion.direccion == a.direccion" ng-show="isGroupShown(a)">
+      {{e.ambiente.ambiente}}
+      <ion-option-button class="button-balanced" ng-click="delete_env(a.id_web,e.id_web)">Eliminar</ion-option-button>
+    </ion-item>
+  </div>
+
+
+</ion-list>
