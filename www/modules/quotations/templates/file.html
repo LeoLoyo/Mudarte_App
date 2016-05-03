@@ -1,0 +1,79 @@
+<ion-view>
+<ion-nav-title>
+  <h2 class="title">Ficha De Cotizacion</h2>
+</ion-nav-title>
+<ion-nav-buttons side="right">
+        <button class="button button-clear button-icon ion-android-sync" ng-click="sync()"></button>
+</ion-nav-buttons>
+    <ion-tabs class=" tabs-icon-bottom tabs-top tabs-background-positive tabs-color-light">
+      <ion-tab title="Cotizacion" icon-on="ion-android-list" icon-off="ion-android-list">
+        <ion-pane>
+          <ion-content  class="">
+            <!-- Include partial -->
+            <div ng-include src="'modules/quotations/templates/partial/partial_quotation.html'"></div>
+            <!-- End Include -->
+          </ion-content>
+        </ion-pane>
+      </ion-tab>
+
+      <ion-tab title="Cliente" icon-on="ion-android-happy" icon-off="ion-android-happy">
+        <ion-pane>
+          <ion-content class="">
+            <!-- Include partial -->
+            <div ng-include src="'modules/quotations/templates/partial/partial_customer.html'"></div>
+            <!-- End Include -->
+          </ion-content>
+        </ion-pane>
+      </ion-tab>
+
+
+      <ion-tab title="Direcciones" icon-on="ion-android-map" icon-off="ion-android-map">
+        <ion-pane>
+          <ion-content class="">
+            <!-- Include partial -->
+            <div ng-include src="'modules/quotations/templates/partial/partial_address.html'"></div>
+            <!-- End Include -->
+          </ion-content>
+        </ion-pane>
+      </ion-tab>
+
+      <ion-tab title="Mudanza" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+        <ion-pane>
+          <ion-content class="">
+            <!-- Include partial -->
+            <div ng-include src="'modules/quotations/templates/partial/partial_environments.html'"></div>
+            <!-- End Include -->
+          </ion-content>
+        </ion-pane>
+
+      </ion-tab>
+      <ion-tab title="Resumen" icon-on="ion-android-clipboard" icon-off="ion-android-clipboard">
+
+      </ion-tab>
+
+    </ion-tabs>
+</ion-view>
+<!-- <ion-view>
+<ion-nav-title>
+  <h2 class="title">Ficha De Cotizacion</h2>
+</ion-nav-title>
+<ion-nav-buttons side="right">
+        <button class="button button-clear button-icon ion-android-sync" ng-click="sync()"></button>
+</ion-nav-buttons>
+<div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
+  <div class="tabs">
+    <a class="tab-item " href="#">
+      <i class="icon ion-home"></i>
+      Test
+    </a>
+    <a class="tab-item" href="#">
+      <i class="icon ion-star"></i>
+      Favorites
+    </a>
+    <a class="tab-item" href="#">
+      <i class="icon ion-gear-a"></i>
+      Settings
+    </a>
+  </div>
+</div>
+</ion-view> -->

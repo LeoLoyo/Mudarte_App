@@ -1,0 +1,152 @@
+<ion-view>
+  <ion-nav-title>
+    <h2 class="title">Registro De Direccion</h2>
+  </ion-nav-title>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear icon ion-android-sync" ng-click="sync()"></button>
+  </ion-nav-buttons>
+    <!-- <ion-pane> -->
+        <ion-content>
+        <form validate class="css-form">
+            <div class="padding">
+                <!--Street-->
+                <div class="list">
+                  <!-- <label class="item item-input item-floating-label">
+                  <span class="input-label">First Name</span>
+                  <input type="text" placeholder="First Name">
+                </label> -->
+                  <div class="row padding">
+                    <label class="item item-input item-floating-label">
+                      <span class="input-label"><b>Calle</b></span>
+                      <input type="text" placeholder="Calle" ng-model='address.street'>
+                    </label>
+                  </div>
+
+                  <div class="row padding">
+                      <label class="item item-input item-floating-label">
+                        <span class="input-label"><b>Altura</b></span>
+                        <input type="text" placeholder="Altura" ng-model='address.height'>
+                      </label>
+
+                      <label class="item item-input item-floating-label">
+                        <span class="input-label"><b>Zip</b></span>
+                        <input type="text" placeholder="Zip" ng-model='address.zip'>
+                      </label>
+                  </div>
+
+                  <div class="row padding">
+                    <label class="item item-input item-floating-label">
+                      <span class="input-label"><b>Punto de Referencia</b></span>
+                      <input type="text" placeholder="Punto de Referencia" ng-model='address.reference_of_point'>
+                    </label>
+                  </div>
+                  <div class="row padding">
+                    <label class="item item-input item-select">
+                      <div class="input-label">
+                        Pais {{address.country}}
+                      </div>
+                      <select ng-model="address.country">
+                        <option ng-value="country.id_web" ng-repeat="country in countrys">{{country.pais}}</option>
+                      </select>
+                    </label>
+
+                    <label class="item item-input item-select">
+                      <div class="input-label">
+                        Provincia{{address.province}}
+                      </div>
+
+                      <select  ng-model="address.provice">
+                        <!-- <option ng-value="province.id_web" ng-repeat="province in provinces | filter : {pais_id:address.country}:true">{{province.pais_id}}</option> -->
+                        <option ng-repeat="province in provinces track by province.id_web" value="{{province.id_web}}">{{province.provincia}}</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="row padding">
+                    <label class="item item-input item-select">
+                      <div class="input-label">
+                        Ciudad{{address.city}}
+                      </div>
+                      <select ng-model="address.city">
+                        <option ng-value="city.id_web"   ng-repeat="city in cities track by city.id_web"value="{{city.id_web}}">{{city.ciudad}}</option>
+                      </select>
+                    </label>
+
+                    <label class="item item-input item-select">
+                      <div class="input-label">
+                        Barrio{{address.neighborhood}}
+                      </div>
+                      <select ng-model="address.neighborhood">
+                        <option ng-value="neighborhood.id_web"   ng-repeat="neighborhood in neighborhoods track by neighborhood.id_web"value="{{neighborhood.id_web}}">{{neighborhood.barrio}}</option>
+                      </select>
+                    </label>
+                  </div>
+                </ion-list>
+
+                <!--Street-->
+
+                <!-- <md-input-container class="md-block" flex-gt-sm>
+                    <label>Calle</label>
+                    <input  ng-model='address.street' required>
+                </md-input-container> -->
+
+                <!--Height and Zip-->
+                <!-- <div class="row"> -->
+                    <!-- <md-input-container class='col'>
+                        <label>Altura</label>
+                        <input value="Texto" ng-model='address.height' required>
+                    </md-input-container> -->
+                    <!-- <md-input-container class='col'>
+                        <label>Zip</label>
+                    <input value="Texto" ng-model='address.zip'>
+                    </md-input-container> -->
+                <!-- </div> -->
+                <!--Reference of Point-->
+                <!-- <md-input-container class="md-block" flex-gt-sm>
+                    <label>Punto de Referencia</label>
+                    <input value="Texto" ng-model='address.reference_of_type'>
+                </md-input-container> -->
+                <!--Country and Province-->
+                <!-- <div class="row">
+                    <md-input-container class="col">
+                        <label>Pais</label>
+                        <md-select ng-model="address.country" required>
+                          <md-option ng-value="country.id_web" ng-repeat="country in countrys">{{country.pais}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="col">
+                        <label>Provincia</label>
+                        <md-select ng-model="address.province" required>
+                          <md-option
+                          ng-value="province.id_web"
+                          ng-repeat="province in provinces | filter : {pais_id:address.country}:true">{{province.provincia}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div> -->
+                <!--City and Neigborhoods-->
+                  <!-- <div class="row">
+                      <md-input-container class="col">
+                          <label>Ciudad</label>
+                          <md-select ng-model="address.city" required>
+                          <md-option
+                          ng-value="city.id_web"
+                          ng-repeat="city in cities | filter : {provincia_id:address.province}:true">{{city.ciudad}}</md-option>
+                          </md-select>
+                      </md-input-container>
+                      <md-input-container class="col">
+                          <label>Barrio</label>
+                          <md-select ng-model="address.neighborhood" required>
+                            <md-option
+                            ng-value="neighborhood.id_web"
+                            ng-repeat="neighborhood in neighborhoods | filter : {ciudad_id:address.city}:true">{{neighborhood.barrio}}</md-option>
+                          </md-select>
+                      </md-input-container>
+                  </div> -->
+            </div>
+            <button class="button button-fab button-fab-bottom-right button-balanced icon ion-android-done" ng-click="save(address)"></button>
+        </form>
+
+        </ion-content>
+
+    <!-- </ion-pane> -->
+
+</ion-view>

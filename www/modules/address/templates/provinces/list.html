@@ -1,0 +1,11 @@
+<ion-view view-title="Provincias Registradas">
+    <ion-content scroll="false">
+        <ion-list class="">
+            <ion-item ng-repeat="province in provinces">
+                <h2>{{province.provincia}} - ID:{{province.id_web}}</h2>
+                <p>Pais: {{province.pais}}</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <button class="button button-fab button-fab-bottom-right button-assertive icon ion-loop" ng-click="sync()"></button>
+</ion-view>

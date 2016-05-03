@@ -1,4 +1,7 @@
-<ion-view title="Perfil De Cliente {{customer.nombre}}">
+<ion-view>
+  <ion-nav-title>
+    Perfil De Cliente
+  </ion-nav-title>
     <ion-content>
       <div class="demo-card-wide">
 
@@ -8,7 +11,7 @@
           </h2>
         </div>
         <div class="mdl-card__supporting-text">
-           <md-radio-group ng-model="customer.tipocliente" layout="row">
+           <md-radio-group ng-model="customer.tipo_de_cliente_id" layout="row">
             <md-radio-button flex value="1">Particular</md-radio-button>
             <md-radio-button flex value="2">Empresa</md-radio-button>
             <md-radio-button flex value="3">Gobierno</md-radio-button>

@@ -1,61 +1,24 @@
-[{
-    "id":1,
-    "nombre":"Persona 1",
-    "observaciones":"Obs1",
-    "cuit":"cui1",
-    "tipo_de_cliente_id":1
-},{
-   "id":2,
-   "nombre":"Persona 2",
-    "observaciones":"Obs2",
-    "cuit":"cui2",
-    "tipo_de_cliente_id":1
-},{
-    "id":3,
-    "nombre":"Persona 3",
-    "observaciones":"Obs3",
-    "cuit":"cui3",
-    "tipo_de_cliente_id":1
-},{
-    "id":4,
-    "nombre":"Persona 4",
-    "observaciones":"Obs4",
-    "cuit":"cui4",
-    "tipo_de_cliente_id":1
-},{
-    "id":5,
-    "nombre":"Persona 5",
-    "observaciones":"Obs5",
-    "cuit":"cui5",
-    "tipo_de_cliente_id":1
-},{
-    "id":6,
-    "nombre":"Persona 6",
-    "observaciones":"Obs6",
-    "cuit":"cui6",
-    "tipo_de_cliente_id":1
-},{
-    "id":7,
-    "nombre":"Persona 7",
-    "observaciones":"Obs7",
-    "cuit":"cui7",
-    "tipo_de_cliente_id":1
-},{
-    "id":8,
-    "nombre":"Persona 8",
-    "observaciones":"Obs8",
-    "cuit":"cui8",
-    "tipo_de_cliente_id":1
-},{
-    "id":9,
-    "nombre":"Persona 9",
-    "observaciones":"Obs9",
-    "cuit":"cui9",
-    "tipo_de_cliente_id":1
-},{
-    "id":10,
-    "nombre":"Persona 10",
-    "observaciones":"Obs10",
-    "cuit":"cui10",
-    "tipo_de_cliente_id":1
-}]
+[
+  {
+    "id":100,
+    "nombre":"Leonardo Antonio Loyo",
+    "id_web":100,
+    "cuit":"v-21295782",
+    "tipo_de_cliente_id":{
+      "id":1,
+      "id_web":1,
+      "tipo_de_cliente":"Particular"
+    }
+   },
+   {
+    "id":200,
+    "nombre":"Desiderio Loyo",
+    "id_web":200,
+    "cuit":"V-01772713",
+    "tipo_de_cliente_id":{
+      "id":1,
+      "id_web":1,
+      "tipo_de_cliente":"Particular"
+    }
+   }
+ ]

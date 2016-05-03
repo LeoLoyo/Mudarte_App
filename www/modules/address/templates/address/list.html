@@ -1,0 +1,11 @@
+<ion-view>
+    <ion-content scroll="false">
+        <ion-list>
+            <ion-item ng-repeat="addres in address">
+                <h2>{{addres.calle}}</h2>
+                <p>Altura:{{addres.altura}} - Zip:{{addres.zip}} - Punto De Referencia:{{addres.punto_referencia}} - Barrio: {{addres.barrio}}</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <button class="button button-fab button-fab-bottom-right button-assertive icon ion-loop" ng-click="sync()"></button>
+</ion-view>

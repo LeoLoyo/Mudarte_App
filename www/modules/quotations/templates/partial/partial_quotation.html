@@ -1,0 +1,46 @@
+<ion-list class="">
+  <ion-item>
+    <p>Numero De Cotizacion</p>
+    <h2>{{quotation.numero_de_cotizacion}}</h2>
+  </ion-item>
+  <ion-item>
+    <p>Numero De Contrato</p>
+    <h2>{{quotation.numero_de_contrato}}</h2>
+  </ion-item>
+  <ion-item>
+    <p>Fecha De Cotizacion</p>
+    <h2>{{quotation.fecha_de_cotizacion}}</h2>
+  </ion-item>
+  <ion-item>
+    <p class="title">Hora de Cotizacion</p>
+    <h2>{{quotation.hora_de_cotizacion}}</h2>
+  </ion-item>
+  <ion-item>
+    <p class="title">Nombre Del Cliente</p>
+    <h2>{{customer.nombre}}</h2>
+  </ion-item>
+  <ion-item ng-if="quotation.tiempo_carga">
+    <h2>{{quotation.tiempo_carga}}</h2>
+    <p class="title">Tiempo Estimado De Carga</p>
+  </ion-item>
+  <ion-item ng-if="quotation.total_recorrido">
+    <h2>{{quotation.total_recorrido}}</h2>
+    <p class="title">Total Recorrido</p>
+  </ion-item>
+  <ion-item ng-if="quotation.total_recorrido_km">
+    <p class="title">Total Km De Recorrido</p>
+    <h2>{{quotation.total_recorrido_km}}</h2>
+  </ion-item>
+  <ion-item ng-if="quotation.nivel_complejidad_riesgo">
+    <p class="title">Nivel C/R</p>
+    <h2>{{quotation.nivel_complejidad_riesgo}}</h2>
+  </ion-item>
+  <ion-item ng-if="quotation.porcentaje_complejidad_riesgo">
+    <p class="title">Porcentaje De C/R</p>
+    <h2>{{quotation.porcentaje_complejidad_riesgo}}</h2>
+  </ion-item>
+  <ion-item ng-if="quotation.como_abona">
+    <p class="title">¿Como Abona?</p>
+    <h2>{{quotation.como_abona}}</h2>
+  </ion-item>
+</ion-list>

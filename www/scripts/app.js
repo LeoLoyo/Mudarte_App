@@ -1,17 +1,18 @@
+ // (function(){
   var app = angular.module('starter', ['ionic','ngCordova','ngMaterial', 'app.services', 'app.controllers', 'app.router','app.directives', 'ionic-material','ionicRipple']);
   var db = null;
-  app.run(function($ionicPlatform, $cordovaSQLite, $ionicLoading) {
+  app.run(function($ionicPlatform, $ionicLoading) {
     $ionicPlatform.ready(function(){
-      // if (window.cordova && window.cordova.plugins.Keyboard) {
-      //   cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      //   cordova.plugins.Keyboard.disableScroll(true);
-      // }
-      // if (window.StatusBar) {
+    // if (window.cordova && window.cordova.plugins.Keyboard) {
+    //   cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    //   cordova.plugins.Keyboard.disableScroll(true);
+    // }
+    // if (window.StatusBar) {
       // StatusBar.styleDefault();
-      // }
-      // $ionicLoading.show({template:"Loading..."});
+        // }
+        // $ionicLoading.show({template:"Loading..."});
       if(db==null){
-        copydb();
+        // copydb ();
       }
       function copydb(){
         window.plugins.sqlDB.copy("mudartedb.sqlite", 0, copysuccess,copyerror);
@@ -32,4 +33,11 @@
       }
     });//platform ready
 });//run
-
+app.constant("cotizador", {
+        "id": 1,
+        "nombre":"Leonardo Antonio Loyo"
+    });
+app.constant('host', {
+  "url":"modules"
+});
+// })()

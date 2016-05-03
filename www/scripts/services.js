@@ -1,10 +1,16 @@
 (function(){
-  var app = angular.module('app.services', ['ionic','starter','ngCordova','services.customers']);
+  var app = angular.module('app.services', ['ionic','starter','ngCordova','services.customers','services.address','services.quotations']);
   app.factory('collectiondb', ['$cordovaSQLite', function($cordovaSQLite){
     'use strict';
     var menssages = "Operacion Exitosa";
     return {
-            all:function(query,param){
+            findOne:function(objects, term,att) {
+              for(var i = 0, len = objects.length; i < len; i++) {
+                if (objects[i][att] == term){
+                  return i;
+                }
+              }
+            },all:function(query,param){
                   var collection = [];
                   if(param === undefined ){
                     $cordovaSQLite.execute(db, query, []).then(function(res){
@@ -14,11 +20,11 @@
                           collection.push(r.item(i));
                         }
                       }
-                      else{
-                        alert("no hay registros")
-                      }
+                      // else{
+                      //   alert("no hay registros")
+                      // }
                     },function(error){
-                      alert('hubo un error all '+query+ error.menssages)
+                      // alert('hubo un error all '+query+ error.menssages)
                         return error.menssages;
                     });
                   }else{
@@ -29,44 +35,59 @@
                           collection.push(r.item(i));
                         }
                       }
-                      else{
-                        alert("no hay registros")
-                      }
+                      // else{
+                      //   alert("no hay registros")
+                      // }
                     },function(error){
-                      alert('hubo un error all sp '+ error.menssages)
+                      // alert('hubo un error all sp '+ error.menssages)
                         return error.menssages;
                     });
                   }
                   return collection;
-            },find:function(id,query){
-                  $cordovaSQLite.execute(db,query,id).then(function(result){
+            },find:function(table,att,id){
+              var query = "SELECT * FROM "+table +" WHERE "+att+" = ?";
+                  $cordovaSQLite.execute(db,query,[id]).then(function(result){
                     if(result.rows.length > 0){
-                      return result.rows.item;
+                      // alert(result.rows.item(0).id_web);
+                      return JSON.stringify(result.rows.item(0));
+                      // return true;
+
                     }
+                    alert('no hay registrosasd');
                   },function(error){
-                      alert('hubo un error find '+ error.menssages)
+                      // alert('hubo un error find '+ error.menssages)
                       return error;
                   });
             },create:function(query,params){
                    $cordovaSQLite.execute(db,query,params).then(function(result){
-                      // return result;
-                      return true;
+                      return result;
                     },function(error){
-                      alert('hubo un error cre '+ error.menssages)
-                        return false;
+                      // alert('hubo un error cre '+ error.menssages)
+                      return error;
                         // return error.menssages;
                     });
             },update:function(query, data, id){
                     var sql = query + id;
                     $cordovaSQLite.execute(db,sql,data).then(function success(result){
                       return result;
+                    },function(error){
+                      // alert('Update Error ');
+                      return error;
+                        // return error.menssages;
                     });
             },delete:function(query,id){
               $cordovaSQLite.execute(db,query,[id]).then(function(result){
                 return result;
               },function(error){
-                alert('hubo un error  del '+ error.menssages)
+                // alert('hubo un error  del '+ error.menssages)
                 return error.menssages;
+              });
+            },
+            count:function(table){
+              $cordovaSQLite.execute(db, 'select count(*) from '+table,[]).then(function(result){
+                return result.rows.item;
+              },function(error){
+                return error;
               });
             }
     }
@@ -91,5 +112,21 @@ app.factory('Service_typeofrelationship', ['$cordovaSQLite','collectiondb',funct
   }
     return array;
 }]);
+app.factory('Services_messanges', function($cordovaToast){
+  var message = '';
+  return{
+    message:function(menssage){
+      message ; menssage;
+      if(db!=null){
+      $cordovaToast.showLongBottom(menssage).then(function(success) {
+        return success;
+       }, function (error) {
+        return success;
+        });
+      }else{
+        console.log(menssage);
+      }
+     }
+   }
+});
 })()
-
