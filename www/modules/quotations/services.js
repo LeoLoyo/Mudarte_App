@@ -60,6 +60,7 @@
         angular.forEach(quotations_environments,
           function(env, key) {
             id_env_addres = env.direccion.cliente_direccion.direccion.id_web;
+
             if( id_address == id_env_addres ) {
               // amb_direc.push(address.environments.push(env));
               amb_direc.push(env);
@@ -112,7 +113,23 @@
         // return get(quotations_environments, query);
         // return quotations_environments;
         return environment_Address();
-      }
+      },
+      deleteOne_env:function(a, e){
+        var env = quotations_environments;
+        var adr = quotations_address;
+        angular.forEach(adr,
+          function(val,k) {
+            if( val.id_web == a){
+              angular.forEach(env,
+                function(value,key) {
+                  if( value.id_web == e){
+                  env.splice(key,1);
+                  return env;
+                  }
+                });
+            }
+          });
+      },
     };
   });
 

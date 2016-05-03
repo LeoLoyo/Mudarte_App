@@ -15,41 +15,32 @@
     }
 
   }]);
-  app.controller('Quotation-DetailsCtrl',['$scope', 'Services_quotations', '$state', '$stateParams','Service_Customers', function($scope, Services_quotations, $state, $stateParams, Service_Customers) {
+  app.controller('Quotation-DetailsCtrl',['$scope', 'Services_quotations', '$state', '$stateParams','Service_Customers', function( $scope, Services_quotations, $state, $stateParams, Service_Customers) {
     // Load data from the quotation
     var quotation = Services_quotations.findOne($stateParams.id);
     var customer = Service_Customers.findOne(quotation.cliente_id);
     var contacts = Service_Customers.contacts_get(customer.id_web);
     var address = Services_quotations.quotation_address_get($stateParams.id);
     var environments = Services_quotations.quotation_environments_get($stateParams.id);
-
+$scope.cotizacion = {
+  "quotation":quotation,
+  "customer":customer,
+  "contacts":contacts,
+  "address":address,
+  "environments":environments  
+}
     $scope.address = address;
     $scope.environments = environments;
     $scope.quotation = quotation;
     $scope.customer = customer;
     $scope.contacts = contacts
-    // var address  = [{id:10,direccion:"Carrera 19 con calle 24 y 25", barrio:"La Pe;a",ambientes:[]},{id:2,direccion:"Carrera 18 con calle 24 y 25", barrio:"La Pe;a",ambientes:[]}];
-    // var environments = [{id:10, ambiente:"Cocina"},{id:20, ambiente:"Lobby"},{id:30,ambiente:"Cuarto Estudio"},{id:40,ambiente:"Cuarto Principal"}];
-    // for (var i = 0; i < address.length; i++) {
-    //   for (var j = 0; j < environments.length; j++) {
-    //       address[i].ambientes.push(environments[j]);
-    //   }
-    // }
-    // $scope.address = address;
+
     // delete an environment
-    // $scope.delete_env = function(a,e) {
-    //   console.log("el id de cotizacion: "+ a +"el id de ambiente: " + e );
-    //   for (var i = 0; i < address.length; i++) {
-    //     if(address[i].id==a){
-    //       for (var j = 0; j < address[i].ambientes.length; j++) {
-    //         if(address[i].ambientes[j].id==e){
-    //           console.log(address[i].ambientes.splice(j,1));
-    //         }
-    //       }
-    //     }
-    //   }
-    //   $scope.address = address;
-    // };
+    $scope.delete_env = function(a,e) {
+      $scope.environments = Services_quotations.deleteOne_env(a,e);
+
+
+    };
     // add address
     $scope.new_address = function(num){
       (num==0)?console.log('es una nueva direccion de origen'):console.log('es una nueva direccion de destino');
