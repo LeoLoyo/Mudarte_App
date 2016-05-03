@@ -1,6 +1,6 @@
 (function(){
  var app = angular.module('CustomersCtrl',[]);
-  app.controller('CustomersCtrl',function($scope,$http , $state,$ionicLoading, $ionicPopup,$cordovaToast, $timeout, collectiondb, Service_sexo, Service_Customers, Service_typeofrelationship,Services_messanges){
+  app.controller('CustomersCtrl',function($scope, $state,$ionicLoading, $ionicPopup,$cordovaToast, $timeout, collectiondb, Service_sexo, Service_Customers, Service_typeofrelationship,Services_messanges){
     'use strict';
 
     var customers = Service_Customers.get();
