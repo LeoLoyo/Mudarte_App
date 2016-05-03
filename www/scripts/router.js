@@ -15,6 +15,16 @@
         abstract: true,
         templateUrl: 'templates/base/dash.html'
       })
+      .state('app.setting', {
+        url: 'setting',
+        views:{
+          "maincontent":{
+            templateUrl: 'templates/base/setting.html',
+            controller:'SettingCtrl'
+
+          }
+        }
+      })
 
 
     $urlRouterProvider.otherwise('/dashboard');

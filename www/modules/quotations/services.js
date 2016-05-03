@@ -2,6 +2,7 @@
   var app = angular.module('services.quotations',[]);
   app.factory('Services_quotations', function($http, Services_messanges, collectiondb) {
     var quotations=[];
+    var amb_direc = [];
     // get quotation_address
     var quotations_address = [];
     // get quotations_environments
@@ -51,7 +52,7 @@
       );
     };
     var environment_Address = function() {
-      var amb_direc = [];
+      amb_direc = [];
       var id_addres ='';
       var id_env_addres ='';
       angular.forEach(quotations_address, function(address,id) {
@@ -76,13 +77,13 @@
         var url='modules/quotations/json/';
         $http.get(url+'cotizacion.json').then(
           function success(data){
-            angular.forEach(data.data,
-              function(value, key) {
-                if(value.cotizador.id==co.id){
-                  quotations.push(value);
-                }
+            angular.forEach(data.data, function(object, key){
+              if(collectiondb.findOne(quotations,object.id,"id_web")==undefined){
+                quotations.push(object);
+              }else{
+                quotations[collectiondb.findOne(quotations,object.id,"id_web")]=object;
               }
-            );
+            });//foreach web
           },
           function error(e){
             Services_messanges.message('No hubo respuesta del servidor');

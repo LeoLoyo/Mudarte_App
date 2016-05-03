@@ -1,8 +1,16 @@
 (function() {
   var app = angular.module('QuotationCtrl', []);
-  app.controller('DashboardCtrl', function($scope, Services_quotations) {
+  app.controller('DashboardCtrl', function($scope,Service_Customers, Services_quotations,cotizador) {
     'use strict';
-    $scope.quotations = {count:Services_quotations.all().length}
+    Service_Customers.customer_sync()
+
+    Services_quotations.quotations_sync(cotizador);
+
+    setTimeout(function() {
+      $scope.quotations = {count:Services_quotations.all().length};
+      $scope.$apply();
+    },0);
+
 
   });
   app.controller('QuotationCtrl',['$scope', 'Services_quotations','cotizador',function($scope, Services_quotations,cotizador){
@@ -22,24 +30,30 @@
     var contacts = Service_Customers.contacts_get(customer.id_web);
     var address = Services_quotations.quotation_address_get($stateParams.id);
     var environments = Services_quotations.quotation_environments_get($stateParams.id);
-$scope.cotizacion = {
-  "quotation":quotation,
-  "customer":customer,
-  "contacts":contacts,
-  "address":address,
-  "environments":environments  
-}
-    $scope.address = address;
-    $scope.environments = environments;
-    $scope.quotation = quotation;
-    $scope.customer = customer;
-    $scope.contacts = contacts
+
+
+     $scope.quotation = quotation;
+     $scope.customer = customer;
+     $scope.contacts = contacts;
+
+
+    setTimeout(function() {
+      var address = Services_quotations.quotation_address_get($stateParams.id);
+      var environments = Services_quotations.quotation_environments_get($stateParams.id);
+
+      $scope.address = address;
+      $scope.environments = environments;
+      $scope.$apply();
+    },0);
 
     // delete an environment
     $scope.delete_env = function(a,e) {
       $scope.environments = Services_quotations.deleteOne_env(a,e);
-
-
+      setTimeout(function() {
+        var environments = Services_quotations.quotation_environments_get($stateParams.id);
+        $scope.environments = environments;
+        $scope.$apply();
+      },0);
     };
     // add address
     $scope.new_address = function(num){

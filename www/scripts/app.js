@@ -33,11 +33,18 @@
       }
     });//platform ready
 });//run
-app.constant("cotizador", {
-        "id": 1,
-        "nombre":"Leonardo Antonio Loyo"
+    app.constant("cotizador", {
+            "id": 1,
+            "nombre":"Leonardo Antonio Loyo"
+        });
+    app.constant('host', {
+      "url":"modules"
     });
-app.constant('host', {
-  "url":"modules"
-});
+    app.controller('SettingCtrl', function($scope,Service_Customers, Services_quotations,cotizador){
+      $scope.sync_db = function() {
+        Service_Customers.customer_sync()
+        Services_quotations.quotations_sync(cotizador);
+      }
+
+    })
 // })()
