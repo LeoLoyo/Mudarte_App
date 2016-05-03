@@ -114,7 +114,7 @@
         // var url='http://192.168.0.114:8000/api/v1/calle/?format=json';
         var url='modules/address/json/streets.json';
         $http.get(url).then(function success(data){
-            console.log(data.data);
+            // console.log(data.data);
             (Services_Address.streets_sync(data.data))?Services_messanges.message('Sincronizacion Satisfactoria'):Services_messanges.message('Error al Sincronizar');
             $scope.streets = [];
             $scope.streets = Services_Address.streets_get();
