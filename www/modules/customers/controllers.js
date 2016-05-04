@@ -3,7 +3,7 @@
   app.controller('CustomersCtrl',function($scope, $state,$ionicLoading, $ionicPopup,$cordovaToast, $timeout, collectiondb, Service_sexo, Service_Customers, Service_typeofrelationship,Services_messanges){
     'use strict';
 
-    var customers = Service_Customers.get();
+    var customers = Service_Customers.all();
 
     $scope.customers = customers;
 
@@ -50,13 +50,13 @@
                      onTap:function(){
                       if(model.tipo_de_cliente_id == 1){
                         $scope.customer = Service_Customers.new(model);
-                        $scope.customers = Service_Customers.get();
+                        $scope.customers = Service_Customers.all();
                         $state.go('app.contacts');
                         console.log('aqui');
                       }else{
                         console.log('o aqui');
                         $scope.customer = Service_Customers.new(model);
-                        $scope.customers = Service_Customers.get();
+                        $scope.customers = Service_Customers.all();
                         $state.go('app.customers');
                       }
                      }
@@ -118,13 +118,13 @@
                      onTap:function(){
                       if(model.tipo_de_cliente_id == 1){
                         $scope.customer = Service_Customers.new(model);
-                        $scope.customers = Service_Customers.get();
+                        $scope.customers = Service_Customers.all();
                         $state.go('app.contacts');
                         console.log('aqui');
                       }else{
                         console.log('o aqui');
                         $scope.customer = Service_Customers.new(model);
-                        $scope.customers = Service_Customers.get();
+                        $scope.customers = Service_Customers.all();
                         $state.go('app.customers');
                       }
                      }

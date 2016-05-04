@@ -1,8 +1,8 @@
 (function() {
   var app = angular.module('services.quotations',[]);
   app.factory('Services_quotations', function($http, Services_messanges, collectiondb) {
+
     var quotations=[];
-    var amb_direc = [];
     // get quotation_address
     var quotations_address = [];
     // get quotations_environments
@@ -10,10 +10,12 @@
     //get all quotations
     var get = function(array,query) {
       if(db!=null){
+        array = [];
         array = collectiondb.all(query);
       }
       return array;
     };
+    var amb_direc = [];
     var sync_address_quotations = function(cotizacion_id){
       var url='modules/quotations/json/';
       var co = cotizacion_id;
@@ -91,8 +93,10 @@
         );
       },
       all:function() {
-        var query = 'SELECT * FROM vcotizacion';
-        return get(quotations, query);
+        if(db!=null){
+          quotations = collectiondb.all('SELECT * FROM vcotizacion');
+        }
+        return quotations;
       },
       findOne:function(id) {
         for (var i = 0; i < quotations.length; i++) {

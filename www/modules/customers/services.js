@@ -3,6 +3,14 @@
     var app = angular.module('services.customers',[]);
     app.factory('Service_Customers', function($cordovaSQLite, collectiondb,host,$http){
       'use strict';
+      var customers = [];
+      var get = function() {
+        if(db!=null){
+          var query = 'SELECT id_web,nombre,observaciones,cuit,tipo_de_cliente_id FROM cliente_cliente'
+          customers = [];
+          customers = collectiondb.all(query);
+         }
+      };
       var contacts = [
         {
           "id":1,
@@ -58,7 +66,7 @@
       //    }
       //  ];
 
-      var customers = [];
+
       var sync = function() {
         var url = host.url+'/customers/clientes.json';
         $http.get(url).then(function success(data){
@@ -154,7 +162,7 @@
 
           return customer;
         },
-        get:function(){
+        all:function(){
             if(db!=null){
               var query = 'SELECT id_web,nombre,observaciones,cuit,tipo_de_cliente_id FROM cliente_cliente'
               customers = [];
@@ -163,52 +171,59 @@
              sync();
              return customers;
           },
-          findOne: function(Id){
-            return customers[collectiondb.findOne(customers,Id,"id_web")];
+        findOne:function(id) {
+          get();
+          alert(customers.length);
+          for (var i = 0; i < customers.length; i++) {
+            if(customers[i].id_web == id) {
+              alert('cus' + customers[i]);
+              return customers[i];
+            }
+          }
+          return false;
+        },
+        update:function(model){
+          // console.log('grabare');
+          customers[buscarindex(model.id)] = model;
+        },
+        count:function(){
+          return customers.length;
+        },
+        load_db:function(){
+                if(db!=null){
+                  var cliente1 = ['obs1','Leonardo','1234',1];
+                  var cliente2 = ['obs12','antonio','4321','asda'];
+                  var data = [cliente1,cliente2];
 
-          },
-          update:function(model){
-            // console.log('grabare');
-            customers[buscarindex(model.id)] = model;
-          },
-          count:function(){
-            return customers.length;
-          },
-          load_db:function(){
-                  if(db!=null){
-                    var cliente1 = ['obs1','Leonardo','1234',1];
-                    var cliente2 = ['obs12','antonio','4321','asda'];
-                    var data = [cliente1,cliente2];
-
-                    var query = "INSERT INTO cliente_cliente (observaciones,nombre,cuit,tipo_de_cliente_id) VALUES (?,?,?,?)";
-                    db.transaction(function(tx){
-                      for(var i=0; i<data.length;i++){
-                        // alert(i);
-                        $cordovaSQLite.execute(db,query,data[i]).then(function success(result){
-                          // alert(result);
-                        },function error(e){
-                          alert(e);
-                          return false;
-                        });
-                      }
-                    return true;
-                    },function(e){
-                      alert('errorrrrr');
-                      return false;
-                    });
-
-                  }
-                },
-                contacts_get:function(param){
-                  // console.log(param);
-                  var cs = [];
-                  for (var i = 0; i < contacts.length; i++) {
-                    if(contacts[i].cliente.id_web == param){
-                      cs.push(contacts[i]);
+                  var query = "INSERT INTO cliente_cliente (observaciones,nombre,cuit,tipo_de_cliente_id) VALUES (?,?,?,?)";
+                  db.transaction(function(tx){
+                    for(var i=0; i<data.length;i++){
+                      // alert(i);
+                      $cordovaSQLite.execute(db,query,data[i]).then(function success(result){
+                        // alert(result);
+                      },function error(e){
+                        alert(e);
+                        return false;
+                      });
                     }
+                  return true;
+                  },function(e){
+                    alert('errorrrrr');
+                    return false;
+                  });
+
+                }
+              },
+              contacts_get:function(param){
+                // console.log(param);
+                var cs = [];
+                for (var i = 0; i < contacts.length; i++) {
+                  if(contacts[i].cliente.id_web == param){
+                    cs.push(contacts[i]);
                   }
-                  return cs;
-                }//end contacs_get
-             }
+                }
+                return cs;
+              }//end contacs_get
+           }
      });
 })()

@@ -20,8 +20,8 @@
     "nombre":"Cotizador 1"
   },
   "nombre_cliente": "Desiderio Loyo Lopez",
-  "numero_de_contrato":"10",
-  "numero_de_cotizacion":"A511",
+  "numero_contrato":"10",
+  "numero_cotizacion":"A511",
   "fecha_de_cotizacion":"01/01/2016",
   "hora_de_cotizacion":"08:00 AM",
   "tiempo_carga": null,
@@ -52,8 +52,8 @@
     "nombre":"Cotizador 1"
   },
   "nombre_cliente": "Leonardo Antonio Loyo",
-  "numero_de_contrato":"11",
-  "numero_de_cotizacion":"A512",
+  "numero_contrato":"11",
+  "numero_cotizacion":"A512",
   "fecha_de_cotizacion":"02/01/2016",
   "hora_de_cotizacion":"09:00 AM",
   "tiempo_carga": null,

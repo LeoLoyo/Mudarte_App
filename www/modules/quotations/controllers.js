@@ -2,23 +2,18 @@
   var app = angular.module('QuotationCtrl', []);
   app.controller('DashboardCtrl', function($scope,Service_Customers, Services_quotations,cotizador) {
     'use strict';
-    $scope.quotations = Services_quotations.all();
 
-    // Service_Customers.customer_sync()
-    //
-    // Services_quotations.quotations_sync(cotizador);
-    //
+    // // $scope.quotations = {count:Services_quotations.all().length};
     // setTimeout(function() {
-    //   $scope.quotations = {count:Services_quotations.all().length};
+    //   // $scope.quotations = {count:Services_quotations.all().length};
     //   $scope.$apply();
-    // },0);
-
+    // },1000);
+    //
 
   });
-  app.controller('QuotationCtrl',['$scope', 'Services_quotations','cotizador',function($scope, Services_quotations,cotizador){
+  app.controller('QuotationCtrl',['$scope', 'Services_quotations','cotizador', function($scope, Services_quotations,cotizador){
     'use strict';
     $scope.quotations = Services_quotations.all();
-
     $scope.sync = function(){
       Services_quotations.quotations_sync(cotizador);
       $scope.quotations = Services_quotations.all();
@@ -27,15 +22,17 @@
   }]);
   app.controller('Quotation-DetailsCtrl',['$scope', 'Services_quotations', '$state', '$stateParams','Service_Customers', function( $scope, Services_quotations, $state, $stateParams, Service_Customers) {
     // Load data from the quotation
-    var quotation = Services_quotations.findOne($stateParams.id);
-    var customer = Service_Customers.findOne(quotation.cliente_id);
-    var contacts = Service_Customers.contacts_get(customer.id_web);
+    $scope.quotation = Services_quotations.findOne($stateParams.id);
+    alert('cotizacion_cliente_id ID-> ' + $scope.quotation.cliente_id);
+    $scope.customer = Service_Customers.findOne($scope.quotation.cliente_id);
+    alert('customer ID-> ' + $scope.customer.id_web);
+    var contacts = Service_Customers.contacts_get($scope.customer.id_web);
     var address = Services_quotations.quotation_address_get($stateParams.id);
     var environments = Services_quotations.quotation_environments_get($stateParams.id);
 
 
-     $scope.quotation = quotation;
-     $scope.customer = customer;
+
+
      $scope.contacts = contacts;
 
 
