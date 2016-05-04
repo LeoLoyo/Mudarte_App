@@ -1,14 +1,40 @@
 
-<ion-list>
-  <ion-item>Login</ion-item>
-  <ion-item href="#/customers" menu-close>Clientes</ion-item>
-  <ion-item href="#/dashboard" menu-close>Cotizaciones</ion-item>
-  <ion-item href="#/setting" menu-close>Ajustes</ion-item>
-  <ion-item href="#/countrys" menu-close>Paises</ion-item>
-  <ion-item href="#/provinces" menu-close>Provincias</ion-item>
-  <ion-item href="#/cities" menu-close>Ciudades</ion-item>
-  <ion-item href="#/neighborhoods" menu-close>Barrios</ion-item>
-  <ion-item href="#/streets" menu-close>Calles</ion-item>
-  <ion-item href="#/address" menu-close>Direcciones</ion-item>
-  <ion-item href="#/address/new" menu-close>Direcciones - new</ion-item>
+<!-- <ion-list class="list">
+  <ion-item class="item">Login</ion-item>
+  <ion-item class="item" href="#/customers" menu-close>Clientes</ion-item>
+  <ion-item class="item" href="#/dashboard" menu-close>Cotizaciones</ion-item>
+  <ion-item class="item" href="#/setting" menu-close>Datos Basicos</ion-item>
+  <ion-item class="item" href="#/countrys" menu-close>Paises</ion-item>
+  <ion-item class="item" href="#/provinces" menu-close>Provincias</ion-item>
+  <ion-item class="item" href="#/cities" menu-close>Ciudades</ion-item>
+  <ion-item class="item" href="#/neighborhoods" menu-close>Barrios</ion-item>
+  <ion-item class="item" href="#/streets" menu-close>Calles</ion-item>
+  <ion-item class="item" href="#/address" menu-close>Direcciones</ion-item>
+  <ion-item class="item" href="#/address/new" menu-close>Direcciones - new</ion-item>
+</ion-list> -->
+<ion-list class="list">
+  <ion-item class="item">Login</ion-item>
+  <ion-item class="item" href="#/customers" menu-close>Clientes</ion-item>
+  <ion-item class="item" href="#/dashboard" menu-close>Cotizaciones</ion-item>
+  <ion-item class="item item-icon-right" ng-click="toggleGroup(1)" ng-class="{active: isGroupShown(1)}"><strong>Direccion</strong><i class="icon" ng-class="isGroupShown(1) ? 'ion-arrow' : 'ion-arrow'"></i></ion-item>
+  <ion-item class="item-accordion item-positive" ng-show="isGroupShown(1)" href="#/countrys" menu-close>Paises</ion-item>
+  <ion-item class="item-accordion item-positive" ng-show="isGroupShown(1)" href="#/provinces" menu-close>Provincias</ion-item>
+  <ion-item class="item-accordion item-positive" ng-show="isGroupShown(1)" href="#/cities" menu-close>Ciudades</ion-item>
+  <ion-item class="item-accordion item-positive" ng-show="isGroupShown(1)" href="#/neighborhoods" menu-close>Barrios</ion-item>
+  <ion-item class="item-accordion item-positive" ng-show="isGroupShown(1)" href="#/streets" menu-close>Calles</ion-item>
+  <ion-item class="item-accordion item-positive" ng-show="isGroupShown(1)" href="#/address" menu-close>Direcciones</ion-item>
+  <ion-item class="item-accordion item-positive" ng-show="isGroupShown(1)" href="#/address/new" menu-close>Direcciones - new</ion-item>
 </ion-list>
+
+<!--
+<ion-list>
+       <ion-item ng-click="toggleGroup(1)" ng-class="{active: isGroupShown(1)}">
+             <i class="icon" ng-class="isGroupShown(1) ? 'ion-minus' : 'ion-plus'"></i>
+         Datos Dasico
+       </ion-item>
+       <ion-item class="item-accordion" ng-show="isGroupShown(1)">Pais</ion-item>
+       <ion-item class="item-accordion" ng-show="isGroupShown(1)">Provincia</ion-item>
+       <ion-item class="item-accordion" ng-show="isGroupShown(1)">Ciudad</ion-item>
+       <ion-item>Otra Vaina</ion-item>
+
+     </ion-list> -->

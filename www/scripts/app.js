@@ -10,9 +10,10 @@
     // if (window.StatusBar) {
       // StatusBar.styleDefault();
         // }
-        // $ionicLoading.show({template:"Loading..."});
+        $ionicLoading.show({template:"Loading..."});
       if(db==null){
         // copydb ();
+        $ionicLoading.hide();
       }
       function copydb(){
         window.plugins.sqlDB.copy("mudartedb.sqlite", 0, copysuccess,copyerror);
@@ -25,7 +26,6 @@
        db = window.sqlitePlugin.openDatabase({ name: 'mudartedb.sqlite',androidLockWorkaround: 1, location: 'default' }, opensuccess, openerror);
       }
       function opensuccess(){
-        $ionicLoading.hide();
         alert('DB Working...')
       }
       function openerror(){
@@ -46,5 +46,20 @@
         Services_quotations.quotations_sync(cotizador);
       }
 
-    })
+    });
+    angular.module('ionicApp', ['ionic'])
+
+app.controller('Sidebarctrl', function($scope) {
+$scope.toggleGroup = function(n) {
+    if ($scope.isGroupShown(n)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = n;
+    }
+  };
+  $scope.isGroupShown = function(n) {
+    return $scope.shownGroup === n;
+  };
+
+});
 // })()

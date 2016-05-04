@@ -2,14 +2,16 @@
   var app = angular.module('QuotationCtrl', []);
   app.controller('DashboardCtrl', function($scope,Service_Customers, Services_quotations,cotizador) {
     'use strict';
-    Service_Customers.customer_sync()
+    $scope.quotations = Services_quotations.all();
 
-    Services_quotations.quotations_sync(cotizador);
-
-    setTimeout(function() {
-      $scope.quotations = {count:Services_quotations.all().length};
-      $scope.$apply();
-    },0);
+    // Service_Customers.customer_sync()
+    //
+    // Services_quotations.quotations_sync(cotizador);
+    //
+    // setTimeout(function() {
+    //   $scope.quotations = {count:Services_quotations.all().length};
+    //   $scope.$apply();
+    // },0);
 
 
   });

@@ -320,7 +320,7 @@ button.item-header.button.button-icon.button-clear.ion-navicon{
 .
 /**/
 .list .item.item-accordion {
-
+  line-height: 38px;
   padding-top: 0;
   padding-bottom: 0;
   transition: 0.09s all linear;
