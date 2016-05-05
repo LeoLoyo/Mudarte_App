@@ -1,21 +1,25 @@
 <ion-list class="">
   <ion-item>
+    <pre>{{quotation}}
+    </pre>
+  </ion-item>
+  <ion-item ng-if="quotation.numero_cotizacion">
     <p>Numero De Cotizacion</p>
-    <h2>{{quotation.numero_de_cotizacion}}</h2>
+    <h2>{{quotation.numero_cotizacion}}</h2>
   </ion-item>
-  <ion-item>
+  <ion-item ng-if="quotation.numero_contrato">
     <p>Numero De Contrato</p>
-    <h2>{{quotation.numero_de_contrato}}</h2>
+    <h2>{{quotation.numero_contrato}}</h2>
   </ion-item>
-  <ion-item>
+  <ion-item ng-if="quotation.fecha_de_cotizacion">
     <p>Fecha De Cotizacion</p>
     <h2>{{quotation.fecha_de_cotizacion}}</h2>
   </ion-item>
-  <ion-item>
+  <ion-item ng-if="quotation.hora_de_cotizacion">
     <p class="title">Hora de Cotizacion</p>
     <h2>{{quotation.hora_de_cotizacion}}</h2>
   </ion-item>
-  <ion-item>
+  <ion-item ng-if="customer.nombre">
     <p class="title">Nombre Del Cliente</p>
     <h2>{{customer.nombre}}</h2>
   </ion-item>

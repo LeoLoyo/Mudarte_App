@@ -20,9 +20,6 @@
                           collection.push(r.item(i));
                         }
                       }
-                      // else{
-                      //   alert("no hay registros")
-                      // }
                     },function(error){
                       // alert('hubo un error all '+query+ error.menssages)
                         return error.menssages;
@@ -46,16 +43,14 @@
                   return collection;
             },find:function(table,att,id){
               var query = "SELECT * FROM "+table +" WHERE "+att+" = ?";
-                  $cordovaSQLite.execute(db,query,[id]).then(function(result){
-                    if(result.rows.length > 0){
-                      // alert(result.rows.item(0).id_web);
-                      return JSON.stringify(result.rows.item(0));
-                      // return true;
-
-                    }
-                    alert('no hay registrosasd');
-                  },function(error){
-                      // alert('hubo un error find '+ error.menssages)
+              $cordovaSQLite.execute(db,query,[id]).then(
+                function(result){
+                  if(result.rows.length > 0){
+                    return result.rows.item(0);
+                  }
+                  alert('no hay registro');
+                },function(error){
+                      alert('hubo un error find '+ error.menssages)
                       return error;
                   });
             },create:function(query,params){

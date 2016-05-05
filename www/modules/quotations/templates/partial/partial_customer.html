@@ -5,10 +5,11 @@
       <i class="icon ion-android-create" ng-click="edit_customer(customer.id_web)"></i>
     </ion-item>
     <ion-item class="item item-icon-right">
+      <pre>{{customer}}</pre>
       <h2 class="title">Responsable : {{customer.nombre}}</h2>
       <p ng-if="customer.cuit">Cuit: {{customer.cuit}}</p>
       <p ng-if="customer.dni">DNI: {{customer.dni}}</p>
-      <p ng-if="customer.tipo_cliente">Tipo De  Cliente: {{customer.tipo_cliente}}</p>
+      <p ng-if="customer.tipo_de_cliente">Tipo De  Cliente: {{customer.tipo_de_cliente}}</p>
       <p ng-if="customer.telefono">Telefono: {{customer.telefono}}</p>
 
     </ion-item>

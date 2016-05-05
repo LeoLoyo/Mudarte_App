@@ -1,13 +1,12 @@
-(function(){
-  'use strict';
+// (function(){
+
     var app = angular.module('services.customers',[]);
     app.factory('Service_Customers', function($cordovaSQLite, collectiondb,host,$http){
       'use strict';
       var customers = [];
       var get = function() {
         if(db!=null){
-          var query = 'SELECT id_web,nombre,observaciones,cuit,tipo_de_cliente_id FROM cliente_cliente'
-          customers = [];
+          var query = 'SELECT * FROM vcliente';
           customers = collectiondb.all(query);
          }
       };
@@ -41,32 +40,6 @@
         }
       }];
       var customer = {};
-      // var customers = [
-      //   {
-      //     "id":100,
-      //     "nombre":"Leonardo Loyo",
-      //     "id_web":100,
-      //     "cuit":"v-21295782",
-      //     "tipo_de_cliente_id":{
-      //       "id":1,
-      //       "id_web":1,
-      //       "tipo_de_cliente":"Particular"
-      //     }
-      //    },
-      //    {
-      //     "id":200,
-      //     "nombre":"Desiderio Loyo",
-      //     "id_web":200,
-      //     "cuit":"V-01772713",
-      //     "tipo_de_cliente_id":{
-      //       "id":1,
-      //       "id_web":1,
-      //       "tipo_de_cliente":"Particular"
-      //     }
-      //    }
-      //  ];
-
-
       var sync = function() {
         var url = host.url+'/customers/clientes.json';
         $http.get(url).then(function success(data){
@@ -134,13 +107,13 @@
                 }
           }
         return null;}
-        var get = function(array,table){
-          if(db != null){
-            var query = "SELECT * FROM " + table;
-            array = [];
-            array = collectiondb.all(query);
-          }
-          return array;}
+        // var get = function(array,table){
+        //   if(db != null){
+        //     var query = "SELECT * FROM " + table;
+        //     array = [];
+        //     array = collectiondb.all(query);
+        //   }
+        //   return array;}
 
       return {
         customer_sync:function(){
@@ -168,19 +141,31 @@
               customers = [];
               customers = collectiondb.all(query);
              }
-             sync();
+            //  sync();
              return customers;
           },
         findOne:function(id) {
-          get();
-          alert(customers.length);
-          for (var i = 0; i < customers.length; i++) {
-            if(customers[i].id_web == id) {
-              alert('cus' + customers[i]);
-              return customers[i];
-            }
-          }
-          return false;
+          db.transaction(function(tx) {
+            tx.executeSql("SELECT * FROM vcliente WHERE id_web = ?", [id], function(tx, resultSet) {
+                return resultSet.rows.item(0);
+            });
+        });
+        //   var query =  'SELECT * FROM vcliente WHERE id_web = ?';
+        //   $cordovaSQLite.execute(db,query,[id]).then(function(result){
+        //     if(result.rows.length > 0){
+        //       return result.rows.item(0);
+        //     }else{
+        //       alert('no existe');
+        //     }
+        //   }, function(e) {
+        //     aler('error');
+        //     return e;
+        //   }
+        // );
+          // if(db!=null) {
+            // customer = collectiondb.find('vcliente','id_web',id);
+          // }
+          // return customer;
         },
         update:function(model){
           // console.log('grabare');
@@ -226,4 +211,4 @@
               }//end contacs_get
            }
      });
-})()
+// })()
