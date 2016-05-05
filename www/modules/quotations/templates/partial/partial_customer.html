@@ -5,7 +5,6 @@
       <i class="icon ion-android-create" ng-click="edit_customer(customer.id_web)"></i>
     </ion-item>
     <ion-item class="item item-icon-right">
-      <pre>{{customer}}</pre>
       <h2 class="title">Responsable : {{customer.nombre}}</h2>
       <p ng-if="customer.cuit">Cuit: {{customer.cuit}}</p>
       <p ng-if="customer.dni">DNI: {{customer.dni}}</p>
@@ -19,6 +18,7 @@
       <strong>Contactos Asociados </strong>
       <span class="badge badge-stable"><strong>{{contacts.length}}</strong></span>
     </ion-item>
+
     <ion-item ng-repeat="contact in contacts">
       <h2><p>Nombre</p>{{contact.nombre}}</h2>
       <p>Dni: {{contact.dni}} Telefono: {{contact.telefono}} Tipo de Relacion: {{contact.tipo_de_relacion}}</p>

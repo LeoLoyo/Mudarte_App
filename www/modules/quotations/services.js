@@ -50,15 +50,16 @@ app.factory('Services_quotations', function($cordovaSQLite, DBA) {
         return DBA.getAll(result);
       });
   }
-  self.all_address = function(id) {
-    return DBA.query("SELECT * FROM cotizacion_clientedireccion WHERE cotizacion_id = ?", id)
+  self.all_address = function(memberId) {
+    var parameters = [memberId];
+    return DBA.query("SELECT * FROM cotizacion_clientedireccion WHERE cotizacion_id = ?", parameters)
       .then(function(result){
         return DBA.getAll(result);
       });
   }
-  self.all_contacts = function(cliente_id) {
-
-    return DBA.query("SELECT * FROM vcontacto WHERE cliente_id = ? AND tipo_de_relacion_id NOT IN (3)", cliente_id)
+  self.all_contacts = function(memberId) {
+      var parameters = [memberId];
+    return DBA.query("SELECT * FROM vcontacto WHERE cliente_id = ?", parameters)
       .then(function(result){
         return DBA.getAll(result);
       });

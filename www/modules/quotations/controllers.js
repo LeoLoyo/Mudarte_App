@@ -31,20 +31,24 @@
 
     $scope.quotation  = {};
     $scope.contacts = [];
+    $scope.contacts = null;
     $scope.address = [];
+    $scope.address = null;
     $scope.customer = {};
 
     Services_quotations.get($stateParams.id).then(function(quotation) {
         $scope.quotation = quotation;
         Services_quotations.get_customer(Number(quotation.cliente_id)).then(function(customer) {
             $scope.customer = customer;
-            Services_quotations.all_contacts(customer.id_web).then(function(contacts) {
+            // Services_quotations.all_contacts(Number(customer.id_web)).then(function(contacts) {
+            Services_quotations.all_contacts(Number(customer.id_web)).then(function(contacts) {
               $scope.contacts = contacts;
+              console.log($scope.contacts.length);
             });
         });
     });
-    
-    Services_quotations.all_address($stateParams.id).then(function(address) {
+
+    Services_quotations.all_address(Number($stateParams.id)).then(function(address) {
       $scope.address = address;
     });
 
