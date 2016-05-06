@@ -1,12 +1,14 @@
 (function(){
     var app = angular.module('AddressCtrl',[]);
+    // controllers Countrys
     app.controller('CountryCtrl',function($scope, $http, $state, $ionicLoading, $cordovaToast, $timeout, collectiondb, Services_Address, Services_messanges){
      'use strict';
-      $ionicLoading.show({template: '<p>Loading...</p><ion-spinner icon="android" class="spinner-balanced"></ion-spinner>',duration:5000});
-      $scope.countrys = Services_Address.country_get();
-      $ionicLoading.hide();
 
-
+      $scope.countrys = [];
+      $scope.countrys = null;
+      Services_Address.all('direccion_pais').then(function(countrys) {
+        $scope.countrys = countrys;
+      });
 
       $scope.sync = function(){
 
@@ -25,12 +27,17 @@
           });
       }
     });
-//controllers Provincies
+
+    // controllers Provincies
+
     app.controller('ProvinceCtrl',function($scope, $http, $state, $ionicLoading, $cordovaToast, $timeout, collectiondb, Services_Address,Services_messanges){
      'use strict';
-      $ionicLoading.show({template: '<p>Loading...</p><ion-spinner icon="android" class="spinner-balanced"></ion-spinner>'});
-      $scope.provinces = Services_Address.province_get();
-      $ionicLoading.hide();
+
+     $scope.provinces = [];
+     $scope.provinces = null;
+     Services_Address.all('vprovincia').then(function(provinces) {
+       $scope.provinces = provinces;
+     });
 
       $scope.sync = function(){
 
@@ -50,12 +57,16 @@
           });
       }
     });
-//controllers cities
+
+    // controllers cities
+
     app.controller('CityCtrl',function($scope, $http, $state, $ionicLoading, $cordovaToast, $timeout, collectiondb, Services_Address, Services_messanges){
      'use strict';
-      $ionicLoading.show({template: '<p>Loading...</p><ion-spinner icon="android" class="spinner-balanced"></ion-spinner>'});
-      $scope.cities = Services_Address.cities_get();
-      $ionicLoading.hide();
+     $scope.cities = [];
+     $scope.cities = null;
+     Services_Address.all('vciudad').then(function(cities) {
+       $scope.cities = cities;
+     });
 
 
       $scope.sync = function(){
@@ -75,12 +86,16 @@
           });
       }
     });
-//controllers neighborhoods
+
+    // controllers neighborhoods
+
     app.controller('NeighborhoodCtrl',function($scope, $http, $state, $ionicLoading, $cordovaToast, $timeout, collectiondb, Services_Address, Services_messanges){
      'use strict';
-      $ionicLoading.show({template: '<p>Loading...</p><ion-spinner icon="android" class="spinner-balanced"></ion-spinner>'});
-      $scope.neighborhoods = Services_Address.neighborhoods_get();
-      $ionicLoading.hide();
+     $scope.neighborhoods = [];
+     $scope.neighborhoods = null;
+     Services_Address.all('vbarrio').then(function(neighborhoods) {
+       $scope.neighborhoods = neighborhoods;
+     });
 
 
       $scope.sync = function(){
@@ -100,16 +115,20 @@
           });
       }
     });
-//controllers streets
+    // controllers streets
+
     app.controller('StreetCtrl',function($scope, $http, $state, $ionicLoading, $cordovaToast, $timeout, collectiondb, Services_Address, Services_messanges){
      'use strict';
-      $ionicLoading.show({template: '<p>Loading...</p><ion-spinner icon="android" class="spinner-balanced"></ion-spinner>'});
-      $scope.streets = Services_Address.streets_get();
-      $ionicLoading.hide();
+
+     $scope.streets = [];
+     $scope.streets = null;
+     Services_Address.all('vcalle').then(function(streets) {
+       $scope.streets = streets;
+     });
 
 
       $scope.sync = function(){
-
+    
         $ionicLoading.show({template: '<p>Loading...</p><ion-spinner icon="android" class="spinner-balanced"></ion-spinner>'});
         // var url='http://192.168.0.114:8000/api/v1/calle/?format=json';
         var url='modules/address/json/streets.json';
@@ -124,16 +143,22 @@
             Services_messanges.message('No hubo respuesta del servidor');
           });
       }
+
     });
-//controllers address
+
+    // controllers address
+
     app.controller('AddressCtrl',function($mdDialog,$scope, $http, $state, $ionicLoading, $cordovaToast, $timeout, collectiondb, Services_Address, Services_messanges){
      'use strict';
-      $ionicLoading.show({template: '<p>Loading...</p><ion-spinner icon="android" class="spinner-balanced"></ion-spinner>'});
-      $scope.address = Services_Address.address_get();
-      $ionicLoading.hide();
-      $scope.sync = function(){
 
-        $ionicLoading.show({template: '<p>Loading...</p><ion-spinner icon="android" class="spinner-balanced"></ion-spinner>'});
+     $scope.address = [];
+     $scope.address = null;
+     Services_Address.all('vdireccion').then(function(address) {
+       $scope.address = address;
+     });
+
+
+      $scope.sync = function() {
         // var url='http://192.168.0.114:8000/api/v1/direccion/?format=json';
         var url='modules/address/json/address.json';
         $http.get(url).then(function success(data){
@@ -145,12 +170,12 @@
             $ionicLoading.hide();
             Services_messanges.message('No hubo respuesta del servidor');
           });
-      }
+      };
 
-      $scope.countrys = Services_Address.country_get();
-      $scope.provinces = Services_Address.province_get();
-      $scope.cities = Services_Address.cities_get();
-      $scope.neighborhoods = Services_Address.neighborhoods_get();
+      // $scope.countrys = Services_Address.country_get();
+      // $scope.provinces = Services_Address.province_get();
+      // $scope.cities = Services_Address.cities_get();
+      // $scope.neighborhoods = Services_Address.neighborhoods_get();
 
       $scope.save = function(data){
 
@@ -179,9 +204,5 @@
         // }
 
       }
-
-      // $scope.provinces = Services_Address.province_get();
-      // $scope.countrys = Services_Address.country_get();
-      // $scope.countrys = Services_Address.country_get();
     });
 })()

@@ -3,9 +3,11 @@
   app.controller('CustomersCtrl',function($scope, $state,$ionicLoading, $ionicPopup,$cordovaToast, $timeout, collectiondb, Service_sexo, Service_Customers, Service_typeofrelationship,Services_messanges){
     'use strict';
 
-    var customers = Service_Customers.all();
-
-    $scope.customers = customers;
+    $scope.customers = [];
+    $scope.customers = null;
+    Service_Customers.all('vcliente').then(function(customers) {
+      $scope.customers = customers;
+    });
 
     $scope.sync = function() {
       $ionicLoading.show({template: '<p>Loading...</p><ion-spinner icon="spiral"></ion-spinner>'});
@@ -15,19 +17,8 @@
     };
 
 
-
-
-
-    // $scope.customers = Service_Customers.get();
-
-    // $scope.sexos = Service_sexo;
-
-
-    // $scope.tiporelaciones = Service_typeofrelationship;
-
-
     // Methods
-    $scope.new = function(){
+    $scope.new = function(customer){
       // collectiondb.insertm();
       $state.go('app.customers-new');
     }
