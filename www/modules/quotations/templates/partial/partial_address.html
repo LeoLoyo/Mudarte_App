@@ -1,19 +1,15 @@
 <ion-list class="">
   <div class="card">
-    <ion-item>
-      <pre>{{address}}
-      <pre>
-    </ion-item>
     <ion-item class="item-royal item item-icon-right"><strong>Direcciones De Origen</strong><i class="icon ion-plus" ng-click="new_address(0)"></i></ion-item>
     <ion-item class="item item-icon-right" ng-repeat="d in address | filter : 'Origen'" class="item item-icon-right">
-      <h2><p>Direccion: - {{d.orden}}</p>{{d.direccion}}</h2>
+      <h2><p>Direccion: - {{d.orden}}</p>{{d.pais}} - {{d.provincia}} - {{d.ciudad}} - {{d.calle}} - {{d.altura}} - {{d.punto_de_referencia}}</h2>
       <i class="icon ion-android-create"></i>
     </ion-item>
   </div>
   <div class="card">
     <ion-item class="item item-royal item-icon-right"><strong>Direcciones De Destinos</strong><i class="icon ion-plus  icon-positive" ng-click="new_address(1)"></i></ion-item>
     <ion-item class="item item-icon-right" ng-repeat="d in address | filter : 'Destino'">
-      <h2><p>Direccion: - {{d.orden}}</p> {{d.direccion}}</h2>
+    <h2><p>Direccion: - {{d.orden}}</p>{{d.pais}} - {{d.provincia}} - {{d.ciudad}} - {{d.calle}} - {{d.altura}} - {{d.punto_de_referencia}}</h2>
       <i class="icon ion-android-create"></i>
     </ion-item>
   </div>
