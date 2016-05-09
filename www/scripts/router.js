@@ -13,7 +13,18 @@
       .state('app', {
         url: '/',
         abstract: true,
-        templateUrl: 'templates/base/dash.html'
+        templateUrl: 'templates/base/dash.html',
+        controller:'Sidebarctrl'
+      })
+      .state('app.setting', {
+        url: 'setting',
+        views:{
+          "maincontent":{
+            templateUrl: 'templates/base/setting.html',
+            controller:'SettingCtrl'
+
+          }
+        }
       })
 
 

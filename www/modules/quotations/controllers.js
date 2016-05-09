@@ -1,43 +1,79 @@
-(function() {
-  var app = angular.module('QuotationCtrl', []);
-  app.controller('DashboardCtrl', function($scope, Services_quotations) {
+// (function() {
+  var app = angular.module('QuotationCtrl', ['services.customers']);
+  app.controller('DashboardCtrl', function($scope,Service_Customers, Services_quotations,cotizador) {
     'use strict';
-    $scope.quotations = {count:Services_quotations.all().length}
+
+    // // $scope.quotations = {count:Services_quotations.all().length};
+    // setTimeout(function() {
+    //   // $scope.quotations = {count:Services_quotations.all().length};
+    //   $scope.$apply();
+    // },1000);
+    //
 
   });
-  app.controller('QuotationCtrl',['$scope', 'Services_quotations','cotizador',function($scope, Services_quotations,cotizador){
+  app.controller('QuotationCtrl',['$scope', 'Services_quotations','cotizador', function($scope, Services_quotations,cotizador){
     'use strict';
-    $scope.quotations = Services_quotations.all();
 
-    $scope.sync = function(){
-      Services_quotations.quotations_sync(cotizador);
-      $scope.quotations = Services_quotations.all();
-    }
+  $scope.quotations = [];
+  $scope.quotations = null;
+  Services_quotations.all().then(function(quotations) {
+    $scope.quotations = quotations;
+  });
+
+
+
+    // $scope.sync = function(){
+    //   Services_quotations.quotations_sync(cotizador);
+    //   $scope.quotations = Services_quotations.all();
+    // }
 
   }]);
-  app.controller('Quotation-DetailsCtrl',['$scope', 'Services_quotations', '$state', '$stateParams','Service_Customers', function( $scope, Services_quotations, $state, $stateParams, Service_Customers) {
-    // Load data from the quotation
-    var quotation = Services_quotations.findOne($stateParams.id);
-    var customer = Service_Customers.findOne(quotation.cliente_id);
-    var contacts = Service_Customers.contacts_get(customer.id_web);
-    var address = Services_quotations.quotation_address_get($stateParams.id);
-    var environments = Services_quotations.quotation_environments_get($stateParams.id);
-$scope.cotizacion = {
-  "quotation":quotation,
-  "customer":customer,
-  "contacts":contacts,
-  "address":address,
-  "environments":environments  
-}
-    $scope.address = address;
-    $scope.environments = environments;
-    $scope.quotation = quotation;
-    $scope.customer = customer;
-    $scope.contacts = contacts
+  app.controller('Quotation-DetailsCtrl',function(collectiondb, $scope, Services_quotations, $state, $stateParams, Service_Customers) {
+
+    $scope.quotation  = {};
+    $scope.customer = {};
+
+    $scope.contacts = [];
+    $scope.contacts = null;
+
+    $scope.address = [];
+    $scope.address = null;
+    $scope.environments = [];
+    $scope.environments = null;
+
+    Services_quotations.get($stateParams.id).then(function(quotation) {
+        $scope.quotation = quotation;
+        Services_quotations.get_customer(Number(quotation.cliente_id)).then(function(customer) {
+            $scope.customer = customer;
+            Services_quotations.all_contacts(Number(customer.id_web)).then(function(contacts) {
+              $scope.contacts = contacts;
+            });
+        });
+    });
+
+    Services_quotations.all_address(Number($stateParams.id)).then(function(address) {
+      $scope.address = address;
+    });
+
+    Services_quotations.all_environments(Number($stateParams.id)).then(function(envs) {
+      console.log(envs.length);
+      $scope.environments = envs;
+    });
 
     // delete an environment
-    $scope.delete_env = function(a,e) {
-      $scope.environments = Services_quotations.deleteOne_env(a,e);
+    $scope.delete_env = function(Id) {
+      Services_quotations.remove_env(Id).then(function(result){
+        console.log(Id);
+
+          $scope.environments = [];
+          $scope.environments = null;
+
+          Services_quotations.all_environments(Number($stateParams.id)).then(function(envs) {
+            $scope.environments = envs;
+            console.log(envs.length);
+              });
+          console.log(result);
+          });
 
 
     };
@@ -57,7 +93,7 @@ $scope.cotizacion = {
     $scope.isGroupShown = function(address) {
       return $scope.shownGroup === address;
     };
-  }]);
+  });
   app.controller('PanelQuotationCtrl',['$scope', function($scope){
       'use strict';
       $scope.groups = [
@@ -137,4 +173,4 @@ $scope.cotizacion = {
       };
   }]);
 
-})()
+// })()

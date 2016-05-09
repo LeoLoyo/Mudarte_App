@@ -13,7 +13,7 @@
         <ion-item class="item item-avatar-left" ng-repeat="customer in customers" href="#/customers/show/{{customer.id_web}}">
             <img ng-src="images/person.png" alt="">
             <h2>{{customer.nombre}}</h2>
-            <p>{{customer.cuit}} - {{customer.observaciones}}</p>
+            <p>{{customer.cuit}} - {{customer.observaciones}} - {{customer.tipo_de_cliente}}</p>
         </ion-item>
     </ion-list>
 </ion-content>
