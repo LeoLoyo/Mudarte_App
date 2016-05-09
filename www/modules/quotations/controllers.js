@@ -56,9 +56,13 @@
     });
 
     Services_quotations.all_environments(Number($stateParams.id)).then(function(envs) {
-      console.log(envs.length);
       $scope.environments = envs;
     });
+
+    // add contacts
+    $scope.add_contacts = function(customer){
+      $state.go('app.contacts-new', {customerId:customer.id_web, quotation_id:$stateParams.id});
+    };
 
     // delete an environment
     $scope.delete_env = function(Id) {
@@ -74,8 +78,6 @@
               });
           console.log(result);
           });
-
-
     };
     // add address
     $scope.new_address = function(num){
@@ -94,6 +96,9 @@
       return $scope.shownGroup === address;
     };
   });
+
+
+
   app.controller('PanelQuotationCtrl',['$scope', function($scope){
       'use strict';
       $scope.groups = [

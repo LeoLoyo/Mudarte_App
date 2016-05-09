@@ -133,4 +133,35 @@
 
     }
    });
+  app.controller('ContactsCtrl', ['$scope', '$state', '$stateParams', 'Service_Contacts', function($scope, $state, $stateParams, Service_Contacts) {
+    'use strict';
+    $scope.customer = {
+                          dni:'n/a',
+                          cuit:'n/a',
+                          nombre:'n/a',
+                          cliente_id: Number($state.params.customerId),
+                          sexo_id:2,
+                          estado_civil_id:1,
+                          fecha_de_nacimiento:'19-01-1991',
+                          tipo_de_relacion_id: 1,
+                          observaciones:'n/a'
+                      };
+    $scope.new = function() {
+
+
+                              // var contact = ['V-23680005', 'V-23680005-5', 'Anyibeth Rojas', Number($stateParams.customerId), 2, 1 , '19-01-1994', 1, 'Anyibeth Rojas Novia De Leonardo Loyo'];
+                              var contact =  [$scope.customer.dni, $scope.customer.cuit, $scope.customer.nombre, $scope.customer.cliente_id, 2, 1, $scope.customer.fecha_de_nacimiento:, 1, $scope.customer.observaciones];
+                        //
+
+                              Service_Contacts.add($scope.customer).then(function(){
+                                alert($scope.customer);
+                                // $state.go('app.quotations-show',{id: $stateParams.quotation_id})// quiero esto
+                                $state.go('app.quotations');
+                              }).catch(function(e) {
+                                alert('error: ' + e);
+                              });
+
+    };
+
+  }]);
 })()

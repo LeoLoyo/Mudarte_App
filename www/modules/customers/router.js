@@ -64,18 +64,27 @@ angular.module('CustomersRouter',[])
           icon:"button icon button-clear ion-android-search"
       }
     })
-    .state('app.contacts',{
-      url:'contacts',
+    // .state('app.contacts',{
+    //   url:'contacts',
+    //   views:{
+    //     "maincontent":{
+    //       templateUrl:'modules/customers/contacts/new.html',
+    //       controller:'CustomersCtrl'
+    //     }
+    //   },
+    //   data:{
+    //       icon:"button icon button-clear ion-android-search",
+    //       title:"Registro De Contacto"
+    //     }
+    // })
+    .state('app.contacts-new', {
+      url:':customerId/contacts/new',
       views:{
-        "maincontent":{
+        'maincontent':{
           templateUrl:'modules/customers/contacts/new.html',
-          controller:'CustomersCtrl'
+          controller:'ContactsCtrl'
         }
-      },
-      data:{
-          icon:"button icon button-clear ion-android-search",
-          title:"Registro De Contacto"
-        }
+      }
     })
   // $urlRouterProvider.when('/customers','/customers');
 })

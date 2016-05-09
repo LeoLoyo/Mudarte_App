@@ -14,6 +14,7 @@
     })
 
     .state('app.quotations', {
+      cache:false,
       url:'quotations',
       views:{
         'maincontent':{
@@ -23,8 +24,9 @@
       }
     })
     .state('app.quotations-show',{
-       url:'quotations/show/:id',
-       views:{
+      cache:false,
+      url:'quotations/show/:id',
+      views:{
           'maincontent':{
             templateUrl:'modules/quotations/templates/file.html',
             controller:'Quotation-DetailsCtrl'
