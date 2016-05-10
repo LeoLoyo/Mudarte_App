@@ -2,6 +2,7 @@
   <div class="card">
     <ion-item class="item-royal item item-icon-right"><strong>Direcciones De Origen</strong><i class="icon ion-plus" ng-click="new_address(0)"></i></ion-item>
     <ion-item class="item item-icon-right" ng-repeat="d in address | filter : 'Origen'" class="item item-icon-right">
+      <pre>{{d}}</pre>
       <h2><p>Direccion: - {{d.orden}}</p>{{d.pais}} - {{d.provincia}} - {{d.ciudad}} - {{d.calle}} - {{d.altura}} - {{d.punto_de_referencia}}</h2>
       <i class="icon ion-android-create"></i>
     </ion-item>

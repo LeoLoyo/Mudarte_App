@@ -1,5 +1,5 @@
 (function(){
-  var app = angular.module('app.services', ['ionic','starter','ngCordova','services.customers','services.address','services.quotations']);
+  var app = angular.module('app.services', ['ionic','starter','ngCordova','services.customers','services.address','services.quotations', 'services.environments']);
   app.factory('DBA', function($cordovaSQLite, $q, $ionicPlatform) {
   var self = this;
 

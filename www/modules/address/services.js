@@ -1,14 +1,19 @@
 (function(){
     'use strict';
     var app = angular.module('services.address', []);
-    app.factory('Services_Address', function($cordovaSQLite, DBA){
+    app.factory('Services_Addresses', function($cordovaSQLite, DBA){
       var self = this;
 
-      self.all = function(table) {
-        return DBA.query('SELECT * FROM '+ table).then(function(result) {
-          return DBA.getAll(result);
-        });
+      self.all = function(Id) {
+
+        var query = "SELECT * FROM vcotizacion_direccion WHERE cotizacion_id = ?";
+
+        if( Id == undefined ){ query = "SELECT * FROM vcotizacion_direccion"; };
+
+        return DBA.query(query, [Id]).then(function(result){ return DBA.getAll(result);});
+
       };
+
       self.get = function(Id) {
         var parameters = [Id];
         return DBA.query('SELECT * FROM table WHERE id_web = (?)', parameter).then(function(result) {
@@ -27,8 +32,7 @@
       };
 
       self.remove = function(Id) {
-        var parameters = [Id];
-        return DBA.query('DELETE FROM table WHERE id_web = (?)', parameter);
+        return DBA.query('DELETE FROM table WHERE id_web = (?)', [Id]);
       };
 
       return self;

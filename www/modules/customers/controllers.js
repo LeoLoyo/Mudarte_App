@@ -135,24 +135,40 @@
    });
   app.controller('ContactsCtrl', ['$scope', '$state', '$stateParams', 'Service_Contacts', function($scope, $state, $stateParams, Service_Contacts) {
     'use strict';
+    $scope.customer = {cliente_id: Number($state.params.customerId)};
+    $scope.tiporelaciones = [];
+    $scope.tiporelaciones = null;
+    $scope.sexos = [];
+    $scope.sexos = null;
 
-    $scope.customer = {
-                          dni:'',
-                          nombre:'',
-                          cliente_id: Number($state.params.customerId),
-                          sexo_id:2,
-                          estado_civil_id:1,
-                          fecha_nacimiento:' ',
-                          tipo_de_relacion_id: 1,
-                          observaciones:''
-                      };
+    Service_Contacts.all('cliente_tipoderelacion').then(function(result) {
+      $scope.tiporelaciones = result;
+    }).catch(function(e) {
+      alert(e);
+    });
 
-    $scope.new = function() {
+    Service_Contacts.all('cliente_sexo').then(function(result) {
+      $scope.sexos = result;
+    }).catch(function(e) {
+      alert(e);
+    });
 
-      var object = angular.copy($scope.customer);
-      Service_Contacts.add(object).then(function(result){
-        console.log(result);
+    // $scope.customer = {
+    //                       dni:'',
+    //                       nombre:'',
+    //                       cliente_id: Number($state.params.customerId),
+    //                       sexo_id:2,
+    //                       estado_civil_id:1,
+    //                       fecha_nacimiento:' ',
+    //                       tipo_de_relacion_id: 1,
+    //                       observaciones:''
+    //                   };
+
+    $scope.new = function(customer) {
+      Service_Contacts.add(customer).then(function(result) {
         $state.go('app.quotations');
+        console.log(result);
+        $scope.customer = {};
       }).catch(function(e) {
         console.log(e);
       });

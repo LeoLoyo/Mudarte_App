@@ -28,7 +28,7 @@
     // }
 
   }]);
-  app.controller('Quotation-DetailsCtrl',function(collectiondb, $scope, Services_quotations, $state, $stateParams, Service_Customers) {
+  app.controller('Quotation-DetailsCtrl',function(collectiondb, $scope, Services_quotations, $state, $stateParams, Service_Customers, Services_Addresses, Service_Contacts, Services_Environments) {
 
     $scope.quotation  = {};
     $scope.customer = {};
@@ -41,49 +41,66 @@
     $scope.environments = [];
     $scope.environments = null;
 
-    Services_quotations.get($stateParams.id).then(function(quotation) {
+    function init() {
+
+      Services_quotations.get($stateParams.id).then(function(quotation) {
         $scope.quotation = quotation;
-        Services_quotations.get_customer(Number(quotation.cliente_id)).then(function(customer) {
+        Service_Customers.get(Number(quotation.cliente_id)).then(function(customer) {
             $scope.customer = customer;
-            Services_quotations.all_contacts(Number(customer.id_web)).then(function(contacts) {
-              $scope.contacts = contacts;
-            });
-        });
-    });
+            Service_Contacts.all(Number(customer.id_web)).then(function(contacts) {
+                $scope.contacts = contacts;
+              }).catch(function(e) {
+                  console.log(e);
+                  alert("Ocurrio Un Error");
+                });
+              })
+      });
+      Services_Addresses.all(Number($stateParams.id)).then(function(address) {
+        $scope.address = address;
+      });
 
-    Services_quotations.all_address(Number($stateParams.id)).then(function(address) {
-      $scope.address = address;
-    });
+      Services_Environments.all(Number($stateParams.id)).then(function(envs) {
+        $scope.environments = envs;
+      });
 
-    Services_quotations.all_environments(Number($stateParams.id)).then(function(envs) {
-      $scope.environments = envs;
-    });
+    };
+
+    init();
 
     // add contacts
     $scope.add_contacts = function(customer){
       $state.go('app.contacts-new', {customerId:customer.id_web, quotation_id:$stateParams.id});
     };
 
+    // delete an contacts
+    $scope.delete_contact = function(id, id_web) {
+
+      var cid = id_web;
+      var attr = 'id_web';
+
+      if(id_web==null){
+        cid = id;
+        attr='id';
+      };
+
+      Service_Contacts.remove('cliente_contacto', cid, attr).then(function(result) {
+        init();
+      });
+    };
+
     // delete an environment
     $scope.delete_env = function(Id) {
-      Services_quotations.remove_env(Id).then(function(result){
-        console.log(Id);
-
-          $scope.environments = [];
-          $scope.environments = null;
-
-          Services_quotations.all_environments(Number($stateParams.id)).then(function(envs) {
-            $scope.environments = envs;
-            console.log(envs.length);
-              });
-          console.log(result);
-          });
+      Services_Environments.remove('cotizacion_cotizacionambiente', Id, 'id_web').then(function(result){
+        init();
+      });
     };
+
     // add address
     $scope.new_address = function(num){
       (num==0)?console.log('es una nueva direccion de origen'):console.log('es una nueva direccion de destino');
       $state.go('app.address-new');
     };
+
     //toggle
     $scope.toggleGroup = function(address) {
       if ($scope.isGroupShown(address)) {
@@ -93,8 +110,11 @@
       }
     };
     $scope.isGroupShown = function(address) {
+      
       return $scope.shownGroup === address;
+
     };
+
   });
 
 

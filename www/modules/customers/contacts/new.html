@@ -17,45 +17,34 @@
                         <input type="text" class="field-input-text" placeholder="Dni" ng-model="customer.dni">
                     </span>
                 </div>
-                <!-- <div class="mdl-list__item mdl-list__itemtwo-line">
+
+                <div class="mdl-list__item mdl-list__item--two-line">
                     <span class="mdl-list__item-primary-content">
-                        <md-datepicker ng-model="customer.fecha_de_nacimiento" md-placeholder="Fecha Nacimiento"></md-datepicker>
-                    </span>
-                </div> -->
-                <div class="mdl-list__item mdl-list__itemtwo-line">
-                    <span class="mdl-list__item-primary-content">
-                        <i class="ion-android-bookmark mdl-list__item-icon "></i>
+                        <i class="ion-android-calendar mdl-list__item-icon "></i>
                         <input type="date" class="field-input-text" placeholder="fecha de nacimiento" ng-model="customer.fecha_nacimiento">
                     </span>
                 </div>
-                <!-- <label class="item item-input">
-                  <span class="input-label">Date</span>
-                  <input type="date" ng-model="customer.fecha_nacimiento">
-                </label> -->
-
-
-                <!-- <div class="mdl-list__item mdl-list__itemtwo-line">
-                    <span class="mdl-list__item-primary-content">
-                        <i class="ion-card mdl-list__item-icon "></i>
-                        <div class="field-input-text">
-                          <md-select ng-model="customer.sexo" placeholder="Sexo">`
-                            <md-option ng-value="sexo" ng-repeat="sexo in sexos">{{ sexo.descripcion }}</md-option>
-                          </md-select>
-                        </div>
-                    </span>
-                </div>
-
             <div class="mdl-list__item mdl-list__itemwo-line">
-                    <span class="mdl-list__item-primary-content">
-                        <i class=" mdl-list__item-icon "></i>
-                        <div class="field-input-text">
-                          <md-select ng-model="customer.tipo_de_relacion_id" placeholder="Tipo De Relacion">
-                            <md-option ng-value="relacion" ng-repeat="relacion in tiporelaciones">{{ relacion.descripcion }}</md-option>
-                          </md-select>
-                        </div>
-                    </span>
-                </div> -->
+              <span class="mdl-list__item-primary-content">
+                <i class="ion-android-contacts mdl-list__item-icon "></i>
+                <div class="field-input-text">
+                  <select ng-model="customer.tipo_de_relacion_id" style="width: 100%;border: none;background: none;">
+                    <option ng-value="relacion.id_web"   ng-repeat="relacion in tiporelaciones ">{{relacion.tipo_de_relacion}}</option>
+                  </select>
+                </div>
+              </span>
             </div>
+            <div class="mdl-list__item mdl-list__itemwo-line">
+              <span class="mdl-list__item-primary-content">
+                <i class="ion-person mdl-list__item-icon "></i>
+                <div class="field-input-text">
+                  <select ng-model="customer.sexo_id" style="width: 100%;border: none;background: none;">
+                    <option ng-value="sex.id_web"   ng-repeat="sex in sexos ">{{sex.sexo}}</option>
+                  </select>
+                </div>
+              </span>
+            </div>
+          </div>
 
         <div class="mdl-card__menu">
             <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
@@ -64,5 +53,5 @@
         </div>
         </div>
     </ion-content>
-        <button ripple ng-click="new()" class="button button-fab button-fab-bottom-right button-positive icon ion-android-done"></button>
+        <button ripple ng-click="new(customer)" class="button button-fab button-fab-bottom-right button-positive icon ion-android-done"></button>
 </ion-view>

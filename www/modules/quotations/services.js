@@ -9,20 +9,20 @@
           return DBA.getAll(result);
         });
     }
-    self.all_address = function(memberId) {
-      var parameters = [memberId];
-      return DBA.query("SELECT * FROM vcotizacion_direccion WHERE cotizacion_id = ?", parameters)
-        .then(function(result){
-          return DBA.getAll(result);
-        });
-    }
-    self.all_contacts = function(memberId) {
-        var parameters = [memberId];
-      return DBA.query("SELECT * FROM vcontacto WHERE cliente_id = ?", parameters)
-        .then(function(result){
-          return DBA.getAll(result);
-        });
-    }
+    // self.all_address = function(memberId) {
+    //   var parameters = [memberId];
+    //   return DBA.query("SELECT * FROM vcotizacion_direccion WHERE cotizacion_id = ?", parameters)
+    //     .then(function(result){
+    //       return DBA.getAll(result);
+    //     });
+    // }
+    // self.all_contacts = function(memberId) {
+    //     var parameters = [memberId];
+    //   return DBA.query("SELECT * FROM vcontacto WHERE cliente_id = ?", parameters)
+    //     .then(function(result){
+    //       return DBA.getAll(result);
+    //     });
+    // }
     self.all_environments = function(memberId) {
         var parameters = [memberId];
       return DBA.query("SELECT * FROM vcotizacion_ambiente WHERE cotizacion_id = ?", parameters)
@@ -39,26 +39,22 @@
           return DBA.getById(result);
         });
     }
-    self.get_customer = function(memberId) {
-      var parameters = [memberId];
-      return DBA.query("SELECT * FROM vcliente WHERE id_web = ?", parameters)
-        .then(function(result) {
-          return DBA.getById(result);
-        });
-    }
+    // self.get_customer = function(memberId) {
+    //   var parameters = [memberId];
+    //   return DBA.query("SELECT * FROM vcliente WHERE id_web = ?", parameters)
+    //     .then(function(result) {
+    //       return DBA.getById(result);
+    //     });
+    // }
 
     self.add = function(member) {
       var parameters = [member.id, member.name];
       return DBA.query("INSERT INTO team (id, name) VALUES (?,?)", parameters);
     }
 
-    self.remove = function(member) {
-      var parameters = [member.id];
-      return DBA.query("DELETE FROM team WHERE id = (?)", parameters);
-    }
-    self.remove_env = function(id_web) {
+    self.remove = function(table, id_web, attr) {
       var parameters = [id_web];
-      return DBA.query("DELETE FROM cotizacion_cotizacionambiente WHERE id_web = (?)", parameters);
+      return DBA.query("DELETE FROM " + table + " WHERE " + attr + " = (?)", parameters);
     }
 
     self.update = function(origMember, editMember) {
