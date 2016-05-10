@@ -40,6 +40,7 @@ angular.module('CustomersRouter',[])
     // })
 
     .state('app.customers-new',{
+    cache:false,
     url:'customers/new',
     views:{
       'maincontent':{
