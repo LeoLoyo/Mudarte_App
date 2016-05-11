@@ -1,13 +1,14 @@
 <ion-list>
   <div ng-repeat="a in address">
     <div ng-repeat="e in environments" class="card" ng-if="a.cotizacion_clientedireccion_id == e.cotizacion_clientedireccion_id">
-      <ion-item class="item-royal item-icon-right"  ><h2> {{a.pais}} - {{e.ambiente}} </h2></ion-item>
-      <ion-list>
-        <ion-item class="item-stable" ng-repeat="f in furnitures" ng-if="f.cotizacion_ambiente_id == e.cotizacion_ambiente_id">
-          <h2>{{f.mueble}} - {{f.especificacion_de_mueble}}</h2>
-          <ion-option-button class="button-balanced" ng-click="">Eliminar</ion-option-button>
-        </ion-item>
-      </ion-list>
+      <ion-item class="item-royal item-icon-right" ng-click="toggleGroup(e)" ng-class="{active: isGroupShown(e)}">
+        <strong>{{a.pais}} - {{e.ambiente}}</strong>
+        <i class="icon ion-plus" ng-click="add_furniture(e)"></i>
+      </ion-item>
+      <ion-item class="item-accordion" ng-repeat="f in furnitures" ng-if="f.ambiente_id == e.cotizacion_ambiente_id" ng-show="isGroupShown(e)">
+        <h2>{{f.mueble}} - {{f.especificacion}}</h2>
+        <ion-option-button class="button-balanced" ng-click="delete_furniture(f.id, f.id_web)">Eliminar</ion-option-button>
+      </ion-item>
     </div>
 
   </div>

@@ -1,5 +1,5 @@
  // (function(){
-  var app = angular.module('starter', ['ionic','ngCordova','ngMaterial', 'app.services', 'app.controllers', 'app.router','app.directives', 'ionic-material','ionicRipple']);
+  var app = angular.module('starter', ['ionic','ngCordova','ngMaterial', 'app.services', 'app.controllers', 'app.router','app.directives', 'module.environments', 'ionic-material','ionicRipple']);
   var db = null;
   app.run(function($ionicPlatform, $ionicLoading) {
     $ionicPlatform.ready(function(){
@@ -12,7 +12,7 @@
         // }
         $ionicLoading.show({template:"Loading..."});
       if(db==null){
-        copydb();
+        // copydb();
         $ionicLoading.hide();
       }
       function copydb(){
@@ -26,7 +26,7 @@
        db = window.sqlitePlugin.openDatabase({ name: 'mudartedb.sqlite',androidLockWorkaround: 1, location: 'default' }, opensuccess, openerror);
       }
       function opensuccess(){
-        alert('DB Working...')
+        console.log('DB Working...');
       }
       function openerror(){
         alert('!!!Error DB  not Working!!!')

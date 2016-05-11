@@ -1,6 +1,23 @@
 (function() {
 
-  var app = angular.module('services.environments',[]);
+  var app = angular.module('module.environments',[]);
+
+  app.config(function($stateProvider, $urlRouterProvider){
+    $stateProvider
+      .state('app.furnitures-new', {
+        url:'furnitures/:environmentId/new',
+        views:{
+          'maincontent':{
+            templateUrl:'modules/move/templates/new.html',
+            controller:'FurnituresCtrl'
+          }
+        }
+      })
+  });
+
+  app.controller('FurnituresCtrl', ['$scope', function($scope){
+    $scope.perro = "PERRO A CAGAR";
+  }]);
 
   app.factory('Services_Environments', function($cordovaSQLite, DBA) {
     var self = this;
@@ -64,8 +81,8 @@
       return DBA.query(query,parameters);
     };
 
-    self.remove = function() {
-      return DBA.query(query,parameters);
+    self.remove = function(table, Id, attr) {
+      return DBA.query("DELETE FROM " + table + " WHERE " + attr + " = (?)", [Id]);
     };
 
     self.update = function() {

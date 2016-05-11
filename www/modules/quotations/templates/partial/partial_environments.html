@@ -1,14 +1,12 @@
 <ion-list>
   <div ng-repeat="a in address" class="card">
-    <ion-item class="item-royal item-icon-right" ng-click="toggleGroup(a)" ng-class="{active: isGroupShown(a)}">
-      <i class="icon" ng-class="isGroupShown(a) ? 'ion-android-arrow-dropup' : 'ion-android-arrow-dropdown'"></i>
-      &nbsp;<strong>Ambientes De La Direccion : </strong>{{a.pais}} - {{a.provincia}} - {{a.ciudad}} - {{a.calle}} - {{a.altura}} - {{a.punto_de_referencia}}
+    <ion-item class="item-royal item-icon-right" ng-click="toggleGroup(a)" ng-class="{active: isGroupShown(a)}" >
+      <i class="icon ion-plus" ng-click="add_environment"></i>
+      <strong>Ambientes De La Direccion : </strong>{{a.pais}} - {{a.provincia}} - {{a.ciudad}} - {{a.calle}} - {{a.altura}} - {{a.punto_de_referencia}}
     </ion-item>
-    <!-- <ion-item class="item-accordion item-stable" ng-repeat=" e in environments" ng-if="e.direccion.direccion == a.direccion" ng-show="isGroupShown(a)"> -->
-    <ion-item class="item-accordion item-stable" ng-repeat=" e in environments" ng-if="e.cotizacion_clientedireccion_id == a.cotizacion_clientedireccion_id"  ng-show="isGroupShown(a)">
+    <ion-item class="item-accordion" ng-repeat=" e in environments" ng-if="e.cotizacion_clientedireccion_id == a.cotizacion_clientedireccion_id"  ng-show="isGroupShown(a)">
       {{e.ambiente}}
-      <ion-option-button class="button-balanced" ng-click="delete_env(e.cotizacion_ambiente_id)">Eliminar</ion-option-button>
+      <ion-option-button class="button-assertive" ng-click="delete_env(e.cotizacion_ambiente_id)">Eliminar</ion-option-button>
     </ion-item>
   </div>
 </ion-list>
-<button class="button button-fab button-fab-bottom-right button-balanced icon ion-plus" ng-click="add_env()"></button>

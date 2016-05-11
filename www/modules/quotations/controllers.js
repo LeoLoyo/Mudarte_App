@@ -76,12 +76,12 @@
 
     init();
 
-    // add contacts
+    // add a contacts
     $scope.add_contacts = function(customer){
       $state.go('app.contacts-new', {customerId:customer.id_web, quotation_id:$stateParams.id});
     };
 
-    // delete an contacts
+    // delete a contacts
     $scope.delete_contact = function(id, id_web) {
 
       var cid = id_web;
@@ -97,6 +97,23 @@
       });
     };
 
+    // add  an address
+    $scope.add_address = function(num){
+      (num==0)?console.log('es una nueva direccion de origen'):console.log('es una nueva direccion de destino');
+      $state.go('app.address-new');
+    };
+
+    // delete an address
+    $scope.delete_address = function() {
+      alert("Eliminare Una Direccion");
+    };
+
+    // add an environment
+    $scope.add_environment = function(num){
+      (num==0)?console.log('es una nueva direccion de origen'):console.log('es una nueva direccion de destino');
+      $state.go('app.address-new');
+    };
+
     // delete an environment
     $scope.delete_env = function(Id) {
       Services_Environments.remove('cotizacion_cotizacionambiente', Id, 'id_web').then(function(result){
@@ -104,24 +121,39 @@
       });
     };
 
-    // add address
-    $scope.new_address = function(num){
-      (num==0)?console.log('es una nueva direccion de origen'):console.log('es una nueva direccion de destino');
-      $state.go('app.address-new');
+    // add a furniture
+    $scope.add_furniture = function(object){
+      // $state.go('app.furniture-new',{environmentId:object.cotizacion_ambiente_id);
+    };
+
+    // delete a furniture
+    $scope.delete_furniture = function(id, id_web) {
+
+      var cid = id_web;
+      var attr = 'id_web';
+
+      if(id_web==null){
+        cid = id;
+        attr= 'id';
+      };
+
+      Services_furnitures.remove('cotizacion_cotizacionmueble', cid, attr).then(function(result){
+        init();
+      });
     };
 
     //toggle
-    $scope.toggleGroup = function(address) {
-      if ($scope.isGroupShown(address)) {
+    $scope.toggleGroup = function(object) {
+      if ($scope.isGroupShown(object)) {
         $scope.shownGroup = null;
       } else {
-        $scope.shownGroup = address;
+        $scope.shownGroup = object;
       }
     };
 
-    $scope.isGroupShown = function(address) {
+    $scope.isGroupShown = function(object) {
 
-      return $scope.shownGroup === address;
+      return $scope.shownGroup === object;
 
     };
 

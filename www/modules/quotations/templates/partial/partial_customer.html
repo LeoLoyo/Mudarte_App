@@ -14,17 +14,17 @@
     </ion-item>
   </div>
   <div class="card">
-    <ion-item class="item item-royal item-icon-right">
+    <ion-item class="item-royal item-icon-right">
       <strong>Contactos Asociados </strong>
-      <span class="badge badge-stable"><strong>{{contacts.length}}</strong></span>
+      <i class="icon ion-plus" ng-click="add_contacts(customer)"></i>
+      <!-- <i class="icon ion-plus" ng-click="add_contacts(customer)"> -->
     </ion-item>
 
-    <ion-item ng-repeat="contact in contacts">
+    <ion-item ng-repeat="contact in contacts" ng-if="contact.tipo_de_relacion != 'Cliente'">
       <h2><p>Nombre</p>{{contact.nombre}}</h2>
       <p>Dni: {{contact.dni}} Telefono: {{contact.telefono}} Tipo de Relacion: {{contact.tipo_de_relacion}}</p>
       <ion-option-button class="button-balanced" ng-click="delete_contact(contact.id, contact.contacto_id)">Eliminar</ion-option-button>
     </ion-item>
-    <button class="button button-fab button-fab-bottom-right button-assertive icon ion-plus" ng-click="add_contacts(customer)"></button>
 
   </div>
   <div class="card">
