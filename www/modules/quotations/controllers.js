@@ -1,4 +1,4 @@
-// (function() {
+(function() {
   var app = angular.module('QuotationCtrl', ['services.customers']);
   app.controller('DashboardCtrl', function($scope,Service_Customers, Services_quotations,cotizador) {
     'use strict';
@@ -28,7 +28,7 @@
     // }
 
   }]);
-  app.controller('Quotation-DetailsCtrl',function(collectiondb, $scope, Services_quotations, $state, $stateParams, Service_Customers, Services_Addresses, Service_Contacts, Services_Environments) {
+  app.controller('Quotation-DetailsCtrl',function(collectiondb, $scope, Services_quotations, $state, $stateParams, Service_Customers, Services_Addresses, Service_Contacts, Services_Environments, Services_furnitures) {
 
     $scope.quotation  = {};
     $scope.customer = {};
@@ -40,6 +40,8 @@
     $scope.address = null;
     $scope.environments = [];
     $scope.environments = null;
+    $scope.furnitures = [];
+    $scope.furnitures = null;
 
     function init() {
 
@@ -55,6 +57,7 @@
                 });
               })
       });
+
       Services_Addresses.all(Number($stateParams.id)).then(function(address) {
         $scope.address = address;
       });
@@ -63,7 +66,13 @@
         $scope.environments = envs;
       });
 
-    };
+      Services_furnitures.all('vcotizacion_mueble', Number($stateParams.id), 'cotizacion_id').then(function(furnitures) {
+            $scope.furnitures = furnitures;
+          }).catch(function(e) {
+              console.log("Error al Cargar Los Muebles");
+              alert("Error al Cargar Los Muebles");
+          });
+      };
 
     init();
 
@@ -109,93 +118,13 @@
         $scope.shownGroup = address;
       }
     };
+
     $scope.isGroupShown = function(address) {
-      
+
       return $scope.shownGroup === address;
 
     };
 
   });
 
-
-
-  app.controller('PanelQuotationCtrl',['$scope', function($scope){
-      'use strict';
-      $scope.groups = [
-      {
-          "title":"Cliente",
-          "icon":"icon ion-android-person",
-          "items":[
-                      {
-                          "title":"Datos Biograficos",
-                          "link":".client"
-                      },
-                      {
-                          "title":"Datos de Contacto"
-                      },
-                      {
-                          "title":"Fuente de Captacion"
-                      }
-                      ]
-      },{
-          "title":"Cotizacion",
-          "icon":"icon ion-android-list",
-          "items":[
-                      {
-                          "title":"Ambientes",
-                          "link":".quotation"
-                      },
-                      {
-                          "title":"Muebles"
-                      },
-                      {
-                          "title":"Otros"
-                      }]
-      },{
-          "title":"Direccion",
-          "icon":"icon ion-android-locate",
-          "items":[
-                      {
-                          "title":"Datos Basicos",
-                           "link":".address"
-                       },
-                      {
-                          "title":"Edificacion",
-                          "link":".edification"
-                      },
-                      {
-                          "title":"Ascensores",
-                          "link":".elevators"
-                      },
-                      {
-                          "title":"Horario Disponible",
-                          "link":".shedule_avalible"
-                      },{
-                          "title":"Inmueble",
-                          "link":".property"
-                      }]
-
-      },{
-          "title":"Forma de Pago",
-          "icon":"icon ion-card",
-          "items":[{"title":"Credito","link":".way_to_pay"},{"title":"debito","link":".way_to_pay"}]
-
-      },{
-          "title":"Resumen de Cotizacion",
-          "icon":"icon ion-android-checkbox-outline",
-          "link":".summary"
-
-      }];
-    $scope.toggleGroup = function(group) {
-        if ($scope.isGroupShown(group)) {
-          $scope.shownGroup = null;
-        } else {
-          $scope.shownGroup = group;
-        }
-      };
-      $scope.isGroupShown = function(group) {
-        return $scope.shownGroup === group;
-      };
-  }]);
-
-// })()
+})();

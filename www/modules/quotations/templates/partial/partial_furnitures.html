@@ -1,0 +1,14 @@
+<ion-list>
+  <div ng-repeat="a in address">
+    <div ng-repeat="e in environments" class="card" ng-if="a.cotizacion_clientedireccion_id == e.cotizacion_clientedireccion_id">
+      <ion-item class="item-royal item-icon-right"  ><h2> {{a.pais}} - {{e.ambiente}} </h2></ion-item>
+      <ion-list>
+        <ion-item class="item-stable" ng-repeat="f in furnitures" ng-if="f.cotizacion_ambiente_id == e.cotizacion_ambiente_id">
+          <h2>{{f.mueble}} - {{f.especificacion_de_mueble}}</h2>
+          <ion-option-button class="button-balanced" ng-click="">Eliminar</ion-option-button>
+        </ion-item>
+      </ion-list>
+    </div>
+
+  </div>
+</ion-list>

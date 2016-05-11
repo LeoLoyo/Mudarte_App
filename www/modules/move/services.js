@@ -1,5 +1,7 @@
 (function() {
+
   var app = angular.module('services.environments',[]);
+
   app.factory('Services_Environments', function($cordovaSQLite, DBA) {
     var self = this;
 
@@ -41,34 +43,35 @@
     }
 
     return self;
-});
+  });
 
-app.factory('Services_fitments', function($cordovaSQLite, DBA) {
-  var self = this;
+  app.factory('Services_furnitures', function($cordovaSQLite, DBA) {
 
-  selft.all = function(Id) {
-    var query = "SELECT * FROM vmueble";
-    return DBA.query(query, [Id]).then(function(result) {
-      return DBA.getAll(result);
-    });
-  };
+    var self = this;
 
-  selft.get = function() {
-    return DBA.query(query,parameters);
-  };
+    self.all = function(table, Id, attr) {
+      return DBA.query("SELECT * FROM " + table + " WHERE " + attr + " = (?)", [Id])
+      .then(function(result){
+        return DBA.getAll(result);
+      });
+    };
 
-  selft.add = function() {
-    return DBA.query(query,parameters);
-  };
+    self.get = function() {
+      return DBA.query(query,parameters);
+    };
 
-  selft.remove = function() {
-    return DBA.query(query,parameters);
-  };
+    self.add = function() {
+      return DBA.query(query,parameters);
+    };
 
-  selft.update = function() {
-    return DBA.query(query,parameters);
-  };
+    self.remove = function() {
+      return DBA.query(query,parameters);
+    };
 
-});
+    self.update = function() {
+      return DBA.query(query,parameters);
+    };
+    return self;
+  });
 
 })();
