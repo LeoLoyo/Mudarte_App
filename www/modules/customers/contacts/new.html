@@ -28,8 +28,8 @@
               <span class="mdl-list__item-primary-content">
                 <i class="ion-android-contacts mdl-list__item-icon "></i>
                 <div class="field-input-text">
-                  <select ng-model="customer.tipo_de_relacion_id" style="width: 100%;border: none;background: none;">
-                    <option ng-value="relacion.id_web"   ng-repeat="relacion in tiporelaciones ">{{relacion.tipo_de_relacion}}</option>
+                  <select ng-model="customer.tipo_de_relacion_id" class="form-select">
+                    <option ng-value="relation.id_web"   ng-repeat="relation in type_of_relations ">{{relation.tipo_de_relacion}}</option>
                   </select>
                 </div>
               </span>
@@ -38,8 +38,8 @@
               <span class="mdl-list__item-primary-content">
                 <i class="ion-person mdl-list__item-icon "></i>
                 <div class="field-input-text">
-                  <select ng-model="customer.sexo_id" style="width: 100%;border: none;background: none;">
-                    <option ng-value="sex.id_web"   ng-repeat="sex in sexos ">{{sex.sexo}}</option>
+                  <select ng-model="customer.sexo_id" class="form-select">
+                    <option ng-value="sex.id_web"   ng-repeat="sex in sexs ">{{sex.sexo}}</option>
                   </select>
                 </div>
               </span>

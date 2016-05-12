@@ -379,3 +379,8 @@ i.mdl-list__item-icon{
     padding: 32px;
   }
 }
+.form-select{
+  width: 100%;
+  border: none;
+  background: none;
+}

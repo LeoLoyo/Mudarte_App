@@ -38,11 +38,24 @@
     app.factory('Service_Contacts', function($cordovaSQLite, DBA){
       var self = this;
 
-      self.all = function(Id) {
-        return DBA.query("SELECT * FROM vcontacto WHERE cliente_id = ?", [Id]).then(function (result) {
+      self.all = function(table, Id, attr) {
+        var query = "SELECT * FROM "+ table +" WHERE " + attr + " = (?)";
+        var parameters = [Id];
+        if(Id == undefined && attr == undefined){
+          query = "SELECT * FROM "+ table;
+          parameters = [];
+        };
+        console.log(query);
+        return DBA.query(query, parameters).then(function (result) {
           return DBA.getAll(result);
         });
       }
+      // self.all_other = function(table,Id) {
+      //   var query = "SELECT * FROM "+ table;
+      //   return DBA.query(query, [Id]).then(function (result) {
+      //     return DBA.getAll(result);
+      //   });
+      // }
       // self.get = function(Id) {
       //   var parameters = [Id];
       //   return DBA.query('SELECT * FROM table WHERE id_web = (?)', parameter).then(function(result) {

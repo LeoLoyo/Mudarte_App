@@ -49,7 +49,7 @@
         $scope.quotation = quotation;
         Service_Customers.get(Number(quotation.cliente_id)).then(function(customer) {
             $scope.customer = customer;
-            Service_Contacts.all(Number(customer.id_web)).then(function(contacts) {
+            Service_Contacts.all('vcontacto', Number(customer.id_web), 'cliente_id').then(function(contacts) {
                 $scope.contacts = contacts;
               }).catch(function(e) {
                   console.log(e);
@@ -123,7 +123,7 @@
 
     // add a furniture
     $scope.add_furniture = function(object){
-      // $state.go('app.furniture-new',{environmentId:object.cotizacion_ambiente_id);
+      $state.go('app.furniture-new',{environmentId:object.ambiente_id_web});
     };
 
     // delete a furniture
@@ -160,3 +160,13 @@
   });
 
 })();
+
+// CREATE VIEW "vcotizacion_mueble" as select
+// 	ca.cotizacion_id as cotizacion_id, ca.cotizacion_ambiente_id as ambiente_id, vm.mueble as mueble,vm.especificacion_de_mueble as especificacion,cm.*
+// from
+// 	vmueble as vm,
+// 	cotizacion_cotizacionmueble as cm,
+// 	vcotizacion_ambiente as ca
+// where cm.especificacion_mueble_id = vm.especificacion_mueble_id
+// 	and
+// 	cm.cotizacion_ambiente_id = ca.cotizacion_ambiente_id

@@ -12,7 +12,7 @@
         // }
         $ionicLoading.show({template:"Loading..."});
       if(db==null){
-        // copydb();
+        copydb();
         $ionicLoading.hide();
       }
       function copydb(){

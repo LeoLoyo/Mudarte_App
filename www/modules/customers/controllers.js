@@ -136,33 +136,25 @@
   app.controller('ContactsCtrl', ['$scope', '$state', '$stateParams', 'Service_Contacts', function($scope, $state, $stateParams, Service_Contacts) {
     'use strict';
     $scope.customer = {cliente_id: Number($state.params.customerId)};
-    $scope.tiporelaciones = [];
-    $scope.tiporelaciones = null;
-    $scope.sexos = [];
-    $scope.sexos = null;
+    $scope.type_of_relations = [];
+    $scope.type_of_relations = null;
+    $scope.sexs = [];
+    $scope.sexs = null;
 
     Service_Contacts.all('cliente_tipoderelacion').then(function(result) {
-      $scope.tiporelaciones = result;
+      $scope.type_of_relations = result;
     }).catch(function(e) {
-      alert(e);
+      console.log('Error : ' + e);
+      alert('Error');
     });
 
     Service_Contacts.all('cliente_sexo').then(function(result) {
-      $scope.sexos = result;
+      $scope.sexs = result;
     }).catch(function(e) {
-      alert(e);
+      console.log('Error : ' + e);
+      alert('Error');
     });
 
-    // $scope.customer = {
-    //                       dni:'',
-    //                       nombre:'',
-    //                       cliente_id: Number($state.params.customerId),
-    //                       sexo_id:2,
-    //                       estado_civil_id:1,
-    //                       fecha_nacimiento:' ',
-    //                       tipo_de_relacion_id: 1,
-    //                       observaciones:''
-    //                   };
 
     $scope.new = function(customer) {
       Service_Contacts.add(customer).then(function(result) {

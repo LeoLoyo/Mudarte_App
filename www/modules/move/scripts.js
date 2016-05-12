@@ -2,23 +2,6 @@
 
   var app = angular.module('module.environments',[]);
 
-  app.config(function($stateProvider, $urlRouterProvider){
-    $stateProvider
-      .state('app.furnitures-new', {
-        url:'furnitures/:environmentId/new',
-        views:{
-          'maincontent':{
-            templateUrl:'modules/move/templates/new.html',
-            controller:'FurnituresCtrl'
-          }
-        }
-      })
-  });
-
-  app.controller('FurnituresCtrl', ['$scope', function($scope){
-    $scope.perro = "PERRO A CAGAR";
-  }]);
-
   app.factory('Services_Environments', function($cordovaSQLite, DBA) {
     var self = this;
 
@@ -62,12 +45,39 @@
     return self;
   });
 
+  app.config(function($stateProvider, $urlRouterProvider){
+    $stateProvider
+      .state('app.furniture-new', {
+        url:'furnitures/:environmentId/new',
+        views:{
+          'maincontent':{
+            templateUrl:'modules/move/templates/new.html',
+            controller:'FurnituresCtrl'
+          }
+        }
+      })
+  });
+
+  app.controller('FurnituresCtrl', ['$scope', 'Services_furnitures', '$state','$stateParams', function($scope, Services_furnitures, $state, $stateParams){
+    $scope.furnitures = [];
+    $scope.furnitures = null;
+    Services_furnitures.all('vtimueble_ambiente_inmueble',  Number($stateParams.environmentId),'ambiente_id')
+      .then(function(furnitures) {
+        $scope.furnitures = furnitures;
+      })
+      .catch(function(e) {
+        console.log(e);
+        alert("Ocurrio un error");
+      });
+  }]);
+
   app.factory('Services_furnitures', function($cordovaSQLite, DBA) {
 
     var self = this;
 
     self.all = function(table, Id, attr) {
-      return DBA.query("SELECT * FROM " + table + " WHERE " + attr + " = (?)", [Id])
+      var query = "SELECT * FROM " + table + " WHERE " + attr + " = (?)";
+      return DBA.query(query, [Id])
       .then(function(result){
         return DBA.getAll(result);
       });
