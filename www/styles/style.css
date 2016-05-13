@@ -265,9 +265,7 @@ text-align:right;
   border-right: 1px solid #FFA726;
   }
 
-ion-item.item.item-icon-left:hover{
-color: red;
-}
+
 @media (max-width: 600px) {
   .field {
     width: 40%;

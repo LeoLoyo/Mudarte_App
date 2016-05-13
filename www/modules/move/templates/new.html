@@ -5,46 +5,78 @@
   <ion-pane>
     <ion-content>
       <div class="row">
-        <div class="col">
+        <div class="col padding">
           <ion-list class="card">
             <ion-item class="item-royal"><strong>Listado De Muebles</strong></ion-item>
             <label class="item item-inputa">
               <i class="icon ion-search placeholder-icon"></i>
               <input type="text" ng-model="search" placeholder="Buscar Mueble">
             </label>
-            <ion-item ng-repeat="f in furnitures | filter: search"><ion-checkbox ng-model="isChecked">{{f.especificacion_de_mueble}}</ion-checkbox></ion-item>
+            <ion-item ng-repeat="f in furnitures | filter: search">
+              <ion-checkbox ng-model="f.check" ng-click="add(f)">{{f.especificacion_de_mueble}}</ion-checkbox>
+            </ion-item>
           </ion-list>
         </div>
-        <div class="col">
+        <div class="col padding">
           <ion-list class="card">
-            <ion-item class="item-royal item-icon-right">
+            <ion-item class="item-royal  item-icon-left item-icon-right">
               <strong>Ficha Del Mueble</strong>
-              <i class="icon ion-android-arrow-forward"></i>
+              <span>Muebles a Agregar:
+                {{furnitures_temp.length}}
+              </span>
+              <i class="icon ion-android-arrow-back" ng-if="furnitures_temp.length > 1" ng-click="preview()"></i>
+              <i class="icon ion-android-arrow-forward" ng-if="furnitures_temp.length > 1" ng-click="next()"></i>
             </ion-item>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Descripcion</span>
-              <input type="text" ng-model="f.especificacion_de_mueble" placeholder="Descripcion">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Alto</span>
-              <input type="text" placeholder="Alto">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Ancho</span>
-              <input type="text" placeholder="Ancho">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Largo</span>
-              <input type="text" placeholder="Largo">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Trasladable</span>
-              <input type="text" placeholder="Trasladable">
-            </label>
+            <div class="padding" ng-if="furnitures_temp.length > 0" >
+              <label class="item item-stable item-input item-stacked-label">
+                <span class="input-label">Descripcion</span>
+                <input type="text" ng-model="furniture_temp.especificacion_de_mueble" placeholder="Descripcion">
+              </label>
+              <label class="item item-stable item-input item-stacked-label">
+                <span class="input-label">Alto</span>
+                <input type="text" ng-model="furniture_temp.alto" placeholder="Alto">
+              </label>
+              <label class="item item-stable item-input item-stacked-label">
+                <span class="input-label">Ancho</span>
+                <input type="text" ng-model="furniture_temp.ancho" placeholder="Ancho">
+              </label>
+              <label class="item item-stable item-input item-stacked-label">
+                <span class="input-label">Largo</span>
+                <input type="text" ng-model="furniture_temp.largo" placeholder="Largo">
+              </label>
+              <label class="item item-stable item-input item-stacked-label">
+                <span class="input-label">Trasladable</span>
+                <input type="text" ng-model="furniture_temp.transladable" placeholder="Trasladable">
+              </label>
+              <!-- <div class="item range range-assertive"
+              style="-ms-transform: rotate(90deg); /* IE 9 */
+                      -webkit-transform: rotate(20deg); /* Safari */
+                      transform: rotate(270deg);
+                      w">
+                <i class="icon ion-ios-sunny-outline"></i>
+                <input type="range" name="volume" min="0" max="100" value="33">
+                <i class="icon ion-ios-sunny"></i>
+              </div> -->
+
+            </div>
+
           </ion-list>
         </div>
       </div>
     </ion-content>
-    <button ripple ng-click="" class="button button-fab button-fab-bottom-right button-positive icon ion-android-person-add"></button>
+    <button ripple ng-click="openPopover($event)" class="button button-fab button-fab-bottom-right button-positive icon ion-android-done"></button>
   </ion-pane>
 </ion-view>
+
+<script id="my-popover.html" type="text/ng-template">
+  <ion-popover-view>
+    <ion-header-bar class="bar-assertive">
+      <h1 class="title">Lista De Muebles a  Agregar</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+        <ion-item ng-repeat="f in furnitures_temp">{{f.especificacion_de_mueble}} - Alto: {{f.alto}}cm - Ancho: {{f.ancho}}cm - Largo: {{f.largo}}cm</ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-popover-view>
+</script>
